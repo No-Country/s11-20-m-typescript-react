@@ -114,4 +114,6 @@ input UpdateUserInput {
   """birthday field"""
   birthday: DateTime
   _id: String!
+  oldPassword: String
+  newPassword: String
 }
