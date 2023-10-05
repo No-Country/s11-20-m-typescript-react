@@ -65,22 +65,22 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Coupon {
-  """Example field (placeholder)"""
+  """id field"""
   _id: String!
 
   """title field"""
   title: String!
 
-  """description field"""
+  """thumbnail of coupon"""
   thumbnail: String!
 
   """active/inactive field"""
   status: Boolean!
 
-  """description field"""
+  """rank of coupon"""
   requeriedRank: String!
 
-  """description field"""
+  """uses per month of coupon"""
   usesPerMonth: String!
 }
 
