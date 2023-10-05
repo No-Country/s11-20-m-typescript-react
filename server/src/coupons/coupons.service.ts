@@ -10,24 +10,49 @@ export class CouponsService {
   constructor(@InjectModel(Coupon.name) private CouponModel: Model<Coupon>) {}
 
   async create(createCouponInput: CreateCouponInput) {
-    return this.CouponModel.create(createCouponInput);
+    try {
+      return await this.CouponModel.create(createCouponInput);
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
   }
 
   async findAll() {
-    return await this.CouponModel.find();
+    try {
+      return await this.CouponModel.find();
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
   }
 
   async findOne(id: string) {
-    return await this.CouponModel.findById(id);
+    try {
+      return await this.CouponModel.findById(id);
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
   }
 
   async update(id: string, updateCouponInput: UpdateCouponInput) {
-    return await this.CouponModel.findByIdAndUpdate(id, updateCouponInput, {
-      new: true,
-    });
+    try {
+      return await this.CouponModel.findByIdAndUpdate(id, updateCouponInput, {
+        new: true,
+      });
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
   }
 
   async remove(id: string) {
-    return await this.CouponModel.findByIdAndDelete(id);
+    try {
+      return await this.CouponModel.findByIdAndDelete(id);
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
   }
 }
