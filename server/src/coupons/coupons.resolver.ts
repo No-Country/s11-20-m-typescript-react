@@ -4,6 +4,7 @@ import { Coupon } from './entities/coupon.entity';
 import { CreateCouponInput } from './dto/create-coupon.input';
 import { UpdateCouponInput } from './dto/update-coupon.input';
 import { GraphQLError } from 'graphql';
+import { InternalServerErrorException } from '@nestjs/common';
 
 @Resolver(() => Coupon)
 export class CouponsResolver {
@@ -16,7 +17,8 @@ export class CouponsResolver {
     try {
       return this.couponsService.create(createCouponInput);
     } catch (err) {
-      throw new GraphQLError('Error trying to create coupon');
+      console.log(err);
+      throw new InternalServerErrorException();
     }
   }
 
@@ -25,7 +27,8 @@ export class CouponsResolver {
     try {
       return this.couponsService.findAll();
     } catch (err) {
-      throw new GraphQLError('Error trying to find all coupons');
+      console.log(err);
+      throw new InternalServerErrorException();
     }
   }
 
@@ -34,7 +37,8 @@ export class CouponsResolver {
     try {
       return this.couponsService.findOne(id);
     } catch (error) {
-      throw new GraphQLError('Error trying to find one coupon');
+      console.log(error);
+      throw new InternalServerErrorException();
     }
   }
 
@@ -48,7 +52,8 @@ export class CouponsResolver {
         updateCouponInput,
       );
     } catch (error) {
-      throw new GraphQLError('Error trying to update coupon');
+      console.log(error);
+      throw new InternalServerErrorException();
     }
   }
 
@@ -57,7 +62,8 @@ export class CouponsResolver {
     try {
       return this.couponsService.remove(id);
     } catch (error) {
-      throw new GraphQLError('Error trying to remove coupon');
+      console.log(error);
+      throw new InternalServerErrorException();
     }
   }
 }
