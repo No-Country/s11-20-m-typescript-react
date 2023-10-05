@@ -8,10 +8,8 @@ export class CreateCouponInput {
   @MinLength(3, { message: 'title must be at least 3 characters long' })
   title: string;
 
-  /*
-  @Field(() => String, { description: 'description field' })
-  thumbnail: string;
-  */
+  @Field(() => String, { description: 'description field', nullable: true })
+  thumbnail?: string;
 
   @Field(() => String, { description: 'description field' })
   @IsNotEmpty({ message: 'description is required' })

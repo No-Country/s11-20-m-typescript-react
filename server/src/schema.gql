@@ -148,6 +148,9 @@ input CreateCouponInput {
   title: String!
 
   """description field"""
+  thumbnail: String
+
+  """description field"""
   requeriedRank: String!
 
   """description field"""
@@ -157,6 +160,9 @@ input CreateCouponInput {
 input UpdateCouponInput {
   """title field"""
   title: String
+
+  """description field"""
+  thumbnail: String
 
   """description field"""
   requeriedRank: String
