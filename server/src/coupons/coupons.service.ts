@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCouponInput } from './dto/create-coupon.input';
 import { UpdateCouponInput } from './dto/update-coupon.input';
 import { Coupon } from './entities/coupon.entity';
@@ -7,52 +7,43 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class CouponsService {
-  constructor(@InjectModel(Coupon.name) private CouponModel: Model<Coupon>) {}
+  constructor(@InjectModel(Coupon.name) private couponModel: Model<Coupon>) {}
 
   async create(createCouponInput: CreateCouponInput) {
-    try {
-      return await this.CouponModel.create(createCouponInput);
-    } catch (error) {
+    return await this.couponModel.create(createCouponInput).catch((error) => {
       console.log(error);
       throw new Error(error);
-    }
+    });
   }
 
   async findAll() {
-    try {
-      return await this.CouponModel.find();
-    } catch (error) {
+    return await this.couponModel.find().catch((error) => {
       console.log(error);
       throw new Error(error);
-    }
+    });
   }
 
   async findOne(id: string) {
-    try {
-      return await this.CouponModel.findById(id);
-    } catch (error) {
-      console.log(error);
-      throw new Error(error);
-    }
+    return await this.findCoupon(id);
   }
 
   async update(id: string, updateCouponInput: UpdateCouponInput) {
-    try {
-      return await this.CouponModel.findByIdAndUpdate(id, updateCouponInput, {
-        new: true,
-      });
-    } catch (error) {
-      console.log(error);
-      throw new Error(error);
-    }
+    await this.findCoupon(id);
+    return await this.couponModel.findByIdAndUpdate(id, updateCouponInput, {
+      new: true,
+    });
   }
 
   async remove(id: string) {
-    try {
-      return await this.CouponModel.findByIdAndDelete(id);
-    } catch (error) {
+    await this.findCoupon(id);
+    return await this.couponModel.findByIdAndDelete(id);
+  }
+
+  private async findCoupon(id: string): Promise<Coupon> {
+    const coupon = await this.couponModel.findById(id).catch((error) => {
       console.log(error);
-      throw new Error(error);
-    }
+    });
+    if (!coupon) throw new NotFoundException(`Coupon #${id} not found`);
+    return coupon;
   }
 }
