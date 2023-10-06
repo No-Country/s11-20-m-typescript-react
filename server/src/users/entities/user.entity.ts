@@ -115,6 +115,7 @@ export class User {
 
   @Field(() => Date, { description: 'updatedAt field' })
   updatedAt: Date;
+  id: any;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

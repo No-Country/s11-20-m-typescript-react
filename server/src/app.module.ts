@@ -8,6 +8,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { CouponsModule } from './coupons/coupons.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CouponsModule } from './coupons/coupons.module';
     }),
     UsersModule,
     CouponsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

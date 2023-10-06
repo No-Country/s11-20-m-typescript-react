@@ -98,6 +98,7 @@ type Mutation {
   createCoupon(createCouponInput: CreateCouponInput!): Coupon!
   updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
   removeCoupon(id: String!): Coupon!
+  login(email: String!, password: String!): String!
 }
 
 input CreateUserInput {
