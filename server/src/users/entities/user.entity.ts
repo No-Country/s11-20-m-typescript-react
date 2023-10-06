@@ -1,6 +1,6 @@
 import { ObjectType, Field } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, ObjectId } from 'mongoose';
+import mongoose, { HydratedDocument, ObjectId } from 'mongoose';
 import { IsNotEmpty, IsEmail, Matches, IsDate } from 'class-validator';
 
 export type SessionDocument = HydratedDocument<User>;
@@ -14,11 +14,11 @@ class EventsEnum {
 
   @Prop({ default: [] })
   @Field(() => [String], { description: 'created field' })
-  created: ObjectId[];
+  created: mongoose.Types.ObjectId[];
 
   @Prop({ default: [] })
   @Field(() => [String], { description: 'subscribed field' })
-  subscribed: ObjectId[];
+  subscribed: mongoose.Types.ObjectId[];
 }
 
 @ObjectType()
