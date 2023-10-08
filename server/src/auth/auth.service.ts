@@ -10,7 +10,10 @@ export class AuthService {
     private usersService: UsersService,
   ) {}
 
-  async login(email: string, password: string ): Promise<Object> {
+  async login(
+    email: string,
+    password: string,
+  ): Promise<string> {
     const user = await this.usersService.findUserByEmail(email);
 
     if (!user) {
@@ -25,7 +28,8 @@ export class AuthService {
 
     const payload = { sub: user.id, username: user.username };
     const token = this.jwtService.sign(payload);
-      return { token, userId: user.id };
+      const response = JSON.stringify({ token: token, userID: user.id });
+      return response;
   }
   async verifyToken(token: string) {
     try {
@@ -35,5 +39,4 @@ export class AuthService {
       throw new UnauthorizedException('Token inválido');
     }
   }
-
 }
