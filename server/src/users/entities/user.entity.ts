@@ -116,6 +116,9 @@ export class User {
   @Field(() => Date, { description: 'updatedAt field' })
   updatedAt: Date;
   id: any;
+
+  @Prop({ required: false })
+  accessTokenGoogle: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
