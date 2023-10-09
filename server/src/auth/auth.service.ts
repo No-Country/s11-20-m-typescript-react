@@ -26,9 +26,9 @@ export class AuthService {
       throw new UnauthorizedException('Incorrect password');
     }
 
-    const payload = { sub: user.id, username: user.username };
+    const payload = { sub: user._id, username: user.username };
     const token = this.jwtService.sign(payload);
-      const response = JSON.stringify({ token: token, userID: user.id });
+      const response = JSON.stringify({ token: token, userID: user._id });
       return response;
   }
   async verifyToken(token: string) {

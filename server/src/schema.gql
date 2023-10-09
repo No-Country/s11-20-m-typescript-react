@@ -18,6 +18,11 @@ type HabitsEnum {
   exampleHabit2: String!
 }
 
+type VerificationResult {
+  sub: String!
+  username: String!
+}
+
 type User {
   """Example field (placeholder)"""
   _id: String!
@@ -89,6 +94,7 @@ type Query {
   user(id: String!): User!
   coupons: [Coupon!]!
   coupon(id: String!): Coupon!
+  verifyToken(token: String!): VerificationResult!
 }
 
 type Mutation {
