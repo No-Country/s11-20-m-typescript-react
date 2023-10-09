@@ -6,6 +6,15 @@ import { IsNotEmpty, IsEmail, Matches } from 'class-validator';
 export type SessionDocument = HydratedDocument<Auth>;
 
 @Schema({ timestamps: true })
+  
+@ObjectType()
+export class VerificationResult {
+  @Field()
+  sub: string;
+  @Field()
+  username: string;
+}
+
 @ObjectType()
 export class Auth {
   @Field(() => String, { description: 'field' })
@@ -27,3 +36,6 @@ export class Auth {
   password: string;
 
 }
+
+
+

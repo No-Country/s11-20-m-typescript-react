@@ -1,7 +1,8 @@
 import { Resolver, Mutation, Args, Context, Query } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { InternalServerErrorException } from '@nestjs/common';
-import { VerificationResult } from 'src/users/entities/user.entity';
+import { VerificationResult } from './entities/auth.entity';
+
 
 @Resolver()
 export class AuthResolver {

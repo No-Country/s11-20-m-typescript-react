@@ -36,14 +36,6 @@ class HabitsEnum {
   exampleHabit2: string;
 }
 
-@ObjectType()
-export class VerificationResult {
-  @Field() 
-  sub: string;
-  @Field()
-  username: string;
-}
-
 @Schema({ timestamps: true })
 @ObjectType()
 export class User {

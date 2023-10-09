@@ -18,11 +18,6 @@ type HabitsEnum {
   exampleHabit2: String!
 }
 
-type VerificationResult {
-  sub: String!
-  username: String!
-}
-
 type User {
   """Example field (placeholder)"""
   _id: String!
@@ -87,6 +82,11 @@ type Coupon {
 
   """uses per month of coupon"""
   usesPerMonth: String!
+}
+
+type VerificationResult {
+  sub: String!
+  username: String!
 }
 
 type Query {
