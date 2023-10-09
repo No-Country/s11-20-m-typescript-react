@@ -8,6 +8,9 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { CouponsModule } from './coupons/coupons.module';
+import { AuthModule } from './auth/auth.module';
+import { GoogleStrategy } from './google auth/google.strategy';
+import { User, UserSchema } from './users/entities/user.entity';
 
 @Module({
   imports: [
@@ -16,6 +19,7 @@ import { CouponsModule } from './coupons/coupons.module';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.MONGO_URI),
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       playground: true,
@@ -23,8 +27,9 @@ import { CouponsModule } from './coupons/coupons.module';
     }),
     UsersModule,
     CouponsModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, GoogleStrategy],
 })
 export class AppModule {}

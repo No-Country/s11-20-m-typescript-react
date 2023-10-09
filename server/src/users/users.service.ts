@@ -34,8 +34,20 @@ export class UsersService {
         console.log(error);
         throw new BadRequestException("Can't find user");
       });
+
     if (existingEmail) {
       throw new ConflictException('Email already exists');
+    }
+
+    return existingEmail;
+  }
+
+  async findUserByEmail(email: string): Promise<User | null> {
+    try {
+      const user = await this.userModel.findOne({ email }).exec();
+      return user;
+    } catch (error) {
+      throw new Error('Error while searching for user by email');
     }
   }
 

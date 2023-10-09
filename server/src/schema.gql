@@ -84,11 +84,17 @@ type Coupon {
   usesPerMonth: String!
 }
 
+type VerificationResult {
+  sub: String!
+  username: String!
+}
+
 type Query {
   users: [User!]!
   user(id: String!): User!
   coupons: [Coupon!]!
   coupon(id: String!): Coupon!
+  verifyToken(token: String!): VerificationResult!
 }
 
 type Mutation {
@@ -98,6 +104,7 @@ type Mutation {
   createCoupon(createCouponInput: CreateCouponInput!): Coupon!
   updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
   removeCoupon(id: String!): Coupon!
+  login(email: String!, password: String!): String!
 }
 
 input CreateUserInput {
