@@ -64,15 +64,24 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type CouponsIssued {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   users: [User!]!
   user(id: String!): User!
+  couponsIssued(id: Int!): CouponsIssued!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: String!): User!
+  createCouponsIssued(createCouponsIssuedInput: CreateCouponsIssuedInput!): CouponsIssued!
+  updateCouponsIssued(updateCouponsIssuedInput: UpdateCouponsIssuedInput!): CouponsIssued!
+  removeCouponsIssued(id: Int!): CouponsIssued!
 }
 
 input CreateUserInput {
@@ -116,4 +125,15 @@ input UpdateUserInput {
   _id: String!
   oldPassword: String
   newPassword: String
+}
+
+input CreateCouponsIssuedInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateCouponsIssuedInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
