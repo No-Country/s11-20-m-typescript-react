@@ -36,6 +36,14 @@ class HabitsEnum {
   exampleHabit2: string;
 }
 
+@ObjectType()
+export class VerificationResult {
+  @Field() 
+  sub: string;
+  @Field()
+  username: string;
+}
+
 @Schema({ timestamps: true })
 @ObjectType()
 export class User {
@@ -115,10 +123,6 @@ export class User {
 
   @Field(() => Date, { description: 'updatedAt field' })
   updatedAt: Date;
-  id: any;
-
-  @Prop({ required: false })
-  accessTokenGoogle: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

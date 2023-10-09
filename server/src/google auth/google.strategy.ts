@@ -36,14 +36,14 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
         const randomPassword = generateRandomPassword();
         const hashedPassword = await encryptPassword(randomPassword);
         const user = new this.userModel({
-            email: emails[0].value,
-            firstName: name.givenName,
-            lastName: name.familyName,
-            profileImage: photos[0].value,
-            birthday: defaultBirthday,
-            password: hashedPassword,
-            username: defaultUsername,
-            accessTokenGoogle: accessToken,
+          email: emails[0].value,
+          firstName: name.givenName,
+          lastName: name.familyName,
+          profileImage: photos[0].value,
+          birthday: defaultBirthday,
+          password: hashedPassword,
+          username: defaultUsername,
+          accessToken,
         });
         try {
             const savedUser = await user.save();
