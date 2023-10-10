@@ -19,10 +19,15 @@ export class EventsService {
   ) {}
 
   private async findEventById(id: string) {
-    const event = await this.eventModel.findById(id).catch((error) => {
-      console.log(error);
-      throw new BadRequestException("Can't find event");
-    });
+    const event = await await this.eventModel
+      .findById(id)
+      .populate({
+        path: 'members',
+        populate: { path: 'user', model: User.name },
+      })
+      .exec();
+
+
     if (!event) {
       throw new NotFoundException("Can't find event");
     }
@@ -109,16 +114,20 @@ export class EventsService {
       throw new NotFoundException("Can't find event");
     }
     // verify if user exists
-    if ((event.members.findIndex(x => x.user.toString() == modifyStatusInput.idUser)) === -1) {
+    if (
+      event.members.findIndex(
+        (x) => x.user.toString() == modifyStatusInput.idUser,
+      ) === -1
+    ) {
       throw new BadRequestException('User is not a member');
     }
-    
-    const modified = event.members.map((item)=>{
+
+    const modified = event.members.map((item) => {
       if (item.user.toString() === modifyStatusInput.idUser) {
-        return {...item, status: modifyStatusInput.status}
+        return { ...item, status: modifyStatusInput.status };
       }
-      return item
-    })
+      return item;
+    });
     event.members = modified;
     event.markModified('members');
     event.save();
