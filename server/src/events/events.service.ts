@@ -119,7 +119,6 @@ export class EventsService {
       }
       return item;
     });
-
     event.members = modified;
     event.markModified('members');
     event.save();

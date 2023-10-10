@@ -22,10 +22,12 @@ export class EventsResolver {
   createEvent(@Args('createEventInput') createEventInput: CreateEventInput) {
     return this.eventsService.create(createEventInput);
   }
+
   @Mutation(() => Event)
   addMember(@Args('addMemberInput') addMemberInput: AddMemberInput) {
     return this.eventsService.addMember(addMemberInput);
   }
+  
   @Mutation(() => Event)
   changeMemberStatus(
     @Args('modifyStatusInput') modifyStatusInput: ModifyStatusInput,
