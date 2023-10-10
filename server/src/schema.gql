@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Members {
+type Member {
   """user field"""
   user: User!
 
@@ -22,7 +22,7 @@ type Event {
 
   """spots field"""
   spots: Float!
-  members: [Members!]!
+  members: [Member!]!
 
   """birthday field"""
   deadline: DateTime!
@@ -48,7 +48,6 @@ type Event {
 
   """updatedAt field"""
   updatedAt: DateTime!
-  user: User!
 }
 
 """

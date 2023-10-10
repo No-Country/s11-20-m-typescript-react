@@ -23,14 +23,29 @@ export class EventsService {
       console.log(error);
       throw new BadRequestException("Can't find event");
     });
+
     if (!event) {
       throw new NotFoundException("Can't find event");
     }
+
     return event;
   }
 
+  private async findUserById(id: string) {
+    const user = await this.userModel.findById(id).catch((error) => {
+      console.log(error);
+      throw new BadRequestException("Can't find user");
+    });
+
+    if (!user) {
+      throw new NotFoundException("Can't find user");
+    }
+
+    return user;
+  }
+
   async create(createEventInput: CreateEventInput) {
-    const user = await this.userModel.findById(createEventInput.owner);
+    const user = await this.findUserById(createEventInput.owner);
     // agregar verificaciones
     const event = await this.eventModel
       .create(createEventInput)
@@ -38,9 +53,11 @@ export class EventsService {
         console.log(error);
         throw new BadRequestException('Unable to create event');
       });
+
     user.events.created.push(event._id);
     user.markModified('events');
     user.save();
+
     return event;
   }
 
@@ -50,75 +67,59 @@ export class EventsService {
       throw new BadRequestException("Can't find events");
     });
   }
+
   async findUser(id: string) {
-    const user = await this.userModel.findById(id);
-    return user;
+    return await this.findUserById(id);
   }
-  async findOwner(id: string) {
-    const user = await this.userModel.findById(id);
-    return user;
-  }
+
   async findOne(id: string) {
     return await this.findEventById(id);
   }
 
   async addMember(addMemberInput: AddMemberInput) {
-    const event = await this.eventModel
-      .findById(addMemberInput.idEvent)
-      .catch((error) => {
-        console.log(error);
-        throw new BadRequestException("Can't find event");
-      });
-    if (!event) {
-      throw new NotFoundException("Can't find event");
+    const event = await this.findEventById(addMemberInput.idEvent);
+    const user = await this.findUserById(addMemberInput.idUser);
+
+    const isMember = event.members.some((item) => {
+      return item.user.toString() === addMemberInput.idUser;
+    });
+
+    if (isMember) {
+      throw new BadRequestException('User is already member');
     }
-    for (let i = 0; i < event.members.length; i++) {
-      if (event.members[i].user.toString() == addMemberInput.idUser) {
-        throw new BadRequestException('User is already a member');
-      }
-    }
-    const user = await this.userModel
-      .findById(addMemberInput.idUser)
-      .catch((error) => {
-        console.log(error);
-        throw new BadRequestException("Can't find user");
-      });
-    if (!user) {
-      throw new NotFoundException("Can't find user");
-    }
+
     event.members.push({
       user: user._id,
       status: event.type === 'public' ? 'accepted' : 'pending',
     });
+
     user.events.subscribed.push(event._id);
     user.markModified('events');
     event.markModified('members');
     event.save();
     user.save();
+
     return event;
   }
 
   async changeMemberStatus(modifyStatusInput: ModifyStatusInput) {
-    const event = await this.eventModel
-      .findById(modifyStatusInput.idEvent)
-      .catch((error) => {
-        console.log(error);
-        throw new BadRequestException("Can't find event");
-      });
-    if (!event) {
-      throw new NotFoundException("Can't find event");
-    }
-    // verify if user exists
-    if ((event.members.findIndex(x => x.user.toString() == modifyStatusInput.idUser)) === -1) {
+    const event = await this.findEventById(modifyStatusInput.idEvent);
+
+    const isMember = event.members.some((item) => {
+      return item.user.toString() === modifyStatusInput.idUser;
+    });
+
+    if (!isMember) {
       throw new BadRequestException('User is not a member');
     }
-    
-    const modified = event.members.map((item)=>{
+
+    const modified = event.members.map((item) => {
       if (item.user.toString() === modifyStatusInput.idUser) {
-        return {...item, status: modifyStatusInput.status}
+        return { ...item, status: modifyStatusInput.status };
       }
-      return item
-    })
+      return item;
+    });
+
     event.members = modified;
     event.markModified('members');
     event.save();

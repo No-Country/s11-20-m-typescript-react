@@ -1,8 +1,8 @@
 import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument, ObjectId } from 'mongoose';
-import { IsNotEmpty, IsEmail, Matches, IsDate } from 'class-validator';
-import { User, UserSchema } from 'src/users/entities/user.entity';
+import { IsNotEmpty, Matches, IsDate } from 'class-validator';
+import { User } from 'src/users/entities/user.entity';
 
 export type SessionDocument = HydratedDocument<Event>;
 
@@ -18,7 +18,7 @@ registerEnumType(MemberStatus, {
 });
 
 @ObjectType()
-export class Members {
+export class Member {
   
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   @Field(() => User, { description: 'user field' })
@@ -47,11 +47,11 @@ export class Event {
 
   @Prop({ default: 100 })
   @Field(() => Number, { description: 'spots field' })
-  spots: Number;
+  spots: number;
 
   @Prop({ default: [] })
-  @Field(() => [Members], { description: 'members field' })
-  members: Members[];
+  @Field(() => [Member], { description: 'members field' })
+  members: Member[];
 
   @Prop({ required: true })
   @IsNotEmpty({ message: 'deadline is required' })
