@@ -8,6 +8,8 @@ import { UpdateEventInput } from './dto/update-event.input';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/users/entities/user.entity';
+import { Event } from './entities/event.entity';
+import { AddMemberInput, ModifyStatusInput } from './dto/members.input';
 
 @Injectable()
 export class EventsService {
@@ -48,9 +50,79 @@ export class EventsService {
       throw new BadRequestException("Can't find events");
     });
   }
-
+  async findUser(id: string) {
+    const user = await this.userModel.findById(id);
+    return user;
+  }
+  async findOwner(id: string) {
+    const user = await this.userModel.findById(id);
+    return user;
+  }
   async findOne(id: string) {
     return await this.findEventById(id);
+  }
+
+  async addMember(addMemberInput: AddMemberInput) {
+    const event = await this.eventModel
+      .findById(addMemberInput.idEvent)
+      .catch((error) => {
+        console.log(error);
+        throw new BadRequestException("Can't find event");
+      });
+    if (!event) {
+      throw new NotFoundException("Can't find event");
+    }
+    for (let i = 0; i < event.members.length; i++) {
+      if (event.members[i].user.toString() == addMemberInput.idUser) {
+        throw new BadRequestException('User is already a member');
+      }
+    }
+    const user = await this.userModel
+      .findById(addMemberInput.idUser)
+      .catch((error) => {
+        console.log(error);
+        throw new BadRequestException("Can't find user");
+      });
+    if (!user) {
+      throw new NotFoundException("Can't find user");
+    }
+    event.members.push({
+      user: user._id,
+      status: event.type === 'public' ? 'accepted' : 'pending',
+    });
+    user.events.subscribed.push(event._id);
+    user.markModified('events');
+    event.markModified('members');
+    event.save();
+    user.save();
+    return event;
+  }
+
+  async changeMemberStatus(modifyStatusInput: ModifyStatusInput) {
+    const event = await this.eventModel
+      .findById(modifyStatusInput.idEvent)
+      .catch((error) => {
+        console.log(error);
+        throw new BadRequestException("Can't find event");
+      });
+    if (!event) {
+      throw new NotFoundException("Can't find event");
+    }
+    // verify if user exists
+    if ((event.members.findIndex(x => x.user.toString() == modifyStatusInput.idUser)) === -1) {
+      throw new BadRequestException('User is not a member');
+    }
+    
+    const modified = event.members.map((item)=>{
+      if (item.user.toString() === modifyStatusInput.idUser) {
+        return {...item, status: modifyStatusInput.status}
+      }
+      return item
+    })
+    event.members = modified;
+    event.markModified('members');
+    event.save();
+    return event;
   }
 
   async update(id: string, updateEventInput: UpdateEventInput) {

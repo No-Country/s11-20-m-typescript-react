@@ -1,10 +1,33 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument, ObjectId } from 'mongoose';
 import { IsNotEmpty, IsEmail, Matches, IsDate } from 'class-validator';
-import { User } from 'src/users/entities/user.entity';
+import { User, UserSchema } from 'src/users/entities/user.entity';
 
 export type SessionDocument = HydratedDocument<Event>;
+
+
+enum MemberStatus {
+  ACCEPTED = 'accepted',
+  PENDING = 'pending',
+  REFUSED = 'refused',
+}
+
+registerEnumType(MemberStatus, {
+  name: 'MemberStatus',
+});
+
+@ObjectType()
+export class Members {
+  
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  @Field(() => User, { description: 'user field' })
+  user: mongoose.Schema.Types.ObjectId;
+
+  @Prop({ default: "pending" })
+  @Field(() => String, { description: 'status field' })
+  status: "accepted"|"pending"|"refused";
+}
 
 @Schema({ timestamps: true })
 @ObjectType()
@@ -25,6 +48,10 @@ export class Event {
   @Prop({ default: 100 })
   @Field(() => Number, { description: 'spots field' })
   spots: Number;
+
+  @Prop({ default: [] })
+  @Field(() => [Members], { description: 'members field' })
+  members: Members[];
 
   @Prop({ required: true })
   @IsNotEmpty({ message: 'deadline is required' })
@@ -59,8 +86,8 @@ export class Event {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   })
-  @Field(() => User, { description: 'owner field' })
-  owner: User;
+  @Field(() =>  User, { description: 'owner field' })
+  owner:  mongoose.Schema.Types.ObjectId;
 
   @Prop({
     default:
