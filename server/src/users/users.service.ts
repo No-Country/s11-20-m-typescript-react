@@ -14,7 +14,13 @@ import { encryptPassword, comparePasswords } from 'src/utils/bcrypt.utils'
 
 @Injectable()
 export class UsersService {
+<<<<<<< HEAD
+  constructor (
+    @InjectModel(User.name) private readonly userModel: Model<User>
+  ) {}
+=======
   constructor (@InjectModel(User.name) private readonly userModel: Model<User>) {}
+>>>>>>> ceeab4628e1f4b8721d63036be1d74673d1837a9
 
   private async findUserById (id: string) {
     const user = await this.userModel.findById(id).catch((error) => {
@@ -99,9 +105,22 @@ export class UsersService {
   async update (id: string, updateUserInput: UpdateUserInput) {
     const user = await this.findUserById(id)
 
+<<<<<<< HEAD
+    if (updateUserInput.email && updateUserInput.email !== user.email) {
+      await this.checkExistingEmail(updateUserInput.email)
+    }
+
+    if (
+      updateUserInput.username &&
+      updateUserInput.username !== user.username
+    ) {
+      await this.checkExistingUsername(updateUserInput.username)
+    }
+=======
     if (updateUserInput.email && updateUserInput.email !== user.email) { await this.checkExistingEmail(updateUserInput.email) }
 
     if (updateUserInput.username && updateUserInput.username !== user.username) { await this.checkExistingUsername(updateUserInput.username) }
+>>>>>>> ceeab4628e1f4b8721d63036be1d74673d1837a9
 
     if (updateUserInput.birthday) this.calculateAge(updateUserInput.birthday)
 

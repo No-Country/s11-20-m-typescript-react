@@ -105,6 +105,7 @@ type Mutation {
   updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
   removeCoupon(id: String!): Coupon!
   login(email: String!, password: String!): String!
+  uploadTestImage(image: Upload!): String!
 }
 
 input CreateUserInput {
@@ -178,3 +179,6 @@ input UpdateCouponInput {
   usesPerMonth: String
   _id: String!
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
