@@ -2,12 +2,85 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Member {
+  """user field"""
+  user: User!
+
+  """status field"""
+  status: String!
+}
+
+type Location {
+  """Country field"""
+  country: String!
+
+  """State field"""
+  state: String!
+
+  """City field"""
+  city: String!
+
+  """adress field"""
+  adress: String!
+
+  """zip code field"""
+  zipCode: String!
+}
+
+type Event {
+  """Event Id"""
+  _id: String!
+
+  """title field"""
+  title: String!
+
+  """description field"""
+  description: String!
+
+  """location field"""
+  location: Location!
+
+  """spots field"""
+  spots: Float!
+  members: [Member!]!
+
+  """birthday field"""
+  deadline: DateTime!
+
+  """startDate field"""
+  startDate: DateTime!
+
+  """endDate field"""
+  endDate: DateTime!
+
+  """time field"""
+  time: String!
+
+  """type (public | private) field"""
+  type: String!
+  owner: User!
+
+  """thumbnail field"""
+  thumbnail: String!
+
+  """createdAt field"""
+  createdAt: DateTime!
+
+  """updatedAt field"""
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type EventsEnum {
   """created field"""
-  created: [String!]!
+  created: [Event!]!
 
   """subscribed field"""
-  subscribed: [String!]!
+  subscribed: [Event!]!
 }
 
 type HabitsEnum {
@@ -59,11 +132,6 @@ type User {
   updatedAt: DateTime!
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 type Coupon {
   """id field"""
   _id: String!
@@ -100,6 +168,8 @@ type LoginResult {
 type Query {
   users: [User!]!
   user(id: String!): User!
+  events: [Event!]!
+  event(id: String!): Event!
   coupons: [Coupon!]!
   coupon(id: String!): Coupon!
   verifyToken(token: String!): VerificationResult!
@@ -109,6 +179,12 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: String!): User!
+  createEvent(createEventInput: CreateEventInput!): Event!
+  addEventMember(addMemberInput: AddMemberInput!): Event!
+  removeEventMember(removeMemberInput: RemoveMemberInput!): Event!
+  changeEventMemberStatus(modifyStatusInput: ModifyStatusInput!): Event!
+  updateEvent(updateEventInput: UpdateEventInput!): Event!
+  removeEvent(id: String!): Event!
   createCoupon(createCouponInput: CreateCouponInput!): Coupon!
   updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
   removeCoupon(id: String!): Coupon!
@@ -156,6 +232,112 @@ input UpdateUserInput {
   _id: String!
   oldPassword: String
   newPassword: String
+}
+
+input CreateEventInput {
+  """title field"""
+  title: String!
+
+  """description field"""
+  description: String!
+
+  """location field"""
+  location: LocationInput!
+
+  """spots field"""
+  spots: Float!
+
+  """birthday field"""
+  deadline: DateTime!
+
+  """startDate field"""
+  startDate: DateTime!
+
+  """endDate field"""
+  endDate: DateTime!
+
+  """time field"""
+  time: String!
+
+  """type (public | private) field"""
+  type: String!
+
+  """owner field"""
+  owner: String!
+}
+
+input LocationInput {
+  """country field"""
+  country: String!
+
+  """state field"""
+  state: String!
+
+  """city field"""
+  city: String!
+
+  """adress field"""
+  adress: String!
+
+  """zip code field"""
+  zipCode: String!
+}
+
+input AddMemberInput {
+  """idEvent field"""
+  idEvent: String!
+
+  """idUser field"""
+  idUser: String!
+}
+
+input RemoveMemberInput {
+  """idEvent field"""
+  idEvent: String!
+
+  """idUser field"""
+  idUser: String!
+}
+
+input ModifyStatusInput {
+  """idEvent field"""
+  idEvent: String!
+
+  """idUser field"""
+  idUser: String!
+
+  """status field"""
+  status: String!
+}
+
+input UpdateEventInput {
+  """title field"""
+  title: String
+
+  """description field"""
+  description: String
+
+  """location field"""
+  location: LocationInput
+
+  """spots field"""
+  spots: Float
+
+  """birthday field"""
+  deadline: DateTime
+
+  """startDate field"""
+  startDate: DateTime
+
+  """endDate field"""
+  endDate: DateTime
+
+  """time field"""
+  time: String
+
+  """type (public | private) field"""
+  type: String
+  _id: String!
 }
 
 input CreateCouponInput {
