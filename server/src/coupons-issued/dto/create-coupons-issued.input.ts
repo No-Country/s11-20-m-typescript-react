@@ -1,22 +1,21 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { IsNotEmpty } from 'class-validator';
-import { ObjectId } from 'mongodb';
+import { InputType, Field } from '@nestjs/graphql'
+import { IsNotEmpty } from 'class-validator'
 
 @InputType()
 export class CreateCouponsIssuedInput {
-  @IsNotEmpty({message: 'coupon field is required'})
+  @IsNotEmpty({ message: 'coupon field is required' })
   @Field(() => String, { description: 'Example field (placeholder)' })
-  coupon: string;
+    coupon: string
 
-  @IsNotEmpty({message: 'user field is required'})
+  @IsNotEmpty({ message: 'user field is required' })
   @Field(() => String, { description: 'Example field (placeholder)' })
-  user: string
+    user: string
 
-  @IsNotEmpty({message: 'expires field is required'})
+  @IsNotEmpty({ message: 'expires field is required' })
   @Field(() => Date, { description: 'Example field (placeholder)' })
-  expires: Date;
+    expires: Date
 
-  @IsNotEmpty({message: 'used field is required'})
+  @IsNotEmpty({ message: 'used field is required' })
   @Field(() => Boolean, { description: 'Example field (placeholder)' })
-  used: boolean;
+    used: boolean
 }

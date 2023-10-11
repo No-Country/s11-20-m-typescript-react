@@ -3,6 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import mongoose, { HydratedDocument, ObjectId } from 'mongoose'
 import { IsNotEmpty, IsEmail, Matches, IsDate } from 'class-validator'
 import { CouponsIssued } from 'src/coupons-issued/entities/coupons-issued.entity'
+import { Event } from 'src/events/entities/event.entity'
 
 export type SessionDocument = HydratedDocument<User>
 

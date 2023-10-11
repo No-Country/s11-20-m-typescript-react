@@ -1,16 +1,16 @@
-import { CreateCouponsIssuedInput } from './create-coupons-issued.input';
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
+import { CreateCouponsIssuedInput } from './create-coupons-issued.input'
+import { InputType, Field, Int, PartialType } from '@nestjs/graphql'
 
 @InputType()
 export class UpdateCouponsIssuedInput extends PartialType(
-  CreateCouponsIssuedInput,
+  CreateCouponsIssuedInput
 ) {
   @Field(() => String)
-  _id?: number;
+    _id?: number
 
   @Field(() => String)
-  expires?: Date;
+    expires?: Date
 
   @Field(() => Boolean)
-  used?: boolean;
+    used?: boolean
 }
