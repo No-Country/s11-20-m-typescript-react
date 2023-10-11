@@ -23,27 +23,49 @@ export class EventsResolver {
   constructor (private readonly eventsService: EventsService) {}
 
   @Mutation(() => Event)
-  async createEvent (@Args('createEventInput') createEventInput: CreateEventInput) {
-    return await this.eventsService.create(createEventInput)
+  async createEvent (
+  @Args('createEventInput') createEventInput: CreateEventInput
+  ) {
+    try {
+      return await this.eventsService.create(createEventInput)
+    } catch (error) {
+      console.error(error)
+      throw new InternalServerErrorException()
+    }
   }
 
   @Mutation(() => Event)
   async addEventMember (@Args('addMemberInput') addMemberInput: AddMemberInput) {
-    return await this.eventsService.addMember(addMemberInput)
+    try {
+      return await this.eventsService.addMember(addMemberInput)
+    } catch (error) {
+      console.error(error)
+      throw new InternalServerErrorException()
+    }
   }
 
   @Mutation(() => Event)
   async removeEventMember (
   @Args('removeMemberInput') removeMemberInput: RemoveMemberInput
   ) {
-    return await this.eventsService.removeMember(removeMemberInput)
+    try {
+      return await this.eventsService.removeMember(removeMemberInput)
+    } catch (error) {
+      console.error(error)
+      throw new InternalServerErrorException()
+    }
   }
 
   @Mutation(() => Event)
   async changeEventMemberStatus (
   @Args('modifyStatusInput') modifyStatusInput: ModifyStatusInput
   ) {
-    return await this.eventsService.changeMemberStatus(modifyStatusInput)
+    try {
+      return await this.eventsService.changeMemberStatus(modifyStatusInput)
+    } catch (error) {
+      console.error(error)
+      throw new InternalServerErrorException()
+    }
   }
 
   @Query(() => [Event], { name: 'events' })
@@ -58,7 +80,12 @@ export class EventsResolver {
 
   @ResolveField(() => User, { name: 'owner' })
   async getOwner (@Parent() event: Event) {
-    return await this.eventsService.findUser(event.owner.toString())
+    try {
+      return await this.eventsService.findUser(event.owner.toString())
+    } catch (error) {
+      console.error(error)
+      throw new InternalServerErrorException()
+    }
   }
 
   @Query(() => Event, { name: 'event' })
@@ -73,19 +100,29 @@ export class EventsResolver {
 
   @ResolveField(() => [Member], { name: 'members' })
   getMembers (@Parent() event: Event) {
-    const { members } = event
-    const membersMapped = members.map(async (element) => {
-      const user = await this.eventsService.findUser(element.user.toString())
-      return { user, status: element.status }
-    })
+    try {
+      const { members } = event
+      const membersMapped = members.map(async (element) => {
+        const user = await this.eventsService.findUser(element.user.toString())
+        return { user, status: element.status }
+      })
 
-    return membersMapped
+      return membersMapped
+    } catch (error) {
+      console.error(error)
+      throw new InternalServerErrorException()
+    }
   }
 
   @Mutation(() => Event)
-  async updateEvent (@Args('updateEventInput') updateEventInput: UpdateEventInput) {
+  async updateEvent (
+  @Args('updateEventInput') updateEventInput: UpdateEventInput
+  ) {
     try {
-      return await this.eventsService.update(updateEventInput._id, updateEventInput)
+      return await this.eventsService.update(
+        updateEventInput._id,
+        updateEventInput
+      )
     } catch (error) {
       console.error(error)
       throw new InternalServerErrorException()
