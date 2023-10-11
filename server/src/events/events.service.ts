@@ -9,7 +9,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/users/entities/user.entity';
 import { Event } from './entities/event.entity';
-import { AddMemberInput, ModifyStatusInput } from './dto/members.input';
+import { AddMemberInput, ModifyStatusInput, RemoveMemberInput } from './dto/members.input';
 
 @Injectable()
 export class EventsService {
@@ -101,6 +101,37 @@ export class EventsService {
 
     return event;
   }
+  async removeMember(removeMemberInput: RemoveMemberInput) {
+    const event = await this.findEventById(removeMemberInput.idEvent);
+    const user = await this.findUserById(removeMemberInput.idUser);
+
+    user.events.subscribed = user.events.subscribed.flatMap((item) => {
+      if (item.toString() === removeMemberInput.idEvent) {
+        return [];
+      }
+      return item;
+    });
+
+    event.members = event.members.flatMap((item) => {
+      if (item.user.toString() === removeMemberInput.idUser) {
+        console.log(true);
+        
+        return [];
+      }
+      return item;
+    });
+    console.log('event');
+    console.log(event);
+    
+    
+
+    user.markModified('events');
+    event.markModified('members');
+    event.save();
+    user.save();
+
+    return event;
+  }
 
   async changeMemberStatus(modifyStatusInput: ModifyStatusInput) {
     const event = await this.findEventById(modifyStatusInput.idEvent);
@@ -137,11 +168,44 @@ export class EventsService {
   }
 
   async remove(id: string) {
-    const event = await this.eventModel.findByIdAndDelete(id).catch((error) => {
-      console.log(error);
-      throw new BadRequestException("Can't delete event");
-    });
+    const event = await this.eventModel
+      .findByIdAndDelete(id)
+      .catch((error) => {
+        console.log(error);
+        throw new BadRequestException("Can't delete event");
+      });
     if (!event) throw new NotFoundException("Can't find event");
+    const users = await this.userModel
+          .find({ "events.subscribed": event._id  })
+          .catch((error) => {
+            console.log(error);
+            throw new BadRequestException("Can't delete event");
+          });
+    users.forEach((item) => {
+          item.events.subscribed = item.events.subscribed.flatMap((item) => {
+            if (item.toString() === id) {
+              return [];
+            }
+            return item;
+          });
+          item.markModified('events');
+          item.save();
+        });
+    const owner = await this.findUserById(event.owner.toString());
+    owner.events.created = owner.events.created.flatMap((item) => {
+      if (item.toString() === id) {
+        return [];
+      }
+      return item;
+    });
+    owner.markModified('events');
+    owner.save();
+    console.log('users');    
+    console.log(users);
+    
+    
+    
+
     return event;
   }
 }

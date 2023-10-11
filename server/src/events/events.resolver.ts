@@ -11,7 +11,11 @@ import { Event, Member } from './entities/event.entity';
 import { CreateEventInput } from './dto/create-event.input';
 import { UpdateEventInput } from './dto/update-event.input';
 import { InternalServerErrorException } from '@nestjs/common';
-import { AddMemberInput, ModifyStatusInput } from './dto/members.input';
+import {
+  AddMemberInput,
+  ModifyStatusInput,
+  RemoveMemberInput,
+} from './dto/members.input';
 import { User } from 'src/users/entities/user.entity';
 
 @Resolver(() => Event)
@@ -24,12 +28,18 @@ export class EventsResolver {
   }
 
   @Mutation(() => Event)
-  addMember(@Args('addMemberInput') addMemberInput: AddMemberInput) {
+  addEventMember(@Args('addMemberInput') addMemberInput: AddMemberInput) {
     return this.eventsService.addMember(addMemberInput);
   }
-  
   @Mutation(() => Event)
-  changeMemberStatus(
+  removeEventMember(
+    @Args('removeMemberInput') removeMemberInput: RemoveMemberInput,
+  ) {
+    return this.eventsService.removeMember(removeMemberInput);
+  }
+
+  @Mutation(() => Event)
+  changeEventMemberStatus(
     @Args('modifyStatusInput') modifyStatusInput: ModifyStatusInput,
   ) {
     return this.eventsService.changeMemberStatus(modifyStatusInput);
@@ -63,9 +73,6 @@ export class EventsResolver {
   @ResolveField(() => [Member], { name: 'members' })
   getMembers(@Parent() event: Event) {
     const { members } = event;
-    console.log('members');
-    console.log(members);
-
     const membersMapped = members.map(async (element) => {
       const user = await this.eventsService.findUser(element.user.toString());
       return { user: user, status: element.status };

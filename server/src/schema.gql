@@ -124,8 +124,9 @@ type Mutation {
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: String!): User!
   createEvent(createEventInput: CreateEventInput!): Event!
-  addMember(addMemberInput: AddMemberInput!): Event!
-  changeMemberStatus(modifyStatusInput: ModifyStatusInput!): Event!
+  addEventMember(addMemberInput: AddMemberInput!): Event!
+  removeEventMember(removeMemberInput: RemoveMemberInput!): Event!
+  changeEventMemberStatus(modifyStatusInput: ModifyStatusInput!): Event!
   updateEvent(updateEventInput: UpdateEventInput!): Event!
   removeEvent(id: String!): Event!
 }
@@ -203,6 +204,14 @@ input CreateEventInput {
 }
 
 input AddMemberInput {
+  """idEvent field"""
+  idEvent: String!
+
+  """idUser field"""
+  idUser: String!
+}
+
+input RemoveMemberInput {
   """idEvent field"""
   idEvent: String!
 
