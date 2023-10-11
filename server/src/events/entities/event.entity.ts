@@ -1,8 +1,4 @@
-import {
-  ObjectType,
-  Field,
-  registerEnumType
-} from '@nestjs/graphql'
+import { ObjectType, Field, registerEnumType } from '@nestjs/graphql'
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import mongoose, { HydratedDocument, ObjectId } from 'mongoose'
 import { IsNotEmpty, Matches, IsDate } from 'class-validator'
