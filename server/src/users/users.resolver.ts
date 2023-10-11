@@ -42,7 +42,10 @@ export class UsersResolver {
   @Mutation(() => User)
   async updateUser (@Args('updateUserInput') updateUserInput: UpdateUserInput) {
     try {
-      return await this.usersService.update(updateUserInput._id, updateUserInput)
+      return await this.usersService.update(
+        updateUserInput._id,
+        updateUserInput
+      )
     } catch (error) {
       console.error(error)
       throw new InternalServerErrorException()

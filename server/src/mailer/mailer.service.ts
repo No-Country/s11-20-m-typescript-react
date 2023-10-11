@@ -1,28 +1,26 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { SendMailOptions, Transporter } from 'nodemailer';
+import { Inject, Injectable } from '@nestjs/common'
+import { SendMailOptions, Transporter } from 'nodemailer'
 import {
   INodemailerService,
-  SendMailOptionsCustom,
-} from './configModule/mail.service-contract';
+  SendMailOptionsCustom
+} from './configModule/mail.service-contract'
 
 @Injectable()
 export class MailerService implements INodemailerService {
-  constructor(@Inject('Transporter') private transporter: Transporter) {}
+  constructor (
+    @Inject('Transporter') private readonly transporter: Transporter
+  ) {}
 
-  async sendMail(options: SendMailOptions) {
-    return this.transporter.sendMail(options);
+  async sendMail (options: SendMailOptions) {
+    return await this.transporter.sendMail(options)
   }
-  
 
-  async bulkSendMail(
+  async bulkSendMail (
     options: SendMailOptionsCustom[],
-    from: string,
+    from: string
   ): Promise<void> {
     await Promise.all(
-      options.map((option) => this.sendMail({ ...option, from })),
-    );
+      options.map(async (option) => await this.sendMail({ ...option, from }))
+    )
   }
-
-
-  
 }

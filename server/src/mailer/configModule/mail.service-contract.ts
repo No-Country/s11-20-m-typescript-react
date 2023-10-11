@@ -1,13 +1,13 @@
-import { SendMailOptions } from 'nodemailer';
+import { SendMailOptions } from 'nodemailer'
 
-export type SendMailOptionsCustom = Omit<SendMailOptions, 'from'>;
+export type SendMailOptionsCustom = Omit<SendMailOptions, 'from'>
 
 export interface INodemailerService {
-  sendMail: (options: SendMailOptions) => Promise<void>;
+  sendMail: (options: SendMailOptions) => Promise<void>
   bulkSendMail: (
     options: SendMailOptionsCustom[],
-    from: string,
-  ) => Promise<void>;
+    from: string
+  ) => Promise<void>
 }
 
-export const INodemailderService = Symbol('NodemailerService');
+export const INodemailderService = Symbol('NodemailerService')

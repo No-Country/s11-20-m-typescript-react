@@ -1,5 +1,5 @@
-import { ConfigurableModuleBuilder } from '@nestjs/common';
-import { NodemailderTransportOptions } from './config.nodemailer-transport';
+import { ConfigurableModuleBuilder } from '@nestjs/common'
+import { INodemailderTransportOptions } from './config.nodemailer-transport'
 
 export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } =
-  new ConfigurableModuleBuilder<NodemailderTransportOptions>().build();
+  new ConfigurableModuleBuilder<INodemailderTransportOptions>().build()
