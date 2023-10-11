@@ -24,5 +24,6 @@ module.exports = {
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/prefer-nullish-coalescing":"off",
     'prettier/prettier': 0,
+    "no-useless-return": "error"
   },
 };
