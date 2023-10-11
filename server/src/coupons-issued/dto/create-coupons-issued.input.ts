@@ -1,5 +1,6 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
 import { IsNotEmpty } from 'class-validator';
+import { ObjectId } from 'mongodb';
 
 @InputType()
 export class CreateCouponsIssuedInput {
@@ -9,7 +10,7 @@ export class CreateCouponsIssuedInput {
 
   @IsNotEmpty({message: 'user field is required'})
   @Field(() => String, { description: 'Example field (placeholder)' })
-  user: string;
+  user: string
 
   @IsNotEmpty({message: 'expires field is required'})
   @Field(() => Date, { description: 'Example field (placeholder)' })

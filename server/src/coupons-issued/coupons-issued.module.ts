@@ -7,12 +7,14 @@ import {
   CouponsIssuedSchema,
 } from './entities/coupons-issued.entity';
 import { User, UserSchema } from 'src/users/entities/user.entity';
+import { Coupon, CouponSchema } from 'src/coupons/entities/coupon.entity';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: CouponsIssued.name, schema: CouponsIssuedSchema },
       { name: User.name, schema: UserSchema },
+      { name: Coupon.name, schema: CouponSchema }
     ]),
   ],
   providers: [CouponsIssuedResolver, CouponsIssuedService],
