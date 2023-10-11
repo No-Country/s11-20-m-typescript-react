@@ -2,60 +2,111 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type EventsEnum {
-  """created field"""
-  created: [String!]!
+type Member {
+  """
+  user field
+  """
+  user: User!
 
-  """subscribed field"""
-  subscribed: [String!]!
+  """
+  status field
+  """
+  status: String!
 }
 
-type HabitsEnum {
-  """exampleHabit field"""
-  exampleHabit: String!
+type Location {
+  """
+  Country field
+  """
+  country: String!
 
-  """exampleHabit2 field"""
-  exampleHabit2: String!
+  """
+  State field
+  """
+  state: String!
+
+  """
+  City field
+  """
+  city: String!
+
+  """
+  adress field
+  """
+  adress: String!
+
+  """
+  zip code field
+  """
+  zipCode: String!
 }
 
-type User {
-  """Example field (placeholder)"""
+type Event {
+  """
+  Event Id
+  """
   _id: String!
 
-  """firstName field"""
-  firstName: String!
+  """
+  title field
+  """
+  title: String!
 
-  """lastName field"""
-  lastName: String!
+  """
+  description field
+  """
+  description: String!
 
-  """email field"""
-  email: String!
+  """
+  location field
+  """
+  location: Location!
 
-  """username field"""
-  username: String!
+  """
+  spots field
+  """
+  spots: Float!
+  members: [Member!]!
 
-  """password field"""
-  password: String!
+  """
+  birthday field
+  """
+  deadline: DateTime!
 
-  """birthday field"""
-  birthday: DateTime!
+  """
+  startDate field
+  """
+  startDate: DateTime!
 
-  """rank field"""
-  rank: Float!
+  """
+  endDate field
+  """
+  endDate: DateTime!
 
-  """events field"""
-  events: EventsEnum!
+  """
+  time field
+  """
+  time: String!
 
-  """profileImage field"""
-  profileImage: String!
+  """
+  type (public | private) field
+  """
+  type: String!
+  owner: User!
 
-  """habits field"""
-  habits: HabitsEnum!
+  """
+  thumbnail field
+  """
+  thumbnail: String!
 
-  """createdAt field"""
+  """
+  createdAt field
+  """
   createdAt: DateTime!
 
-  """updatedAt field"""
+  """
+  updatedAt field
+  """
   updatedAt: DateTime!
 }
 
@@ -64,23 +115,126 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type Coupon {
-  """id field"""
+type EventsEnum {
+  """
+  created field
+  """
+  created: [Event!]!
+
+  """
+  subscribed field
+  """
+  subscribed: [Event!]!
+}
+
+type HabitsEnum {
+  """
+  exampleHabit field
+  """
+  exampleHabit: String!
+
+  """
+  exampleHabit2 field
+  """
+  exampleHabit2: String!
+}
+
+type User {
+  """
+  Example field (placeholder)
+  """
   _id: String!
 
-  """title field"""
+  """
+  firstName field
+  """
+  firstName: String!
+
+  """
+  lastName field
+  """
+  lastName: String!
+
+  """
+  email field
+  """
+  email: String!
+
+  """
+  username field
+  """
+  username: String!
+
+  """
+  password field
+  """
+  password: String!
+
+  """
+  birthday field
+  """
+  birthday: DateTime!
+
+  """
+  rank field
+  """
+  rank: Float!
+
+  """
+  events field
+  """
+  events: EventsEnum!
+
+  """
+  profileImage field
+  """
+  profileImage: String!
+
+  """
+  habits field
+  """
+  habits: HabitsEnum!
+
+  """
+  createdAt field
+  """
+  createdAt: DateTime!
+
+  """
+  updatedAt field
+  """
+  updatedAt: DateTime!
+}
+
+type Coupon {
+  """
+  id field
+  """
+  _id: String!
+
+  """
+  title field
+  """
   title: String!
 
-  """thumbnail of coupon"""
+  """
+  thumbnail of coupon
+  """
   thumbnail: String!
 
-  """active/inactive field"""
+  """
+  active/inactive field
+  """
   status: Boolean!
 
-  """rank of coupon"""
+  """
+  rank of coupon
+  """
   requeriedRank: String!
 
-  """uses per month of coupon"""
+  """
+  uses per month of coupon
+  """
   usesPerMonth: String!
 }
 
@@ -89,9 +243,23 @@ type VerificationResult {
   username: String!
 }
 
+type LoginResult {
+  """
+  field
+  """
+  token: String!
+
+  """
+  field
+  """
+  userId: String!
+}
+
 type Query {
   users: [User!]!
   user(id: String!): User!
+  events: [Event!]!
+  event(id: String!): Event!
   coupons: [Coupon!]!
   coupon(id: String!): Coupon!
   verifyToken(token: String!): VerificationResult!
@@ -101,84 +269,300 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: String!): User!
+  createEvent(createEventInput: CreateEventInput!): Event!
+  addEventMember(addMemberInput: AddMemberInput!): Event!
+  removeEventMember(removeMemberInput: RemoveMemberInput!): Event!
+  changeEventMemberStatus(modifyStatusInput: ModifyStatusInput!): Event!
+  updateEvent(updateEventInput: UpdateEventInput!): Event!
+  removeEvent(id: String!): Event!
   createCoupon(createCouponInput: CreateCouponInput!): Coupon!
   updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
   removeCoupon(id: String!): Coupon!
-  login(email: String!, password: String!): String!
+  login(email: String!, password: String!): LoginResult!
   uploadTestImage(image: Upload!): String!
 }
 
 input CreateUserInput {
-  """firstName field"""
+  """
+  firstName field
+  """
   firstName: String!
 
-  """lastName field"""
+  """
+  lastName field
+  """
   lastName: String!
 
-  """email field"""
+  """
+  email field
+  """
   email: String!
 
-  """username field"""
+  """
+  username field
+  """
   username: String!
 
-  """password field"""
+  """
+  password field
+  """
   password: String!
 
-  """birthday field"""
+  """
+  birthday field
+  """
   birthday: DateTime!
 }
 
 input UpdateUserInput {
-  """firstName field"""
+  """
+  firstName field
+  """
   firstName: String
 
-  """lastName field"""
+  """
+  lastName field
+  """
   lastName: String
 
-  """email field"""
+  """
+  email field
+  """
   email: String
 
-  """username field"""
+  """
+  username field
+  """
   username: String
 
-  """password field"""
+  """
+  password field
+  """
   password: String
 
-  """birthday field"""
+  """
+  birthday field
+  """
   birthday: DateTime
   _id: String!
   oldPassword: String
   newPassword: String
 }
 
-input CreateCouponInput {
-  """title field"""
+input CreateEventInput {
+  """
+  title field
+  """
   title: String!
 
-  """description field"""
+  """
+  description field
+  """
+  description: String!
+
+  """
+  location field
+  """
+  location: LocationInput!
+
+  """
+  spots field
+  """
+  spots: Float!
+
+  """
+  birthday field
+  """
+  deadline: DateTime!
+
+  """
+  startDate field
+  """
+  startDate: DateTime!
+
+  """
+  endDate field
+  """
+  endDate: DateTime!
+
+  """
+  time field
+  """
+  time: String!
+
+  """
+  type (public | private) field
+  """
+  type: String!
+
+  """
+  owner field
+  """
+  owner: String!
+}
+
+input LocationInput {
+  """
+  country field
+  """
+  country: String!
+
+  """
+  state field
+  """
+  state: String!
+
+  """
+  city field
+  """
+  city: String!
+
+  """
+  adress field
+  """
+  adress: String!
+
+  """
+  zip code field
+  """
+  zipCode: String!
+}
+
+input AddMemberInput {
+  """
+  idEvent field
+  """
+  idEvent: String!
+
+  """
+  idUser field
+  """
+  idUser: String!
+}
+
+input RemoveMemberInput {
+  """
+  idEvent field
+  """
+  idEvent: String!
+
+  """
+  idUser field
+  """
+  idUser: String!
+}
+
+input ModifyStatusInput {
+  """
+  idEvent field
+  """
+  idEvent: String!
+
+  """
+  idUser field
+  """
+  idUser: String!
+
+  """
+  status field
+  """
+  status: String!
+}
+
+input UpdateEventInput {
+  """
+  title field
+  """
+  title: String
+
+  """
+  description field
+  """
+  description: String
+
+  """
+  location field
+  """
+  location: LocationInput
+
+  """
+  spots field
+  """
+  spots: Float
+
+  """
+  birthday field
+  """
+  deadline: DateTime
+
+  """
+  startDate field
+  """
+  startDate: DateTime
+
+  """
+  endDate field
+  """
+  endDate: DateTime
+
+  """
+  time field
+  """
+  time: String
+
+  """
+  type (public | private) field
+  """
+  type: String
+  _id: String!
+}
+
+input CreateCouponInput {
+  """
+  title field
+  """
+  title: String!
+
+  """
+  description field
+  """
   thumbnail: String
 
-  """description field"""
+  """
+  description field
+  """
   requeriedRank: String!
 
-  """description field"""
+  """
+  description field
+  """
   usesPerMonth: String!
 }
 
 input UpdateCouponInput {
-  """title field"""
+  """
+  title field
+  """
   title: String
 
-  """description field"""
+  """
+  description field
+  """
   thumbnail: String
 
-  """description field"""
+  """
+  description field
+  """
   requeriedRank: String
 
-  """description field"""
+  """
+  description field
+  """
   usesPerMonth: String
   _id: String!
 }
 
-"""The `Upload` scalar type represents a file upload."""
+"""
+The `Upload` scalar type represents a file upload.
+"""
 scalar Upload

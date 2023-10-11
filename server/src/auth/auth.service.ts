@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { UsersService } from 'src/users/users.service'
 import { comparePasswords } from 'src/utils/bcrypt.utils'
+import { LoginResult } from './entities/auth.entity'
 
 @Injectable()
 export class AuthService {
@@ -10,7 +11,7 @@ export class AuthService {
     private readonly usersService: UsersService
   ) {}
 
-  async login (email: string, password: string): Promise<string> {
+  async login (email: string, password: string): Promise<LoginResult> {
     const user = await this.usersService.findUserByEmail(email)
 
     if (!user) {
@@ -25,8 +26,10 @@ export class AuthService {
 
     const payload = { sub: user._id, username: user.username }
     const token = this.jwtService.sign(payload)
-    const response = JSON.stringify({ token, userID: user._id })
-    return response
+    return {
+      token,
+      userId: user._id.toString()
+    }
   }
 
   async verifyToken (token: string) {
