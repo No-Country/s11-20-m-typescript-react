@@ -2,6 +2,48 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Coupon {
+  """id field"""
+  _id: String!
+
+  """title field"""
+  title: String!
+
+  """thumbnail of coupon"""
+  thumbnail: String!
+
+  """active/inactive field"""
+  status: Boolean!
+
+  """rank of coupon"""
+  requeriedRank: String!
+
+  """uses per month of coupon"""
+  usesPerMonth: String!
+}
+
+type CouponsIssued {
+  """coupon id field"""
+  _id: String!
+
+  """coupon field"""
+  coupon: Coupon!
+
+  """user field"""
+  user: User!
+
+  """expires date field"""
+  expires: DateTime!
+
+  """used field"""
+  used: Boolean!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type EventsEnum {
   """created field"""
   created: [String!]!
@@ -46,6 +88,9 @@ type User {
   """events field"""
   events: EventsEnum!
 
+  """coupon field"""
+  coupons: [CouponsIssued!]!
+
   """profileImage field"""
   profileImage: String!
 
@@ -59,35 +104,10 @@ type User {
   updatedAt: DateTime!
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
-type Coupon {
-  """id field"""
-  _id: String!
-
-  """title field"""
-  title: String!
-
-  """thumbnail of coupon"""
-  thumbnail: String!
-
-  """active/inactive field"""
-  status: Boolean!
-
-  """rank of coupon"""
-  requeriedRank: String!
-
-  """uses per month of coupon"""
-  usesPerMonth: String!
-}
-
 type Query {
   users: [User!]!
   user(id: String!): User!
-  couponsIssued(id: Int!): CouponsIssued!
+  couponsIssued(id: String!): CouponsIssued!
   coupons: [Coupon!]!
   coupon(id: String!): Coupon!
 }
@@ -96,9 +116,9 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: String!): User!
-  createCouponsIssued(createCouponsIssuedInput: CreateCouponsIssuedInput!): CouponsIssued!
-  updateCouponsIssued(updateCouponsIssuedInput: UpdateCouponsIssuedInput!): CouponsIssued!
-  removeCouponsIssued(id: Int!): CouponsIssued!
+  createCouponsIssued(createCouponsIssued: CreateCouponsIssuedInput!): CouponsIssued!
+  updateCouponsIssued(id: String!): CouponsIssued!
+  deleteCouponsIssued(id: String!): CouponsIssued!
   createCoupon(createCouponInput: CreateCouponInput!): Coupon!
   updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
   removeCoupon(id: String!): Coupon!
@@ -145,6 +165,20 @@ input UpdateUserInput {
   _id: String!
   oldPassword: String
   newPassword: String
+}
+
+input CreateCouponsIssuedInput {
+  """Example field (placeholder)"""
+  coupon: String!
+
+  """Example field (placeholder)"""
+  user: String!
+
+  """Example field (placeholder)"""
+  expires: DateTime!
+
+  """Example field (placeholder)"""
+  used: Boolean!
 }
 
 input CreateCouponInput {

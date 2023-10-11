@@ -10,9 +10,11 @@ export class CouponsIssuedResolver {
   constructor(private readonly couponsIssuedService: CouponsIssuedService) {}
 
   @Mutation(() => CouponsIssued)
-  createCouponsIss(@Args('create coupon issued') createCouponsIssuedInput: CreateCouponsIssuedInput) {
-    return this.couponsIssuedService.createOne(createCouponsIssuedInput)
-
+  createCouponsIssued(
+    @Args('createCouponsIssued')
+    createCouponsIssuedInput: CreateCouponsIssuedInput,
+  ) {
+    return this.couponsIssuedService.createOne(createCouponsIssuedInput);
   }
 
   @Query(() => [CouponsIssued], { name: 'couponsIssued' })
@@ -20,7 +22,7 @@ export class CouponsIssuedResolver {
     try {
       return this.couponsIssuedService.findAll();
     } catch (error) {
-      console.log(error)
+      console.log(error);
       throw new InternalServerErrorException();
     }
   }
@@ -29,9 +31,15 @@ export class CouponsIssuedResolver {
   findOne(@Args('id', { type: () => String }) id: string) {
     try {
       return this.couponsIssuedService.findOne(id);
-    } catch (error) {
+    } catch (error) {}
+  }
 
-    }
+  @Mutation(() => CouponsIssued)
+  updateCouponsIssued(
+    @Args('id', { type: () => String }) id: string,
+    updateCouponsIssuedInput: UpdateCouponsIssuedInput,
+  ) {
+    return this.couponsIssuedService.updateOne(id, updateCouponsIssuedInput);
   }
 
   @Mutation(() => CouponsIssued)

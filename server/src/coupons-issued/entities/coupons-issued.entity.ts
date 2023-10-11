@@ -1,26 +1,34 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, SchemaFactory, Schema } from '@nestjs/mongoose';
 import { IsDate, IsNotEmpty } from 'class-validator';
 import { ObjectId } from 'mongodb';
+import mongoose from 'mongoose';
+import { Coupon } from 'src/coupons/entities/coupon.entity';
+import { User } from 'src/users/entities/user.entity';
 
+@Schema()
 @ObjectType()
 export class CouponsIssued {
   @Field(() => String, { description: 'coupon id field' })
-  _id: ObjectId;
+  _id: mongoose.Schema.Types.ObjectId;
 
-  @Prop({ required: true })
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId, ref: 'Coupon'
+  })
   @IsNotEmpty({ message: 'coupon is required' })
-  @Field(() => String, { description: 'coupon field' })
-  coupon: ObjectId;
+  @Field(() => Coupon, { description: 'coupon field' })
+  coupon: mongoose.Schema.Types.ObjectId;
 
-  @Prop({ required: true })
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId, ref: 'User' 
+  })
   @IsNotEmpty({ message: 'user is required' })
-  @Field(() => String, { description: 'user field' })
-  user: ObjectId;
+  @Field(() => User, { description: 'user field' })
+  user: mongoose.Schema.Types.ObjectId;
 
   @Prop({ required: true })
   @IsNotEmpty({ message: 'expires date is required' })
-  @IsDate({ message: 'expires must be a date'})
+  @IsDate({ message: 'expires must be a date' })
   @Field(() => Date, { description: 'expires date field' })
   expires: Date;
 
