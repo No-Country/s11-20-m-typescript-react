@@ -1,4 +1,4 @@
-import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
+import { ObjectType, Field, registerEnumType, InputType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument, ObjectId } from 'mongoose';
 import { IsNotEmpty, Matches, IsDate } from 'class-validator';
@@ -28,12 +28,37 @@ export class Member {
   @Field(() => String, { description: 'status field' })
   status: "accepted"|"pending"|"refused";
 }
+@ObjectType()
+class Location {
+  @Prop({required:true})
+  @Field(() => String, { description: 'Country field' })
+  country: string;
+
+  @Prop({required:true})
+  @Field(() => String, { description: 'State field' })
+  state: string;
+  
+  @Prop({required:true})
+  @Field(() => String, { description: 'City field' })
+  city: string;
+
+  @Prop({required:true})
+  @Field(() => String, { description: 'adress field' })
+  adress: string;
+
+  @Prop({required:true})
+  @Field(() => String, { description: 'zip code field' })
+  zipCode: string;
+}
+
 
 @Schema({ timestamps: true })
 @ObjectType()
 export class Event {
   @Field(() => String, { description: 'Event Id' })
   _id: ObjectId;
+
+
 
   @Prop({ required: true })
   @IsNotEmpty({ message: 'title is required' })
@@ -44,6 +69,11 @@ export class Event {
   @IsNotEmpty({ message: 'description is required' })
   @Field(() => String, { description: 'description field' })
   description: string;
+
+  @Prop({ default: new Location() })
+  @Field(() => Location, { description: 'location field' })
+  location: Location;
+  
 
   @Prop({ default: 100 })
   @Field(() => Number, { description: 'spots field' })
@@ -73,7 +103,7 @@ export class Event {
 
   @Prop({ required: true })
   @IsNotEmpty({ message: 'time is required' })
-  //@Matches(/^(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)$/)
+  @Matches(/^(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)$/)
   @Field(() => String, { description: 'time field' })
   time: string;
 

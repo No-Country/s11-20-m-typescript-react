@@ -1,7 +1,31 @@
 import { InputType, Field, ObjectType } from '@nestjs/graphql';
-import { IsNotEmpty, IsEmail, IsDate, Matches } from 'class-validator';
-import mongoose from 'mongoose';
-import { User } from 'src/users/entities/user.entity';
+import { Type } from 'class-transformer';
+import { IsNotEmpty, IsDate, Matches } from 'class-validator';
+
+
+
+@InputType()
+class LocationInput {
+  @IsNotEmpty({ message: 'country is required' })
+  @Field(() => String, { description: 'country field' })
+  country: string;
+
+  @IsNotEmpty({ message: 'state is required' })
+  @Field(() => String, { description: 'state field' })
+  state: string;
+  
+  @IsNotEmpty({ message: 'city is required' })
+  @Field(() => String, { description: 'city field' })
+  city: string;
+
+  @IsNotEmpty({ message: 'adress is required' })
+  @Field(() => String, { description: 'adress field' })
+  adress: string;
+
+  @IsNotEmpty({ message: 'zipCode is required' })
+  @Field(() => String, { description: 'zip code field' })
+  zipCode: string;
+}
 
 @InputType()
 export class CreateEventInput {
@@ -12,6 +36,9 @@ export class CreateEventInput {
   @IsNotEmpty({ message: 'description is required' })
   @Field(() => String, { description: 'description field' })
   description: string;
+
+  @Field(() => LocationInput, { description: 'location field' })
+  location: LocationInput;
 
   @Field(() => Number, { description: 'spots field' })
   spots: Number;

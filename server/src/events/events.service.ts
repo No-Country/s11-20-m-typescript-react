@@ -158,7 +158,7 @@ export class EventsService {
 
   async update(id: string, updateEventInput: UpdateEventInput) {
     const updatedEvent = await this.eventModel
-      .findByIdAndUpdate(id, updateEventInput, { new: true })
+      .findByIdAndUpdate(id, updateEventInput)
       .catch((error) => {
         console.log(error);
         throw new BadRequestException("Can't update event");

@@ -10,6 +10,23 @@ type Member {
   status: String!
 }
 
+type Location {
+  """Country field"""
+  country: String!
+
+  """State field"""
+  state: String!
+
+  """City field"""
+  city: String!
+
+  """adress field"""
+  adress: String!
+
+  """zip code field"""
+  zipCode: String!
+}
+
 type Event {
   """Event Id"""
   _id: String!
@@ -19,6 +36,9 @@ type Event {
 
   """description field"""
   description: String!
+
+  """location field"""
+  location: Location!
 
   """spots field"""
   spots: Float!
@@ -181,6 +201,9 @@ input CreateEventInput {
   """description field"""
   description: String!
 
+  """location field"""
+  location: LocationInput!
+
   """spots field"""
   spots: Float!
 
@@ -201,6 +224,23 @@ input CreateEventInput {
 
   """owner field"""
   owner: String!
+}
+
+input LocationInput {
+  """country field"""
+  country: String!
+
+  """state field"""
+  state: String!
+
+  """city field"""
+  city: String!
+
+  """adress field"""
+  adress: String!
+
+  """zip code field"""
+  zipCode: String!
 }
 
 input AddMemberInput {
@@ -237,6 +277,9 @@ input UpdateEventInput {
   """description field"""
   description: String
 
+  """location field"""
+  location: LocationInput
+
   """spots field"""
   spots: Float
 
@@ -254,10 +297,5 @@ input UpdateEventInput {
 
   """type (public | private) field"""
   type: String
-
-  """owner field"""
-  owner: String
-
-  """title field"""
   _id: String!
 }
