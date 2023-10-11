@@ -15,7 +15,7 @@ export class AuthResolver {
     try {
       return await this.authService.login(email, password)
     } catch (error) {
-      console.log(error)
+      console.error(error)
       throw new InternalServerErrorException('Login Error')
     }
   }
