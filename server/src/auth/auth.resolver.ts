@@ -1,21 +1,21 @@
 import { Resolver, Mutation, Args, Query } from '@nestjs/graphql'
 import { AuthService } from './auth.service'
 import { InternalServerErrorException } from '@nestjs/common'
-import { VerificationResult } from './entities/auth.entity'
+import { LoginResult, VerificationResult } from './entities/auth.entity'
 
 @Resolver()
 export class AuthResolver {
   constructor (private readonly authService: AuthService) {}
 
-  @Mutation(() => String)
+  @Mutation(() => LoginResult)
   async login (
   @Args('email') email: string,
     @Args('password') password: string
   ) {
     try {
-      const token = await this.authService.login(email, password)
-      return token
+      return await this.authService.login(email, password)
     } catch (error) {
+      console.log(error)
       throw new InternalServerErrorException('Login Error')
     }
   }

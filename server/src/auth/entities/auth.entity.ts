@@ -35,3 +35,12 @@ export class Auth {
   @Field(() => String, { description: 'password field' })
     password: string
 }
+
+@ObjectType()
+export class LoginResult {
+  @Field(() => String, { description: 'field' })
+    token: string
+
+  @Field(() => String, { description: 'field' })
+    userId: string
+}
