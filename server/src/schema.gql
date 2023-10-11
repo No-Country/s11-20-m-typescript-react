@@ -132,11 +132,39 @@ type User {
   updatedAt: DateTime!
 }
 
+type Coupon {
+  """id field"""
+  _id: String!
+
+  """title field"""
+  title: String!
+
+  """thumbnail of coupon"""
+  thumbnail: String!
+
+  """active/inactive field"""
+  status: Boolean!
+
+  """rank of coupon"""
+  requeriedRank: String!
+
+  """uses per month of coupon"""
+  usesPerMonth: String!
+}
+
+type VerificationResult {
+  sub: String!
+  username: String!
+}
+
 type Query {
   users: [User!]!
   user(id: String!): User!
   events: [Event!]!
   event(id: String!): Event!
+  coupons: [Coupon!]!
+  coupon(id: String!): Coupon!
+  verifyToken(token: String!): VerificationResult!
 }
 
 type Mutation {
@@ -149,6 +177,10 @@ type Mutation {
   changeEventMemberStatus(modifyStatusInput: ModifyStatusInput!): Event!
   updateEvent(updateEventInput: UpdateEventInput!): Event!
   removeEvent(id: String!): Event!
+  createCoupon(createCouponInput: CreateCouponInput!): Coupon!
+  updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
+  removeCoupon(id: String!): Coupon!
+  login(email: String!, password: String!): String!
 }
 
 input CreateUserInput {
@@ -297,5 +329,34 @@ input UpdateEventInput {
 
   """type (public | private) field"""
   type: String
+  _id: String!
+}
+
+input CreateCouponInput {
+  """title field"""
+  title: String!
+
+  """description field"""
+  thumbnail: String
+
+  """description field"""
+  requeriedRank: String!
+
+  """description field"""
+  usesPerMonth: String!
+}
+
+input UpdateCouponInput {
+  """title field"""
+  title: String
+
+  """description field"""
+  thumbnail: String
+
+  """description field"""
+  requeriedRank: String
+
+  """description field"""
+  usesPerMonth: String
   _id: String!
 }

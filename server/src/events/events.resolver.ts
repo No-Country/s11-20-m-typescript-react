@@ -4,100 +4,101 @@ import {
   Mutation,
   Args,
   ResolveField,
-  Parent,
-} from '@nestjs/graphql';
-import { EventsService } from './events.service';
-import { Event, Member } from './entities/event.entity';
-import { CreateEventInput } from './dto/create-event.input';
-import { UpdateEventInput } from './dto/update-event.input';
-import { InternalServerErrorException } from '@nestjs/common';
+  Parent
+} from '@nestjs/graphql'
+import { EventsService } from './events.service'
+import { Event, Member } from './entities/event.entity'
+import { CreateEventInput } from './dto/create-event.input'
+import { UpdateEventInput } from './dto/update-event.input'
+import { InternalServerErrorException } from '@nestjs/common'
 import {
   AddMemberInput,
   ModifyStatusInput,
-  RemoveMemberInput,
-} from './dto/members.input';
-import { User } from 'src/users/entities/user.entity';
+  RemoveMemberInput
+} from './dto/members.input'
+import { User } from 'src/users/entities/user.entity'
 
 @Resolver(() => Event)
 export class EventsResolver {
-  constructor(private readonly eventsService: EventsService) {}
+  constructor (private readonly eventsService: EventsService) {}
 
   @Mutation(() => Event)
-  createEvent(@Args('createEventInput') createEventInput: CreateEventInput) {
-    return this.eventsService.create(createEventInput);
+  async createEvent (@Args('createEventInput') createEventInput: CreateEventInput) {
+    return await this.eventsService.create(createEventInput)
   }
 
   @Mutation(() => Event)
-  addEventMember(@Args('addMemberInput') addMemberInput: AddMemberInput) {
-    return this.eventsService.addMember(addMemberInput);
+  async addEventMember (@Args('addMemberInput') addMemberInput: AddMemberInput) {
+    return await this.eventsService.addMember(addMemberInput)
   }
+
   @Mutation(() => Event)
-  removeEventMember(
-    @Args('removeMemberInput') removeMemberInput: RemoveMemberInput,
+  async removeEventMember (
+  @Args('removeMemberInput') removeMemberInput: RemoveMemberInput
   ) {
-    return this.eventsService.removeMember(removeMemberInput);
+    return await this.eventsService.removeMember(removeMemberInput)
   }
 
   @Mutation(() => Event)
-  changeEventMemberStatus(
-    @Args('modifyStatusInput') modifyStatusInput: ModifyStatusInput,
+  async changeEventMemberStatus (
+  @Args('modifyStatusInput') modifyStatusInput: ModifyStatusInput
   ) {
-    return this.eventsService.changeMemberStatus(modifyStatusInput);
+    return await this.eventsService.changeMemberStatus(modifyStatusInput)
   }
 
   @Query(() => [Event], { name: 'events' })
-  findAll() {
+  async findAll () {
     try {
-      return this.eventsService.findAll();
+      return await this.eventsService.findAll()
     } catch (error) {
-      console.error(error);
-      throw new InternalServerErrorException();
+      console.error(error)
+      throw new InternalServerErrorException()
     }
   }
 
   @ResolveField(() => User, { name: 'owner' })
-  getOwner(@Parent() event: Event) {
-    return this.eventsService.findUser(event.owner.toString());
+  async getOwner (@Parent() event: Event) {
+    return await this.eventsService.findUser(event.owner.toString())
   }
 
   @Query(() => Event, { name: 'event' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  async findOne (@Args('id', { type: () => String }) id: string) {
     try {
-      return this.eventsService.findOne(id);
+      return await this.eventsService.findOne(id)
     } catch (error) {
-      console.error(error);
-      throw new InternalServerErrorException();
+      console.error(error)
+      throw new InternalServerErrorException()
     }
   }
 
   @ResolveField(() => [Member], { name: 'members' })
-  getMembers(@Parent() event: Event) {
-    const { members } = event;
+  getMembers (@Parent() event: Event) {
+    const { members } = event
     const membersMapped = members.map(async (element) => {
-      const user = await this.eventsService.findUser(element.user.toString());
-      return { user: user, status: element.status };
-    });
+      const user = await this.eventsService.findUser(element.user.toString())
+      return { user, status: element.status }
+    })
 
-    return membersMapped;
+    return membersMapped
   }
 
   @Mutation(() => Event)
-  updateEvent(@Args('updateEventInput') updateEventInput: UpdateEventInput) {
+  async updateEvent (@Args('updateEventInput') updateEventInput: UpdateEventInput) {
     try {
-      return this.eventsService.update(updateEventInput._id, updateEventInput);
+      return await this.eventsService.update(updateEventInput._id, updateEventInput)
     } catch (error) {
-      console.error(error);
-      throw new InternalServerErrorException();
+      console.error(error)
+      throw new InternalServerErrorException()
     }
   }
 
   @Mutation(() => Event)
-  removeEvent(@Args('id', { type: () => String }) id: string) {
+  async removeEvent (@Args('id', { type: () => String }) id: string) {
     try {
-      return this.eventsService.remove(id);
+      return await this.eventsService.remove(id)
     } catch (error) {
-      console.error(error);
-      throw new InternalServerErrorException();
+      console.error(error)
+      throw new InternalServerErrorException()
     }
   }
 }
