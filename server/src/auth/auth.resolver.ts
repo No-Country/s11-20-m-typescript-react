@@ -1,34 +1,31 @@
-import { Resolver, Mutation, Args, Context, Query } from '@nestjs/graphql';
-import { AuthService } from './auth.service';
-import { InternalServerErrorException } from '@nestjs/common';
-import { VerificationResult } from './entities/auth.entity';
-
+import { Resolver, Mutation, Args, Query } from '@nestjs/graphql'
+import { AuthService } from './auth.service'
+import { InternalServerErrorException } from '@nestjs/common'
+import { VerificationResult } from './entities/auth.entity'
 
 @Resolver()
 export class AuthResolver {
-  constructor(private authService: AuthService) {}
+  constructor (private readonly authService: AuthService) {}
 
   @Mutation(() => String)
-  async login(
-    @Args('email') email: string,
-    @Args('password') password: string,
+  async login (
+  @Args('email') email: string,
+    @Args('password') password: string
   ) {
     try {
-      const token = await this.authService.login(email, password);
-      return token;
+      const token = await this.authService.login(email, password)
+      return token
     } catch (error) {
-      throw new InternalServerErrorException('Login Error: ' + error.message);
+      throw new InternalServerErrorException('Login Error')
     }
   }
 
   @Query(() => VerificationResult)
-  async verifyToken(@Args('token') token: string) {
-    const verificationResult = await this.authService.verifyToken(token);
+  async verifyToken (@Args('token') token: string) {
+    const verificationResult = await this.authService.verifyToken(token)
     return {
       sub: verificationResult.sub,
-      username: verificationResult.username,
-    };
+      username: verificationResult.username
+    }
   }
 }
-
-

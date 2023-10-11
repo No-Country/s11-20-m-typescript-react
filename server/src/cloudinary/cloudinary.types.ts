@@ -1,3 +1,3 @@
-import type { UploadApiErrorResponse, UploadApiResponse } from 'cloudinary';
+import type { UploadApiErrorResponse, UploadApiResponse } from 'cloudinary'
 
-export type CloudinaryResult = UploadApiResponse | UploadApiErrorResponse;
+export type CloudinaryResult = UploadApiResponse | UploadApiErrorResponse

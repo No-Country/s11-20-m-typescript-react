@@ -1,1 +1,1 @@
-export * from "./global.consts";
+export * from './global.consts'
