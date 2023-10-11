@@ -11,6 +11,7 @@ import { CouponsModule } from './coupons/coupons.module'
 import { AuthModule } from './auth/auth.module'
 import { GoogleStrategy } from './google auth/google.strategy'
 import { User, UserSchema } from './users/entities/user.entity'
+import { CloudinaryModule } from './cloudinary/cloudinary.module'
 import { EventsModule } from './events/events.module'
 
 @Module({
@@ -29,7 +30,8 @@ import { EventsModule } from './events/events.module'
     UsersModule,
     EventsModule,
     CouponsModule,
-    AuthModule
+    AuthModule,
+    CloudinaryModule
   ],
   controllers: [AppController],
   providers: [AppService, GoogleStrategy]
