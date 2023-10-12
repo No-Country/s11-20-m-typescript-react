@@ -42,10 +42,12 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       if (existingUser) {
         done(null, existingUser)
       } else {
+        const firstNameDef = name?.givenName ?? 'DefaultFirstName'
+        const lastNameDef = name?.familyName ?? 'DefaultLastname'
         const user = new this.UserModel({
           email: emails[0].value,
-          firstName: name.givenName,
-          lastName: name.familyName,
+          firstName: firstNameDef,
+          lastName: lastNameDef,
           profileImage: photos[0].value,
           birthday: defaultBirthday,
           password: hashedPassword,
