@@ -6,7 +6,6 @@ import {
 import { InjectModel } from '@nestjs/mongoose'
 import { CouponsIssued } from './entities/coupons-issued.entity'
 import { Model } from 'mongoose'
-// import { CouponsIssuedModule } from './coupons-issued.module';
 import { CreateCouponsIssuedInput } from './dto/create-coupons-issued.input'
 import { UpdateCouponsIssuedInput } from './dto/update-coupons-issued.input'
 import { User } from 'src/users/entities/user.entity'
