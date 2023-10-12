@@ -19,7 +19,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     super({
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://localhost:3001/api/auth/google/callback',
+      callbackURL: process.env.GOOGLE_CALLBACK_URL,
       scope: ['email', 'profile']
     })
   }
@@ -37,7 +37,9 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     const hashedPassword = await encryptPassword(randomPassword)
     // eslint-disable-next-line new-cap
     try {
-      const existingUser = await this.UserModel.findOne({ email: emails[0].value })
+      const existingUser = await this.UserModel.findOne({
+        email: emails[0].value
+      })
 
       if (existingUser) {
         done(null, existingUser)
@@ -69,7 +71,8 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
 }
 
 function generateRandomPassword (length: number = 12): string {
-  const ejemplo = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+  const ejemplo =
+    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
   let password = ''
 
   for (let i = 0; i < length; i++) {
