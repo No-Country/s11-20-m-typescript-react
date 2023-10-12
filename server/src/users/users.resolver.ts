@@ -1,61 +1,64 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { UsersService } from './users.service';
-import { User } from './entities/user.entity';
-import { CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
-import { InternalServerErrorException } from '@nestjs/common';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql'
+import { UsersService } from './users.service'
+import { User } from './entities/user.entity'
+import { CreateUserInput } from './dto/create-user.input'
+import { UpdateUserInput } from './dto/update-user.input'
+import { InternalServerErrorException } from '@nestjs/common'
 
 @Resolver(() => User)
 export class UsersResolver {
-  constructor(private readonly usersService: UsersService) {}
+  constructor (private readonly usersService: UsersService) {}
 
   @Mutation(() => User)
-  createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
+  async createUser (@Args('createUserInput') createUserInput: CreateUserInput) {
     try {
-      return this.usersService.create(createUserInput);
+      return await this.usersService.create(createUserInput)
     } catch (error) {
-      console.error(error);
-      throw new InternalServerErrorException();
+      console.error(error)
+      throw new InternalServerErrorException()
     }
   }
 
   @Query(() => [User], { name: 'users' })
-  findAll() {
+  async findAll () {
     try {
-      return this.usersService.findAll();
+      return await this.usersService.findAll()
     } catch (error) {
-      console.error(error);
-      throw new InternalServerErrorException();
+      console.error(error)
+      throw new InternalServerErrorException()
     }
   }
 
   @Query(() => User, { name: 'user' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  async findOne (@Args('id', { type: () => String }) id: string) {
     try {
-      return this.usersService.findOne(id);
+      return await this.usersService.findOne(id)
     } catch (error) {
-      console.error(error);
-      throw new InternalServerErrorException();
+      console.error(error)
+      throw new InternalServerErrorException()
     }
   }
 
   @Mutation(() => User)
-  updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
+  async updateUser (@Args('updateUserInput') updateUserInput: UpdateUserInput) {
     try {
-      return this.usersService.update(updateUserInput._id, updateUserInput);
+      return await this.usersService.update(
+        updateUserInput._id,
+        updateUserInput
+      )
     } catch (error) {
-      console.error(error);
-      throw new InternalServerErrorException();
+      console.error(error)
+      throw new InternalServerErrorException()
     }
   }
 
   @Mutation(() => User)
-  removeUser(@Args('id', { type: () => String }) id: string) {
+  async removeUser (@Args('id', { type: () => String }) id: string) {
     try {
-      return this.usersService.remove(id);
+      return await this.usersService.remove(id)
     } catch (error) {
-      console.error(error);
-      throw new InternalServerErrorException();
+      console.error(error)
+      throw new InternalServerErrorException()
     }
   }
 }
