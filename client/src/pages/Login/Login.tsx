@@ -1,32 +1,26 @@
-import { Button } from '@nextui-org/react'
-import { CardBox } from './components/Cards/CardBox'
-import { UserData } from '../../interfaces/user'
-import { useQuery } from '@apollo/client'
-import { GET_USERS } from '../../utils'
+import { FormLogin } from './components/FormLogin/FormLogin'
 
-export const Login = () => {
-  const {data, error, loading} = useQuery<UserData>(GET_USERS)
-  
-  if (loading) return <p>Loading...</p>
-  if (error) return <div>Failed to load</div>
 
-  const { users } = data || { users: [] }
-
+export const Login = () => { 
   return (
-    <div>
-      <h1>Login</h1>
-      <Button>Probando</Button>
-      {!loading 
-        ?<div className='flex gap-3'>
+    <>
 
-            
-          {users.map(user =>
-            <CardBox key={user.username} user={user}/>
-          )}
-        </div> 
-        :<></>}
-      {!loading ? <p>{JSON.stringify(users, null, 2)}</p> : 'Loading...'}
-    </div>
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="w-[830px] h-[630px] bg-gray-200 rounded-[24px] p-6">
+          <div className='flex flex-row'>
+
+            <div className='flex w-1/2 justify-center align-middle text-center'>
+
+            </div>
+
+            <div className='flex flex-col w-1/2  align-middle text-center'>
+              <FormLogin/>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
