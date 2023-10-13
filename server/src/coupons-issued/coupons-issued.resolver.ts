@@ -14,7 +14,10 @@ export class CouponsIssuedResolver {
   @Args('createCouponsIssued')
     createCouponsIssuedInput: CreateCouponsIssuedInput
   ) {
-    return await this.couponsIssuedService.createOne(createCouponsIssuedInput)
+    return await this.couponsIssuedService.createOne(createCouponsIssuedInput).catch((error) => {
+      console.log(error)
+      throw new InternalServerErrorException()
+    })
   }
 
   @Query(() => [CouponsIssued], { name: 'couponsIssued' })
@@ -31,7 +34,10 @@ export class CouponsIssuedResolver {
   async findOne (@Args('id', { type: () => String }) id: string) {
     try {
       return await this.couponsIssuedService.findOne(id)
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+      throw new InternalServerErrorException()
+    }
   }
 
   @Mutation(() => CouponsIssued)
@@ -39,7 +45,10 @@ export class CouponsIssuedResolver {
   @Args('id', { type: () => String }) id: string,
     updateCouponsIssuedInput: UpdateCouponsIssuedInput
   ) {
-    return await this.couponsIssuedService.updateOne(id, updateCouponsIssuedInput)
+    return await this.couponsIssuedService.updateOne(id, updateCouponsIssuedInput).catch((error) => {
+      console.log(error)
+      throw new InternalServerErrorException()
+    })
   }
 
   @Mutation(() => CouponsIssued)

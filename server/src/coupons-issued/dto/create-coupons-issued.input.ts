@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql'
-import { IsNotEmpty } from 'class-validator'
+import { IsDate, IsNotEmpty } from 'class-validator'
 
 @InputType()
 export class CreateCouponsIssuedInput {
@@ -12,6 +12,7 @@ export class CreateCouponsIssuedInput {
     user: string
 
   @IsNotEmpty({ message: 'expires field is required' })
+  @IsDate({ message: 'expires must be a date' })
   @Field(() => Date, { description: 'Example field (placeholder)' })
     expires: Date
 
