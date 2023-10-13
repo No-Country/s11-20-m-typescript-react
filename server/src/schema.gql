@@ -4,33 +4,6 @@
 
 type Coupon {
   """id field"""
-type Member {
-  """user field"""
-  user: User!
-
-  """status field"""
-  status: String!
-}
-
-type Location {
-  """Country field"""
-  country: String!
-
-  """State field"""
-  state: String!
-
-  """City field"""
-  city: String!
-
-  """adress field"""
-  adress: String!
-
-  """zip code field"""
-  zipCode: String!
-}
-
-type Event {
-  """Event Id"""
   _id: String!
 
   """title field"""
@@ -64,40 +37,6 @@ type CouponsIssued {
 
   """used field"""
   used: Boolean!
-  """description field"""
-  description: String!
-
-  """location field"""
-  location: Location!
-
-  """spots field"""
-  spots: Float!
-  members: [Member!]!
-
-  """birthday field"""
-  deadline: DateTime!
-
-  """startDate field"""
-  startDate: DateTime!
-
-  """endDate field"""
-  endDate: DateTime!
-
-  """time field"""
-  time: String!
-
-  """type (public | private) field"""
-  type: String!
-  owner: User!
-
-  """thumbnail field"""
-  thumbnail: String!
-
-  """createdAt field"""
-  createdAt: DateTime!
-
-  """updatedAt field"""
-  updatedAt: DateTime!
 }
 
 """
@@ -217,8 +156,10 @@ type User {
   """events field"""
   events: EventsEnum!
 
+
   """coupon field"""
   coupons: [CouponsIssued!]!
+
 
   """profileImage field"""
   profileImage: String!
@@ -232,6 +173,8 @@ type User {
   """updatedAt field"""
   updatedAt: DateTime!
 }
+
+
 
 type Coupon {
   """id field"""
@@ -252,6 +195,7 @@ type Coupon {
   """uses per month of coupon"""
   usesPerMonth: String!
 }
+
 
 type VerificationResult {
   sub: String!
