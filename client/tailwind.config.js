@@ -5,7 +5,16 @@ export default {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        teal:{
+          '800':'#115E59'
+        },
+        yellow:{
+          '400':'#FACC15'
+        }
+      }
+    },
   },
   plugins: [nextui()],
 }
