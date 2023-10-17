@@ -143,8 +143,10 @@ Texto texto
         <a href="https://github.com/jjrh92" target="_blank" rel="author">
           <img width="110" src="https://avatars.githubusercontent.com/u/48032098"/>
         </a>
-        <h4 style="margin-top: 1rem;">Julio Reyes</h4>
-        <h4 style="margin-top: 1rem;">Frontend</h4>
+        <a href="https://www.linkedin.com/in/jjrh92" target="_blank" rel="author">
+          <h4 style="margin-top: 1rem;">Julio Reyes</h4>
+          <h4 style="margin-top: 1rem;">Frontend</h4>
+        </a>
         <a href="https://github.com/jjrh92" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
         </a>
