@@ -172,23 +172,6 @@ Texto texto
         </a>
       </div>
     </td>
-    <td>
-      <div align="center">
-        <a href="https://github.com/SIA83" target="_blank" rel="author">
-          <img width="110" src="https://static.licdn.com/aero-v1/sc/h/244xhbkr7g40x6bsu4gi6q4ry"/>
-        </a>
-        <a href="https://www.linkedin.com/in/irina-sov/" target="_blank" rel="author">
-          <h4 style="margin-top: 1rem;">Irina Sovenko</h4>
-          <h4 style="margin-top: 1rem;">Q/A</h4>
-        </a>
-        <a href="https://github.com/SIA83" target="_blank">
-          <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
-        </a>
-        <a href="https://www.linkedin.com/in/irina-sov/" target="_blank">
-          <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
-        </a>
-      </div>
-    </td>
   </tr>
 </table>
 
@@ -313,7 +296,7 @@ Texto texto
         </a>
         <a href="https://www.linkedin.com/in/irina-sov/" target="_blank" rel="author">
           <h4 style="margin-top: 1rem;">Irina Sovenko</h4>
-          <h4 style="margin-top: 1rem;">Q/A</h4>
+          <h4 style="margin-top: 1rem;">Q/A Analyst</h4>
         </a>
         <a href="https://github.com/SIA83" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
