@@ -3,8 +3,7 @@ import { EyeFilledIcon } from '../icons/EyeFilledIcon'
 import { EyeSlashFilledIcon } from '../icons/EyeSlashFilledIcon'
 import { Input, Button } from '@nextui-org/react'
 import { UseFormRegister } from '../../../hooks'
-import { Link } from '@nextui-org/react';
-
+import { Link } from 'react-router-dom'
 
 export const Register = () =>{
 
@@ -38,7 +37,6 @@ export const Register = () =>{
         type={isVisible ? 'text' : 'password'}
       />
 
-
       <Button
         isDisabled={!isFormValid} 
         type='submit' 
@@ -47,10 +45,7 @@ export const Register = () =>{
         Register
       </Button>
 
-      
-
-
-      <Link isBlock href="/login" color="foreground" className='flex flex-row justify-center mt-7 mb-1 gap-2' style={{userSelect: "none"}}>
+      <Link to="/login" color="foreground" className='flex flex-row justify-center mt-7 mb-1 gap-2' style={{userSelect: "none"}}>
         Already have an account?{'\u00A0'} 
         <span className='text-teal-800 font-bold'>Sign-in</span>
       </Link>

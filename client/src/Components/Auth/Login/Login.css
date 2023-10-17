@@ -6,7 +6,7 @@ h1 {
 
 }
   
-  h1:before, h1:after {
+h1:before, h1:after {
 
     background-color: lightgray;
     content: "";
@@ -28,7 +28,6 @@ h1:before {
     margin-left: -50%;
 
 }
-
 
 h1:after {
 

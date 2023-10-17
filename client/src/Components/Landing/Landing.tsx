@@ -1,8 +1,12 @@
-import React from 'react'
+import image15 from '../../assets/image15.png';
 
-function Landing() {
+function Landing () {
+
   return (
-    <div>Landing</div>
+
+    <div style={{height: "100vh", backgroundImage: `url(${image15})`, backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat"}}>
+
+    </div>
   )
 }
 

@@ -4,7 +4,7 @@ import { EyeFilledIcon } from '../icons/EyeFilledIcon'
 import { EyeSlashFilledIcon } from '../icons/EyeSlashFilledIcon'
 import { UseFormLogin } from '../../../hooks'
 import { FcGoogle } from 'react-icons/fc'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import "./Login.css"
 
 export const Login = () =>{
@@ -55,9 +55,9 @@ export const Login = () =>{
         type={isVisible ? 'text' : 'password'}
       />
 
-      <NavLink to="/" color="foreground" className='flex flex-row-reverse text-teal-800 hover:underline' style={{userSelect: "none",}}>
+      <Link to="/" color="foreground" className='flex flex-row-reverse text-teal-800 hover:underline' style={{userSelect: "none",}}>
         Forgot your password?
-      </NavLink>
+      </Link>
 
       <Button
         isDisabled={!isFormValid} 
@@ -79,10 +79,10 @@ export const Login = () =>{
         </Button>
       </div>
 
-      <NavLink to="/register" color="foreground" className='flex flex-row justify-center mt-7 mb-1 gap-2' style={{userSelect: "none"}}>
+      <Link to="/register" color="foreground" className='flex flex-row justify-center mt-7 mb-1 gap-2' style={{userSelect: "none"}}>
         Don't have an account?{'\u00A0'} 
         <span className='text-teal-800 font-bold'>Sign-up</span>
-      </NavLink>
+      </Link>
 
       {/* <p className='flex flex-row justify-center mt-10 mb-2 gap-2' style={{userSelect: "none"}}>Don't have an account?{'\u00A0'} 
         <span className='text-teal-800 font-bold'>Sign-up</span>

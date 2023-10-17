@@ -1,10 +1,10 @@
 import { Button } from '@nextui-org/react';
 import logo from '../../assets/logo.png';
-import { Link } from '@nextui-org/react';
 import close from '../../assets/close.png';
 import login from '../../assets/login.png';
 import register from '../../assets/register.png';
-import './login.css';
+import { Link } from 'react-router-dom';
+import './Auth.css';
 
 interface LoginProps {
   children: React.ReactNode | JSX.Element;
@@ -17,19 +17,20 @@ export const Auth = ({ children }: LoginProps) => {
 
         <div className='flex flex-col'>
 
-            <Link href='/login'>
-              <Button className='w-[70px] h-[138px] bg-white rounded-tl-xl hover:bg-blue-200' radius='none' style={{display: "flex", flexDirection: "column"}}>
-                <img src={login} alt="Starting menu link (login)"/>
-                <span className='font-semibold'>Start</span>
-              </Button>
+          <Button className='w-[70px] h-[138px] bg-white rounded-tl-xl hover:bg-blue-200' radius='none'>
+            <Link to="/login" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+              <img src={login} alt="Starting menu link (login)"/>
+              <span className='font-semibold'>Start</span>
             </Link>
+          </Button>
 
-            <Link href='/register'>
-              <Button className='w-[70px] h-[138px] bg-white rounded-bl-xl hover:bg-blue-200' radius='none' style={{display: "flex", flexDirection: "column"}}>
-                <img src={register} alt="Starting menu link (register)"/>
-                <span className='font-semibold'>Register</span>
-              </Button>
+          <Button className='w-[70px] h-[138px] bg-white rounded-bl-xl hover:bg-blue-200' radius='none'>
+            <Link to="/register" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+              <img src={register} alt="Starting menu link (register)"/>
+              <span className='font-semibold'>Register</span>
             </Link>
+          </Button>
+
 
         </div>
 
@@ -42,7 +43,7 @@ export const Auth = ({ children }: LoginProps) => {
           <div className='flex flex-col justify-around h-auto w-max'>
 
             <div className="flex flex-col justify-center items-end w-auto">
-              <Link href='/'>
+              <Link to='/'>
                 <img src={close} alt="Close user menu"/>
               </Link>
             </div>

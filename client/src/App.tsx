@@ -1,24 +1,9 @@
-// import './App.css'
-// import './index.css'
-// import { AppRouter } from './routes/Routes'
-// import { Providers } from './providers/Providers'
-
-// function App() {
-
-//   return (
-//     <Providers>
-//       <AppRouter/>  
-//     </Providers>
-//   )
-// }
-
-// export default App
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Header/Header";
-import Landing from "./Components/Landing/Landing";
 import Footer from "./Components/Footer/Footer";
+import Landing from "./Components/Landing/Landing";
 import { Login, Register } from "./Components/Auth";
+import { Auth } from "./Components/Auth/Auth";
 import NotFound from "./Components/NotFound/NotFound";
 import './index.css'
 
@@ -30,9 +15,10 @@ function App () {
       <Navbar />
         <Routes>
 
-          <Route path="/" element={<Landing/>}></Route>
-          <Route path="/login" element={<Login/>}></Route>
-          <Route path="/register" element={<Register/>}></Route>
+          <Route path="/" element={<Landing />}></Route>
+          <Route path="/auth" element={<Auth children={<><Login/></>}/>}></Route>
+          <Route path="/login" element={<Auth children={<><Login/></>}/>}></Route>
+          <Route path="/register" element={<Auth children={<><Register/></>}/>}></Route>
           <Route path="*" element={<NotFound/>} />
 
         </Routes>
