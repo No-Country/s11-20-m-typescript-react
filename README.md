@@ -228,11 +228,6 @@ Texto texto
         </a>
       </div>
     </td>
-  </tr>
-</table>
-
-<table>
-  <tr>
     <td>
       <div align="center">
         <a href="https://github.com/mjParedes" target="_blank" rel="author">
@@ -240,7 +235,7 @@ Texto texto
         </a>
         <a href="https://github.com/mjParedes" target="_blank" rel="author">
           <h4 style="margin-top: 1rem;">Matias Paredes</h4>
-          <h4 style="margin-top: 1rem;">Backend Developer</h4>
+          <h4 style="margin-top: 1rem;">Backend</h4>
         </a>
         <a href="https://github.com/mjParedes" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
@@ -250,6 +245,11 @@ Texto texto
         </a>
       </div>
     </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
     <td>
       <div align="center">
         <a href="https://github.com/MayderC" target="_blank" rel="author">
@@ -257,7 +257,7 @@ Texto texto
         </a>
         <a href="https://github.com/MayderC" target="_blank" rel="author">
           <h4 style="margin-top: 1rem;">Mayder Cortés</h4>
-          <h4 style="margin-top: 1rem;">Backend Developer</h4>
+          <h4 style="margin-top: 1rem;">Backend</h4>
         </a>
         <a href="https://github.com/MayderC" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
@@ -284,11 +284,6 @@ Texto texto
         </a>
       </div>
     </td>
-  </tr>
-</table>
-
-<table>
-  <tr>
     <td>
       <div align="center">
         <a href="https://github.com/SIA83" target="_blank" rel="author">
