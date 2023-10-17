@@ -68,9 +68,11 @@ texto texto.
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" alt="Logo" width="96" height="96">
 </a>
 
-<a href=https://discord.gg/ayjqPNPw" target="_blank">
+<a href="https://discord.gg/ayjqPNPw" target="_blank">
   <img src="https://img.icons8.com/color/480/discord-new-logo.png" alt="Logo" width="96" height="96">
 </a>
+
+
 
 <!-- GETTING STARTED -->
 <h1 align="center"> 
@@ -170,11 +172,6 @@ Texto texto
         </a>
       </div>
     </td>
-  </tr>
-</table>
-
-<table>
-  <tr>
     <td>
       <div align="center">
         <a href="https://github.com/SIA83" target="_blank" rel="author">
@@ -192,6 +189,11 @@ Texto texto
         </a>
       </div>
     </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
     <td>
       <div align="center">
         <a href="https://github.com/maggieruizdiaz22" target="_blank" rel="author">
@@ -243,6 +245,11 @@ Texto texto
         </a>
       </div>
     </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
     <td>
       <div align="center">
         <a href="https://github.com/mjParedes" target="_blank" rel="author">
@@ -280,7 +287,7 @@ Texto texto
     <td>
       <div align="center">
         <a href="https://github.com/santiago-sonzini" target="_blank" rel="author">
-          <img width="110" src="https://avatars.githubusercontent.com/u/99201087?v=4"/>
+          <img width="110" src="https://avatars.githubusercontent.com/u/65967521?v=4"/>
         </a>
         <a href="https://github.com/santiago-sonzini" target="_blank" rel="author">
           <h4 style="margin-top: 1rem;">Santiago Sonzini</h4>
