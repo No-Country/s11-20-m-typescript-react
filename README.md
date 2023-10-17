@@ -17,7 +17,7 @@
 <h3 align="center">Bienvenid@s a Earth Points</h3>
 
   <p align=center">
-    Texto Descripcion.
+    Texto Descripcion Texto.
     <br />
     <br />
     <a href="https://url.vercel.app/" target="_blank">Ver Demo</a>
