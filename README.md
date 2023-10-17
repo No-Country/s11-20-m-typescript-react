@@ -145,7 +145,7 @@ Texto texto
         </a>
         <a href="https://www.linkedin.com/in/jjrh92" target="_blank" rel="author">
           <h4 style="margin-top: 1rem;">Julio Reyes</h4>
-          <h4 style="margin-top: 1rem;">Frontend Developer</h4>
+          <h4 style="margin-top: 1rem;">Frontend</h4>
         </a>
         <a href="https://github.com/jjrh92" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
@@ -162,7 +162,7 @@ Texto texto
         </a>
         <a href="https://www.linkedin.com/in/leandronicolas1983/" target="_blank" rel="author">
           <h4 style="margin-top: 1rem;">Leandro Maranda</h4>
-          <h4 style="margin-top: 1rem;">Frontend Developer</h4>
+          <h4 style="margin-top: 1rem;">Frontend</h4>
         </a>
         <a href="https://github.com/leandroni1983" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
@@ -179,7 +179,7 @@ Texto texto
         </a>
         <a href="https://www.linkedin.com/in/irina-sov/" target="_blank" rel="author">
           <h4 style="margin-top: 1rem;">Irina Sovenko</h4>
-          <h4 style="margin-top: 1rem;">Q/A Analyst</h4>
+          <h4 style="margin-top: 1rem;">Q/A</h4>
         </a>
         <a href="https://github.com/SIA83" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
@@ -201,7 +201,7 @@ Texto texto
         </a>
         <a href="https://github.com/maggieruizdiaz22" target="_blank" rel="author">
           <h4 style="margin-top: 1rem;">Magali Ruiz</h4>
-          <h4 style="margin-top: 1rem;">Backend Developer</h4>
+          <h4 style="margin-top: 1rem;">Backend</h4>
         </a>
         <a href="https://github.com/maggieruizdiaz22" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
@@ -218,7 +218,7 @@ Texto texto
         </a>
         <a href="https://github.com/thomasbarenghi" target="_blank" rel="author">
           <h4 style="margin-top: 1rem;">Thomas Barenghi</h4>
-          <h4 style="margin-top: 1rem;">Backend Developer</h4>
+          <h4 style="margin-top: 1rem;">Backend</h4>
         </a>
         <a href="https://github.com/thomasbarenghi" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
@@ -235,7 +235,7 @@ Texto texto
         </a>
         <a href="https://github.com/GoRiDeveloper" target="_blank" rel="author">
           <h4 style="margin-top: 1rem;">Govanni González</h4>
-          <h4 style="margin-top: 1rem;">Backend Developer</h4>
+          <h4 style="margin-top: 1rem;">Backend</h4>
         </a>
         <a href="https://github.com/GoRiDeveloper" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
@@ -279,7 +279,7 @@ Texto texto
         <a href="https://github.com/MayderC" target="_blank">
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
         </a>
-        <a href="https://www.linkedin.com/in/david-cortesb/" target="_blank">
+        <a href="https://github.com/MayderC" target="_blank">
           <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
         </a>
       </div>
@@ -297,6 +297,28 @@ Texto texto
           <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
         </a>
         <a href="https://github.com/santiago-sonzini" target="_blank">
+          <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
+        </a>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td>
+      <div align="center">
+        <a href="https://github.com/SIA83" target="_blank" rel="author">
+          <img width="110" src="https://static.licdn.com/aero-v1/sc/h/244xhbkr7g40x6bsu4gi6q4ry"/>
+        </a>
+        <a href="https://www.linkedin.com/in/irina-sov/" target="_blank" rel="author">
+          <h4 style="margin-top: 1rem;">Irina Sovenko</h4>
+          <h4 style="margin-top: 1rem;">Q/A</h4>
+        </a>
+        <a href="https://github.com/SIA83" target="_blank">
+          <img src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
+        </a>
+        <a href="https://www.linkedin.com/in/irina-sov/" target="_blank">
           <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
         </a>
       </div>
