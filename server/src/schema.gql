@@ -185,10 +185,6 @@ type LoginResult {
   userId: String!
 }
 
-type GoogleAuthResponse {
-  accessToken: String!
-}
-
 type Query {
   users: [User!]!
   user(id: String!): User!
@@ -217,7 +213,6 @@ type Mutation {
   updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
   removeCoupon(id: String!): Coupon!
   login(email: String!, password: String!): LoginResult!
-  googleAuth(input: GoogleAuthInput!): GoogleAuthResponse!
   uploadTestImage(image: Upload!): String!
 }
 
@@ -411,10 +406,6 @@ input UpdateCouponInput {
   """description field"""
   usesPerMonth: String
   _id: String!
-}
-
-input GoogleAuthInput {
-  accessToken: String!
 }
 
 """The `Upload` scalar type represents a file upload."""
