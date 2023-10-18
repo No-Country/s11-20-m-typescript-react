@@ -14,10 +14,12 @@ export class CouponsIssuedResolver {
   @Args('createCouponsIssued')
     createCouponsIssuedInput: CreateCouponsIssuedInput
   ) {
-    return await this.couponsIssuedService.createOne(createCouponsIssuedInput).catch((error) => {
-      console.log(error)
-      throw new InternalServerErrorException()
-    })
+    return await this.couponsIssuedService
+      .createOne(createCouponsIssuedInput)
+      .catch((error) => {
+        console.log(error)
+        throw new InternalServerErrorException()
+      })
   }
 
   @Query(() => [CouponsIssued], { name: 'couponsIssued' })
@@ -45,10 +47,12 @@ export class CouponsIssuedResolver {
   @Args('id', { type: () => String }) id: string,
     updateCouponsIssuedInput: UpdateCouponsIssuedInput
   ) {
-    return await this.couponsIssuedService.updateOne(id, updateCouponsIssuedInput).catch((error) => {
-      console.log(error)
-      throw new InternalServerErrorException()
-    })
+    return await this.couponsIssuedService
+      .updateOne(id, updateCouponsIssuedInput)
+      .catch((error) => {
+        console.log(error)
+        throw new InternalServerErrorException()
+      })
   }
 
   @Mutation(() => CouponsIssued)
