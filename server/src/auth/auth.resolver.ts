@@ -1,6 +1,6 @@
-import { Resolver, Mutation, Args, Query } from '@nestjs/graphql'
+import { Resolver, Mutation, Args, Query, Context } from '@nestjs/graphql'
 import { AuthService } from './auth.service'
-import { InternalServerErrorException } from '@nestjs/common'
+import { InternalServerErrorException, UnauthorizedException } from '@nestjs/common'
 import { LoginResult, VerificationResult } from './entities/auth.entity'
 
 @Resolver()
@@ -10,8 +10,14 @@ export class AuthResolver {
   @Mutation(() => LoginResult)
   async login (
   @Args('email') email: string,
-    @Args('password') password: string
+    @Args('password') password: string,
+    @Context() context
   ) {
+    const user = context.req.user
+    if (!user) {
+      throw new UnauthorizedException('Unauthenticated user')
+    }
+
     try {
       return await this.authService.login(email, password)
     } catch (error) {
@@ -21,7 +27,11 @@ export class AuthResolver {
   }
 
   @Query(() => VerificationResult)
-  async verifyToken (@Args('token') token: string) {
+  async verifyToken (@Args('token') token: string, @Context() context) {
+    const user = context.req.user
+    if (!user) {
+      throw new UnauthorizedException('Unauthenticated user')
+    }
     const verificationResult = await this.authService.verifyToken(token)
     return {
       sub: verificationResult.sub,
