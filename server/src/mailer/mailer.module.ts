@@ -2,7 +2,7 @@ import { DynamicModule, Module } from '@nestjs/common'
 import { MailerService } from './mailer.service'
 import { ConfigurableModuleClass } from './configModule/config.module-definition'
 import { createTransport } from 'nodemailer'
-import { INodemailderService } from './configModule/mail.service-contract'
+import { NodemailerService } from './configModule/mail.service-contract'
 import { INodemailderTransportOptions } from './configModule/config.nodemailer-transport'
 
 @Module({
@@ -20,9 +20,9 @@ export class MailerModule extends ConfigurableModuleClass {
           useValue: createTransport(options.transport)
         },
         { provide: 'OptionsConfig', useValue: options },
-        { provide: INodemailderService, useClass: MailerService }
+        { provide: NodemailerService, useClass: MailerService }
       ],
-      exports: [{ provide: INodemailderService, useClass: MailerService }]
+      exports: [{ provide: NodemailerService, useClass: MailerService }]
     }
   }
 }
