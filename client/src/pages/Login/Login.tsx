@@ -1,7 +1,8 @@
 import { Button } from '@nextui-org/react'
-import logocompleto from '../../assets/LogoCompleto.png'
-import {Link} from '@nextui-org/react'
-import { Link as RouterLink } from 'react-router-dom'
+import logocompleto from './components/icons/LogoCompleto.png'
+import login from './components/icons/login.png'
+import register from './components/icons/register.png'
+import { Link } from 'react-router-dom'
 import './login.css'
 
 interface LoginProps {
@@ -14,13 +15,21 @@ export const Login = ({ children }: LoginProps) => {
       <div className="flex justify-center items-center min-h-screen bg-image-container relative">
 
         <div className='flex flex-col'>
-          <RouterLink to='/login'>
-            <Button className='w-[70px] h-[138px] bg-white rounded-tl-xl' radius='none'>Login</Button>
-          </RouterLink>
-          <Link href='/register'>
-            <Button className='w-[70px] h-[138px] bg-white rounded-bl-xl' radius='none'>Registro</Button>
-          </Link>
+          <Button className='w-[70px] h-[138px] bg-white rounded-tl-xl hover:bg-blue-200' radius='none'>
+            <Link to="/login" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <img src={login} alt="Starting menu link (login)"/>
+              <span className='font-semibold'>Start</span>
+            </Link>
+          </Button>
+
+          <Button className='w-[70px] h-[138px] bg-white rounded-bl-xl hover:bg-blue-200' radius='none'>
+            <Link to="/register" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <img src={register} alt="Starting menu link (register)"/>
+              <span className='font-semibold'>Register</span>
+            </Link>
+          </Button>
         </div>
+
 
         <div className="flex flex-row justify-center w-[830px] h-[630px] bg-white rounded-[24px] relative">
           <div className="flex flex-col justify-center items-center w-1/2">

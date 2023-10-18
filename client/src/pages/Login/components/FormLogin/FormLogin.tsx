@@ -3,6 +3,7 @@ import { Input,Button } from '@nextui-org/react'
 import { EyeFilledIcon } from '../icons/EyeFilledIcon'
 import { EyeSlashFilledIcon } from '../icons/EyeSlashFilledIcon'
 import { UseFormLogin } from '../../../../hooks/'
+import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 
 export const FormLogin = () =>{
@@ -13,14 +14,15 @@ export const FormLogin = () =>{
 
   return (
     <form 
-      className="flex flex-col w-[351px] flex-wrap md:flex-nowrap gap-4 "
+      className="flex flex-col w-[351px] flex-wrap md:flex-nowrap gap-4 font-inter"
       onSubmit={handleSubmit}>
       <Input 
         onChange={handleChange}
         value={formData.email}
         isRequired 
         classNames={{
-          label: 'text-teal-800',
+          label: 'text-teal-800 font-semibold',
+          
         }}
         size='sm' 
         type="email" 
@@ -32,7 +34,7 @@ export const FormLogin = () =>{
         value={formData.password}
         isRequired
         classNames={{
-          label: 'text-teal-800',
+          label: 'text-teal-800 font-semibold',
         }}
         size='sm'
         label="Password"
@@ -49,7 +51,10 @@ export const FormLogin = () =>{
         }
         type={isVisible ? 'text' : 'password'}
       />
-      <p className='flex flex-row-reverse text-teal-800' >¿olvidaste tu contraseña?</p>
+      <Link to="/" color="foreground" className='flex flex-row-reverse text-teal-800 hover:underline' style={{userSelect: 'none',}}>
+        Forgot your password?
+      </Link>
+      
       <Button
         isDisabled={!isFormValid} 
         type='submit' 
@@ -57,20 +62,24 @@ export const FormLogin = () =>{
       >
         Ingresar
       </Button>
-      <p className='flex flex-row justify-center'>inicia sesion con Google</p>
+
+      <h1 id='h2' className='flex flex-row justify-center'>
+        <span>Login with Google</span>
+      </h1>
+
       <div className='flex flex-row justify-center'>
         <Button 
-        
           style={{ width: '64px', height: '64px',border:'solid #B8B8B8 1px' }}
           className='flex flex-row justify-center  bg-white'>
           <FcGoogle  style={{ fontSize: '4rem'}} />
         </Button>
       </div>
-      <p className='flex flex-row justify-center mt-10 mb-2'>
-        ¿no tienes cuenta?{'\u00A0'} 
-        <span className='text-teal-800'>
-           Registrate</span>
-      </p>
+
+      <Link to="/register" color="foreground" className='flex flex-row justify-center mt-7 mb-1 gap-2' style={{userSelect: 'none'}}>
+        Don't have an account?{'\u00A0'} 
+        <span className='text-teal-800 font-bold'>Sign-up</span>
+      </Link>
+      
     </form>
   )
 }
