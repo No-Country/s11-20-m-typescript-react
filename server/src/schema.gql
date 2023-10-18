@@ -172,6 +172,26 @@ type User {
   updatedAt: DateTime!
 }
 
+type Coupon {
+  """id field"""
+  _id: String!
+
+  """title field"""
+  title: String!
+
+  """thumbnail of coupon"""
+  thumbnail: String!
+
+  """active/inactive field"""
+  status: Boolean!
+
+  """rank of coupon"""
+  requeriedRank: String!
+
+  """uses per month of coupon"""
+  usesPerMonth: String!
+}
+
 type VerificationResult {
   sub: String!
   username: String!
