@@ -10,4 +10,4 @@ export interface INodemailerService {
   ) => Promise<void>
 }
 
-export const INodemailderService = Symbol('NodemailerService')
+export const NodemailerService = Symbol('NodemailerService')
