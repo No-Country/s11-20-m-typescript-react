@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common'
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
 import { EventsService } from './events.service'
 import { EventsResolver } from './events.resolver'
 import { MongooseModule } from '@nestjs/mongoose'
 import { Event, EventSchema } from './entities/event.entity'
 import { User, UserSchema } from 'src/users/entities/user.entity'
+import { AuthMiddleware } from 'src/auth/auth.middleware'
 
 @Module({
   imports: [
@@ -14,4 +15,9 @@ import { User, UserSchema } from 'src/users/entities/user.entity'
   ],
   providers: [EventsResolver, EventsService]
 })
-export class EventsModule {}
+// Implementación del Middleware para verificar una sesión
+export class EventsModule implements NestModule {
+  configure (consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware)
+  }
+}

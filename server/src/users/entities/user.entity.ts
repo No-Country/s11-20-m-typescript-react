@@ -2,6 +2,7 @@ import { ObjectType, Field } from '@nestjs/graphql'
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import mongoose, { HydratedDocument, ObjectId } from 'mongoose'
 import { IsNotEmpty, IsEmail, Matches, IsDate } from 'class-validator'
+import { CouponsIssued } from 'src/coupons-issued/entities/coupons-issued.entity'
 import { Event } from 'src/events/entities/event.entity'
 
 export type SessionDocument = HydratedDocument<User>
@@ -98,7 +99,9 @@ export class User {
     events: EventsEnum
 
   // Completar cuando este el modelo de cupones
-  coupons: ObjectId[]
+  @Prop({ default: [] })
+  @Field(() => [CouponsIssued], { description: 'coupon field' })
+    coupons: mongoose.Schema.Types.ObjectId[]
 
   @Prop({
     default:

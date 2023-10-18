@@ -17,10 +17,9 @@ async function bootstrap () {
     origin: '*'
   })
 
-  app.use(graphqlUploadExpress({ maxFileSize: 1000000, maxFiles: 10 }))
-
   app.setGlobalPrefix('api/')
   app.useGlobalPipes(new ValidationPipe())
-  await app.listen(3001)
+  await app.listen(process.env.PORT || 3001)
+  app.use(graphqlUploadExpress({ maxFileSize: 1000000, maxFiles: 10 }))
 }
 void bootstrap()

@@ -9,10 +9,11 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { join } from 'path'
 import { CouponsModule } from './coupons/coupons.module'
 import { AuthModule } from './auth/auth.module'
-import { GoogleStrategy } from './google auth/google.strategy'
+import { GoogleStrategy } from './googleAuth/google.strategy'
 import { User, UserSchema } from './users/entities/user.entity'
 import { CloudinaryModule } from './cloudinary/cloudinary.module'
 import { EventsModule } from './events/events.module'
+import { CouponsIssuedModule } from './coupons-issued/coupons-issued.module'
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { EventsModule } from './events/events.module'
       autoSchemaFile: join(process.cwd(), 'src/schema.gql')
     }),
     UsersModule,
+    CouponsIssuedModule,
     EventsModule,
     CouponsModule,
     AuthModule,
