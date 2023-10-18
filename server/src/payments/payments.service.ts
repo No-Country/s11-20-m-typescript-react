@@ -56,8 +56,10 @@ export class PaymentsService {
     if (event.type === CHECKOUT_SESSSION_COMPLETED) {
       const session = event.data.object as Stripe.Checkout.Session
       const email = session.customer_details.email
-      await this.emailCreation.handleThanksEmail(email)
-      // todo: create a new donation
+      if (process.env.SMTP_USER) {
+        await this.emailCreation.handleThanksEmail(email)
+      }
+      // todo: save in database
     }
 
     return event
