@@ -42,7 +42,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       })
 
       if (existingUser) {
-        done(null, existingUser)
+        done(null, { user: existingUser, token: accessToken })
       } else {
         const firstNameDef = name?.givenName ?? 'DefaultFirstName'
         const lastNameDef = name?.familyName ?? 'DefaultLastname'
@@ -53,8 +53,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
           profileImage: photos[0].value,
           birthday: defaultBirthday,
           password: hashedPassword,
-          username: defaultUsername,
-          accessToken
+          username: defaultUsername
         })
 
         const savedUser = await user.save()
