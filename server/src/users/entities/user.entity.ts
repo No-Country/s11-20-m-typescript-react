@@ -8,7 +8,7 @@ import { Event } from 'src/events/entities/event.entity'
 export type SessionDocument = HydratedDocument<User>
 
 @ObjectType()
-class EventsEnum {
+export class EventsEnum {
   constructor () {
     this.created = []
     this.subscribed = []

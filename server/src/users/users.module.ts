@@ -3,11 +3,12 @@ import { UsersService } from './users.service'
 import { UsersResolver } from './users.resolver'
 import { MongooseModule } from '@nestjs/mongoose'
 import { User, UserSchema } from './entities/user.entity'
+import { EventSchema, Event } from 'src/events/entities/event.entity'
 import { AuthMiddleware } from 'src/auth/auth.middleware'
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }, { name: Event.name, schema: EventSchema }])
   ],
   providers: [UsersResolver, UsersService],
   exports: [UsersService]

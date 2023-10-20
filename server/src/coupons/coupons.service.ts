@@ -13,7 +13,7 @@ export class CouponsService {
 
   private async findCoupon (id: string) {
     const coupon = await this.couponModel.findById(id).catch((error) => {
-      console.log(error)
+      console.error(error)
     })
     if (coupon == null) throw new NotFoundException(`Coupon #${id} not found`)
     return coupon
@@ -21,14 +21,14 @@ export class CouponsService {
 
   async create (createCouponInput: CreateCouponInput) {
     return await this.couponModel.create(createCouponInput).catch((error) => {
-      console.log(error)
+      console.error(error)
       throw new Error(error)
     })
   }
 
   async findAll () {
     return await this.couponModel.find().catch((error) => {
-      console.log(error)
+      console.error(error)
       throw new Error(error)
     })
   }
