@@ -16,38 +16,43 @@ export const FormRegister = () =>{
       className="flex flex-col w-[351px] flex-wrap md:flex-nowrap gap-4 font-inter"
       onSubmit={handleSubmit} autoComplete='off'>
 
-      <Input id='input' 
+      <Input 
         onChange={handleChange} 
-        value={formData.name} 
+        value={formData.firstName} 
         isRequired 
         classNames={{label: 'text-teal-800 font-semibold',}} 
-        size='sm' type="text" name="name" label="Enter your name" placeholder="Please enter your name" />
+        size='sm' type="text" name="firstName" label="Enter your name" placeholder="Please enter your name" />
 
       <Input 
-        id='input' 
         onChange={handleChange} 
-        value={formData.lastname} 
+        value={formData.lastName} 
         isRequired 
         classNames={{label: 'text-teal-800 font-semibold',}} 
-        size='sm' type="text" name="lastname" label="Enter your lastname" placeholder="Please enter your lastname" />
+        size='sm' type="text" name="lastName" label="Enter your lastname" placeholder="Please enter your lastname" />
+      
+      <Input 
+        onChange={handleChange} 
+        value={formData.username} 
+        isRequired 
+        classNames={{label: 'text-teal-800 font-semibold',}} 
+        size='sm' type="text" name="username" label="Enter your nick" placeholder="Please enter your nick" />
 
       <Input 
-        id='input' 
         onChange={handleChange} 
         value={formData.email} 
         isRequired 
         classNames={{label: 'text-teal-800 font-semibold',}}
-        size='sm' type="email" name="Email" label="Enter your email" placeholder="Please enter your last name" />
+        size='sm' type="email" name="email" label="Enter your email" placeholder="Please enter your last name" />
 
       <Input 
-        id='input'
         onChange={handleChange}
         value={formData.birthdate} 
         isRequired 
         classNames={{label: 'text-teal-800 font-semibold',}} 
         size='sm' type="date" name="birthdate" label="Enter your birthdate" placeholder="Please enter your birthdate" />
 
-      <Input autoComplete='false' 
+      <Input 
+        autoComplete='false' 
         onChange={handleChange} 
         value={formData.password} 
         isRequired 

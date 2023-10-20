@@ -1,10 +1,17 @@
 import { useState } from 'react'
+import { useMutation} from '@apollo/client'
+import { GET_USER } from '../../utils'
+
+
 interface FormValues {
   email: string
   password: string
 }
 
 export const UseFormLogin = () => {
+
+  const [loginMutation, { data }] = useMutation(GET_USER)
+
   const [formData, setFormData] = useState<FormValues>({
     email: '',
     password: '',
@@ -15,9 +22,20 @@ export const UseFormLogin = () => {
 
   const isFormValid = isEmailValid && isPasswordValid
 
+  const handleLogin = async () =>{
+    const response = await loginMutation({
+      variables:{
+        email: formData.email,
+        password: formData.password
+      }
+      
+    })
+    console.log(response.data)
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(formData.password,formData.email)
+    handleLogin()
   }
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -30,5 +48,5 @@ export const UseFormLogin = () => {
       setIsPasswordValid(value.length >= 8)
     }
   }
-  return { isFormValid, handleSubmit, handleChange, formData }
+  return { isFormValid, handleSubmit, handleChange, formData, data }
 }
