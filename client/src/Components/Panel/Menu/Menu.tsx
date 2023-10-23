@@ -19,7 +19,7 @@ function Menu () {
 
   return (
 
-    <aside style={{backgroundColor: "white", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-around", height: "100vh", width: "15%"}}>
+    <aside style={{backgroundColor: "white", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", height: "100vh", width: "15%"}}>
 
       <div style={{marginBottom: "70px", marginTop: "30px", display: "flex", justifyContent: "center", alignItems: "center", }}>
         <Link to="/" style={{userSelect: "none"}}>
@@ -27,7 +27,7 @@ function Menu () {
         </Link>
       </div>
 
-      <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginBottom: "40px", gap: "20px", }}>
+      <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginBottom: "250px", gap: "7px", }}>
 
         <Top ruta={"/"} texto={"Panel"} iconlight={panel_light} icondark={panel_dark} />
         <Top ruta={"/logros"} texto={"Logros"} iconlight={logros_light} icondark={logros_dark} />

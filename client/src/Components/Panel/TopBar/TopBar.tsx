@@ -11,7 +11,6 @@ export default function TopBar (props:any) {
         <NavLink to={props.ruta} className="font-inter fill-black">Panel</NavLink>
       </div>
 
-
       <div style={{marginRight: "60px", display: "flex", alignItems: "center", justifyContent: "center", gap: "20px"}}>
 
       <NavLink
@@ -24,12 +23,11 @@ export default function TopBar (props:any) {
 
       {({isActive}) => (
 
-        <button className={isActive ? "font-inter bg-teal-800 rounded-md hover:bg-teal-700" : "font-inter bg-teal-800 rounded-md hover:bg-teal-700"} style={{width: "78px", height: "40px", color: "white", fontSize: "16px"}}>Donar</button>
+        <button className={isActive ? "font-inter bg-teal-800 rounded-md hover:bg-teal-700" : "font-inter bg-teal-800 hover:bg-teal-700"} style={{width: "78px", height: "40px", color: "white", fontSize: "16px", borderRadius: "20px"}}>Donar</button>
 
       )}
 
       </NavLink>
-
 
       </div>
 
