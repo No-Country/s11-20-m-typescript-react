@@ -1665,6 +1665,10 @@ video {
   border-radius: var(--nextui-radius-large);
 }
 
+.rounded-lg{
+  border-radius: 0.5rem;
+}
+
 .rounded-md{
   border-radius: 0.375rem;
 }
@@ -2089,6 +2093,10 @@ video {
   background-size: 1.25rem 1.25rem;
 }
 
+.fill-black{
+  fill: #000;
+}
+
 .stroke-current{
   stroke: currentColor;
 }
@@ -2443,9 +2451,9 @@ video {
   color: hsl(var(--nextui-foreground-600) / var(--nextui-foreground-600-opacity, var(--tw-text-opacity)));
 }
 
-.text-gray-500{
+.text-gray-800{
   --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
+  color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
 .text-inherit{
@@ -2510,11 +2518,6 @@ video {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-gray-800{
-  --tw-text-opacity: 1;
-  color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
 .underline{
