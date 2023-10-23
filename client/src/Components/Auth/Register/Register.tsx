@@ -16,15 +16,17 @@ export const Register = () =>{
       className="flex flex-col w-[351px] flex-wrap md:flex-nowrap gap-4 font-inter"
       onSubmit={handleSubmit} autoComplete='off'>
 
-      <Input id='input' onChange={handleChange} value={formData.name} isRequired classNames={{label: 'text-teal-800 font-semibold',}} size='sm' type="text" name="name" label="Enter your name" placeholder="Please enter your name" />
+      <Input id='input' onChange={handleChange} value={formData.name} isRequired classNames={{label: 'text-teal-800 font-semibold',}} size='sm' type="text" name="name" label="Nombre" placeholder="Ingrese su nombre" />
 
-      <Input id='input' onChange={handleChange} value={formData.lastname} isRequired classNames={{label: 'text-teal-800 font-semibold',}} size='sm' type="text" name="lastname" label="Enter your lastname" placeholder="Please enter your lastname" />
+      <Input id='input' onChange={handleChange} value={formData.lastname} isRequired classNames={{label: 'text-teal-800 font-semibold',}} size='sm' type="text" name="lastname" label="Apellido" placeholder="Ingrese su apellido" />
 
-      <Input id='input' onChange={handleChange} value={formData.email} isRequired classNames={{label: 'text-teal-800 font-semibold',}} size='sm' type="email" name="Email" label="Enter your email" placeholder="Please enter your last name" />
+      <Input id='input' onChange={handleChange} value={formData.email} isRequired classNames={{label: 'text-teal-800 font-semibold',}} size='sm' type="email" name="email" label="Email" placeholder="Ingrese su Email" />
 
-      <Input id='input' onChange={handleChange} value={formData.birthdate} isRequired classNames={{label: 'text-teal-800 font-semibold',}} size='sm' type="date" name="birthdate" label="Enter your birthdate" placeholder="Please enter your birthdate" />
+      {/* <Input id='input' onChange={handleChange} value={formData.username} isRequired classNames={{label: 'text-teal-800 font-semibold',}} size='sm' type="text" name="username" label="Usuario" placeholder="Ingrese un nombre de usuario" /> */}
 
-      <Input autoComplete='false' onChange={handleChange} value={formData.password} isRequired classNames={{ label: 'text-teal-800 font-semibold', }} size='sm' label="Password" name="password" placeholder="Please enter your password" 
+      <Input id='input' onChange={handleChange} value={formData.birthdate} isRequired classNames={{label: 'text-teal-800 font-semibold',}} size='sm' type="date" name="birthdate" label="Fecha de nacimiento" placeholder="Ingrese su fecha de nacimiento" />
+
+      <Input autoComplete='false' onChange={handleChange} value={formData.password} isRequired classNames={{ label: 'text-teal-800 font-semibold', }} size='sm' label="Contraseña" name="password" placeholder="Contraseña" 
       endContent={
           <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
             {isVisible ? (
@@ -46,8 +48,8 @@ export const Register = () =>{
       </Button>
 
       <Link to="/login" color="foreground" className='flex flex-row justify-center mt-7 mb-1 gap-2' style={{userSelect: "none"}}>
-        Already have an account?{'\u00A0'} 
-        <span className='text-teal-800 font-bold'>Sign-in</span>
+        Ya tienes cuenta?{'\u00A0'} 
+        <span className='text-teal-800 font-bold'>Iniciar sesión</span>
       </Link>
 
     </form>

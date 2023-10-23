@@ -1,8 +1,8 @@
 import { Button } from '@nextui-org/react';
 import logo from '../../assets/logo.png';
-import close from '../../assets/close.png';
-import login from '../../assets/login.png';
-import register from '../../assets/register.png';
+import cerrar from '../../assets/botones/cerrar.png';
+import login from '../../assets/botones/login.png';
+import register from '../../assets/botones/register.png';
 import { Link } from 'react-router-dom';
 import './Auth.css';
 
@@ -20,17 +20,16 @@ export const Auth = ({ children }: LoginProps) => {
           <Button className='w-[70px] h-[138px] bg-white rounded-tl-xl hover:bg-blue-200' radius='none'>
             <Link to="/login" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
               <img src={login} alt="Starting menu link (login)"/>
-              <span className='font-semibold'>Start</span>
+              <span className='font-semibold'>Inicio</span>
             </Link>
           </Button>
 
           <Button className='w-[70px] h-[138px] bg-white rounded-bl-xl hover:bg-blue-200' radius='none'>
             <Link to="/register" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
               <img src={register} alt="Starting menu link (register)"/>
-              <span className='font-semibold'>Register</span>
+              <span className='font-semibold'>Registro</span>
             </Link>
           </Button>
-
 
         </div>
 
@@ -44,7 +43,7 @@ export const Auth = ({ children }: LoginProps) => {
 
             <div className="flex flex-col justify-center items-end w-auto">
               <Link to='/'>
-                <img src={close} alt="Close user menu"/>
+                <img src={cerrar} alt="Close user menu"/>
               </Link>
             </div>
 

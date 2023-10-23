@@ -29,7 +29,7 @@ export const Login = () =>{
         type="email" 
         name="email"
         label="Email" 
-        placeholder="Please enter your email"
+        placeholder="Ingrese un nombre de Usuario"
         />
       <Input
         autoComplete='false'
@@ -40,9 +40,9 @@ export const Login = () =>{
           label: 'text-teal-800 font-semibold',
         }}
         size='sm'
-        label="Password"
+        label="Contraseña"
         name="password"
-        placeholder="Please enter your password"
+        placeholder="Ingrese una contraseña"
         endContent={
           <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
             {isVisible ? (
@@ -56,7 +56,7 @@ export const Login = () =>{
       />
 
       <Link to="/" color="foreground" className='flex flex-row-reverse text-teal-800 hover:underline' style={{userSelect: "none",}}>
-        Forgot your password?
+        ¿Olvidaste tu contraseña?
       </Link>
 
       <Button
@@ -68,7 +68,7 @@ export const Login = () =>{
       </Button>
 
       <h1 id='h2' className='flex flex-row justify-center'>
-        <span>Login with Google</span>
+        <span>O inicia sesión con Google</span>
       </h1>
 
       <div className='flex flex-col justify-center items-center mt-3'>
@@ -80,8 +80,8 @@ export const Login = () =>{
       </div>
 
       <Link to="/register" color="foreground" className='flex flex-row justify-center mt-7 mb-1 gap-2' style={{userSelect: "none"}}>
-        Don't have an account?{'\u00A0'} 
-        <span className='text-teal-800 font-bold'>Sign-up</span>
+        No tienes cuenta?{'\u00A0'} 
+        <span className='text-teal-800 font-bold'>Registrate</span>
       </Link>
 
       {/* <p className='flex flex-row justify-center mt-10 mb-2 gap-2' style={{userSelect: "none"}}>Don't have an account?{'\u00A0'} 

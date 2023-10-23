@@ -4,6 +4,7 @@ interface FormValues {
   name: string;
   lastname: string;
   email: string;
+  username: string;
   birthdate: string;
   password: string;
 
@@ -16,6 +17,7 @@ export const UseFormRegister = () => {
     name: '',
     lastname: '',
     email: '',
+    username: '',
     birthdate: '',
     password: '',
 
