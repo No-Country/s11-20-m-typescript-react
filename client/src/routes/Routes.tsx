@@ -2,6 +2,7 @@
 import { Route, Routes } from 'react-router-dom'
 import { FormLogin, FormRegister, Login } from '../pages'
 
+
 export const AppRouter = () => {
   return (
     <Routes>

@@ -2,40 +2,44 @@ import { useState } from 'react'
 import { Input,Button } from '@nextui-org/react'
 import { EyeFilledIcon } from '../icons/EyeFilledIcon'
 import { EyeSlashFilledIcon } from '../icons/EyeSlashFilledIcon'
-import { UseFormLogin } from '../../../../hooks/'
 import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
+import { UseFormLogin } from '../../../../hooks'
+
 
 export const FormLogin = () =>{
+  const {onSubmit,handleSubmit,errors,register} = UseFormLogin()
 
   const [isVisible, setIsVisible] = useState(false)
   const toggleVisibility = () => setIsVisible(!isVisible)
-  const {isFormValid, handleSubmit,handleChange,formData} = UseFormLogin()
-
+ 
+  
   return (
     <form 
       className="flex flex-col w-[351px] flex-wrap md:flex-nowrap gap-4 font-inter"
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Input 
-        onChange={handleChange}
-        value={formData.email}
-        isRequired 
+        {...register('email')}
         classNames={{
           label: 'text-teal-800 font-semibold',
-          
         }}
+        isInvalid={!errors.email ? false:true }
+        errorMessage={errors.email?.message}
         size='sm' 
         type="email" 
         name="email"
         label="Email" 
         placeholder="Ingresa tu email" />
+      
       <Input
-        onChange={handleChange}
-        value={formData.password}
-        isRequired
+
+        {...register('password')}
         classNames={{
           label: 'text-teal-800 font-semibold',
         }}
+        isInvalid={!errors.password ?false :true}
+        errorMessage={errors.password?.message}
         size='sm'
         label="Password"
         name="password"
@@ -51,12 +55,12 @@ export const FormLogin = () =>{
         }
         type={isVisible ? 'text' : 'password'}
       />
+     
       <Link to="/" color="foreground" className='flex flex-row-reverse text-teal-800 hover:underline' style={{userSelect: 'none',}}>
         Forgot your password?
       </Link>
       
-      <Button
-        isDisabled={!isFormValid} 
+      <Button 
         type='submit' 
         className='bg-yellow-400'
       >
