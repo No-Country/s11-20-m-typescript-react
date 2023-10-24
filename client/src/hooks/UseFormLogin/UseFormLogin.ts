@@ -1,52 +1,37 @@
-import { useState } from 'react'
-import { useMutation} from '@apollo/client'
-import { GET_USER } from '../../utils'
+import { GET_USER } from '../../utils/getuser'
+import {  useMutation } from '@apollo/client'
+
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+
+const schema = yup.object({
+  email: yup.string().email('Enter a valid email address').required('Email Required'),
+  password: yup.string().min(8, 'Password is too short - should be 8 chars minimum.')
+    .required('Password is required')
+})
+type FormData = yup.InferType<typeof schema>;
 
 
-interface FormValues {
-  email: string
-  password: string
-}
+export const UseFormLogin = () =>{
+  const [loginMutation] = useMutation(GET_USER)
 
-export const UseFormLogin = () => {
-
-  const [loginMutation, { data }] = useMutation(GET_USER)
-
-  const [formData, setFormData] = useState<FormValues>({
-    email: '',
-    password: '',
+  const { register,handleSubmit, formState: { errors },} = useForm<FormData>({
+    resolver: yupResolver(schema),
+    defaultValues:{
+      email: '',
+      password:'',
+    },
   })
-  
-  const [isEmailValid, setIsEmailValid] = useState(false)
-  const [isPasswordValid, setIsPasswordValid] = useState(false)
-
-  const isFormValid = isEmailValid && isPasswordValid
-
-  const handleLogin = async () =>{
-    const response = await loginMutation({
-      variables:{
-        email: formData.email,
-        password: formData.password
-      }
-      
-    })
+ 
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    const {email,password} = data
+    const response = await loginMutation({variables:{email,password}})
     console.log(response.data)
   }
+  
+  return {
+    onSubmit, register,  handleSubmit, errors
+  }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    handleLogin()
-  }
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prevData) => ({ ...prevData, [name]: value }))
-    if (name === 'email') {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      setIsEmailValid(emailRegex.test(value))
-    }
-    if (name === 'password') {
-      setIsPasswordValid(value.length >= 8)
-    }
-  }
-  return { isFormValid, handleSubmit, handleChange, formData, data }
 }

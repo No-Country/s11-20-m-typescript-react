@@ -1,75 +1,58 @@
-import { useState } from 'react'
-import { useMutation} from '@apollo/client'
+import {  useMutation } from '@apollo/client'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import { CREATE_USER } from '../../utils'
 
-interface FormValues {
-  firstName: string;
-  lastName: string;
-  username: string;
-  email: string;
-  birthdate: string;
-  password: string;
+const schema = yup.object({
+  firstName: yup.string(),
+  lastName: yup.string(),
+  username: yup.string().min(8,'must be at least 8 characters long'),
+  password: yup.string().matches(/^(?=.*[A-Z])(?=.*\d).{8,}$/, 'Password must be at least 8 characters long, contain an uppercase letter, and a number'),
+  email: yup.string().email(),
+  birthday: yup.date(),
+})
 
-}
+type FormData = yup.InferType<typeof schema>;
+
 
 export const UseFormRegister = () => {
 
-  const [createUserMutation, { data} ] = useMutation(CREATE_USER)
+  const [CreateUserMutation,] = useMutation(CREATE_USER)
 
-  const [formData, setFormData] = useState<FormValues> ({
-    firstName: '',
-    lastName: '',
-    username:'',
-    email: '',
-    birthdate: '',
-    password: '',
-
+  const { register,handleSubmit, formState: { errors }} = useForm<FormData>({
+    defaultValues:{
+      firstName: '',
+      lastName: '',
+      username: '',
+      password: '',
+      birthday: undefined,
+      email: '',
+    },
+    resolver: yupResolver(schema),
   })
-  
-  const [isEmailValid, setIsEmailValid] = useState(false)
-  const [isPasswordValid, setIsPasswordValid] = useState(false)
 
-  const isFormValid = isEmailValid && isPasswordValid
-  console.log(formData)
-  const handleCreate = async () => {
-    try {
-      const response = await createUserMutation({
-        variables: {
-          createUserInput: {
-            firstName: 'Marcos',
-            lastName: 'lamas',
-            username: 'pedritolame2',
-            password: 'Lean1234',
-            birthday: '2005-02-25T14:30:00.000Z',
-            email: 'pedrito22@gmail.com'
-          },
-        },
-      })
-    
-      console.log(response)
-     
-    } catch (error) {
-      console.error(error)
-    }
-  }
-  
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
 
-  const handleSubmit =  async (e: React.FormEvent) => {
-    e.preventDefault()
-    await handleCreate()
-  }
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prevData) => ({ ...prevData, [name]: value }))
-    if (name === 'email') {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      setIsEmailValid(emailRegex.test(value))
-    }
-    if (name === 'password') {
-      setIsPasswordValid(value.length >= 8)
-    }
+    const response = await CreateUserMutation({
+      variables:{
+        createUserInput:{
+          firstName:data.firstName,
+          lastName: data.lastName,
+          username: data.username,
+          password: data.password,
+          birthday: data.birthday,
+          email: data.email
+        }
+      }
+    })
+    console.log(response.data)
   }
 
+  return {
+    register,handleSubmit,onSubmit,errors
+  } 
 
-  return { isFormValid, handleSubmit, handleChange, formData, data }
 }
+
+
