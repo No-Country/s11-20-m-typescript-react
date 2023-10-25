@@ -1,57 +1,68 @@
-import { useState } from 'react'
-import { Input, Button } from '@nextui-org/react'
-import { EyeFilledIcon } from '../_icons/EyeFilledIcon'
-import { EyeSlashFilledIcon } from '../_icons/EyeSlashFilledIcon'
+import { Button } from '@nextui-org/react'
 import { FcGoogle } from 'react-icons/fc'
 import { Link } from 'react-router-dom'
 import './Login.css'
 import { UtilRoutes } from '@/utils/routes.utils'
+import { type SubmitHandler, useForm } from 'react-hook-form'
+import { Input } from '@/components'
+import { emailPattern, passwordPattern } from '@/utils/pattern.utils'
 
 export const Login = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const toggleVisibility = () => { setIsVisible(!isVisible) }
+  const {
+    register,
+    formState: { errors, isSubmitting },
+    handleSubmit
+  } = useForm<any>({
+    mode: 'onChange'
+  })
+
+  const onSubmit: SubmitHandler<any> = async (data) => {
+    try {
+      console.log('login user', data)
+    } catch (error) {
+      console.error('Error signin catch:', error)
+    }
+  }
 
   return (
     <form
       className='flex flex-col w-[351px] flex-wrap md:flex-nowrap gap-4 font-inter'
       autoComplete='off'
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Input
-        id='input'
-        isRequired
-        classNames={{
-          label: 'text-teal-800 font-semibold'
-        }}
-        size='sm'
         type='email'
         name='email'
         label='Email'
         placeholder='Ingrese un nombre de Usuario'
+        hookForm={{
+          register,
+          validations: {
+            pattern: {
+              value: emailPattern.value,
+              message: emailPattern.message
+            },
+            required: { value: true, message: 'This field is required' }
+          }
+        }}
+        errorMessage={errors?.email?.message?.toString()}
       />
       <Input
-        autoComplete='false'
-        isRequired
-        classNames={{
-          label: 'text-teal-800 font-semibold'
-        }}
-        size='sm'
         label='Contraseña'
         name='password'
         placeholder='Ingrese una contraseña'
-        endContent={
-          <button
-            className='focus:outline-none'
-            type='button'
-            onClick={toggleVisibility}
-          >
-            {isVisible ? (
-              <EyeSlashFilledIcon className='text-2xl text-default-400 pointer-events-none' />
-            ) : (
-              <EyeFilledIcon className='text-2xl text-default-400 pointer-events-none' />
-            )}
-          </button>
-        }
-        type={isVisible ? 'text' : 'password'}
+        type='password'
+        hookForm={{
+          register,
+          validations: {
+            pattern: {
+              value: passwordPattern.value,
+              message: passwordPattern.message
+            },
+            required: { value: true, message: 'This field is required' }
+          }
+        }}
+        errorMessage={errors?.password?.message?.toString()}
       />
 
       <Link
@@ -76,6 +87,8 @@ export const Login = () => {
 
       <div className='flex flex-col justify-center items-center mt-3'>
         <Button
+          type='submit'
+          isLoading={isSubmitting}
           style={{ width: '64px', height: '64px', border: 'solid #B8B8B8 1px' }}
           className='flex flex-row justify-center bg-white hover:bg-blue-200'
         >
@@ -92,10 +105,6 @@ export const Login = () => {
         No tienes cuenta?{'\u00A0'}
         <span className='text-teal-800 font-bold'>Registrate</span>
       </Link>
-
-      {/* <p className='flex flex-row justify-center mt-10 mb-2 gap-2' style={{userSelect: "none"}}>Don't have an account?{'\u00A0'}
-        <span className='text-teal-800 font-bold'>Sign-up</span>
-      </p> */}
     </form>
   )
 }
