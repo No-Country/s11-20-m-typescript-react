@@ -8,8 +8,14 @@ module.exports = {
     es2021: true
   },
   plugins: ['prefer-arrow', '@typescript-eslint/eslint-plugin', 'prettier'],
-  extends: ["standard-jsx", 'standard-with-typescript'],
-  ignorePatterns: ['.eslintrc.cjs', "node_modules/"],
+  extends: ['standard-jsx', 'standard-with-typescript'],
+  ignorePatterns: [
+    '.eslintrc.cjs',
+    'node_modules/',
+    'vite-env.d.ts',
+    'vite-config.ts',
+    'vite.config.ts'
+  ],
   rules: {
     'arrow-body-style': 'error',
     'prefer-const': 'error',
@@ -30,6 +36,6 @@ module.exports = {
     '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/space-before-function-paren': 'off',
-    "@typescript-eslint/strict-boolean-expressions": "off",
+    '@typescript-eslint/strict-boolean-expressions': 'off'
   }
 }

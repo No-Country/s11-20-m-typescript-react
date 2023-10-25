@@ -19,13 +19,18 @@ interface AuthContextType {
   isAuth: boolean
 }
 
+// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
 const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 export const AuthContextProvider = ({ children }: Props) => {
-  const valor = 12
-
   const value = {
-    valor
+    user: undefined,
+    loading: false,
+    login: (password: string, email: string) => {},
+    signup: (email: string, userName: string, password: string) => {},
+    logout: () => {},
+    isAuth: false,
+    valor: 12
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
