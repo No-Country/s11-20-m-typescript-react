@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "tailwind": "npx tailwindcss -i ./src/index.css -o ./src/output.css --watch",
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -17,6 +17,7 @@
     "@nextui-org/react": "^2.1.13",
     "@nextui-org/system": "^2.0.10",
     "@nextui-org/theme": "^2.1.9",
+    "@types/react-router": "^5.1.20",
     "framer-motion": "^10.16.4",
     "graphql": "^16.8.1",
     "react": "^18.2.0",
