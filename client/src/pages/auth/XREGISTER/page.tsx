@@ -2,25 +2,20 @@ import { useState } from 'react'
 import { EyeFilledIcon } from '../_icons/EyeFilledIcon'
 import { EyeSlashFilledIcon } from '../_icons/EyeSlashFilledIcon'
 import { Input, Button } from '@nextui-org/react'
-import { UseFormRegister } from '../../../hooks'
 import { Link } from 'react-router-dom'
+import { UtilRoutes } from '@/utils/routes.utils'
 
 export const Register = () => {
   const [isVisible, setIsVisible] = useState(false)
   const toggleVisibility = () => { setIsVisible(!isVisible) }
-  const { isFormValid, handleSubmit, handleChange, formData } =
-    UseFormRegister()
 
   return (
     <form
       className='flex flex-col w-[351px] flex-wrap md:flex-nowrap gap-4 font-inter'
-      onSubmit={handleSubmit}
       autoComplete='off'
     >
       <Input
         id='input'
-        onChange={handleChange}
-        value={formData.name}
         isRequired
         classNames={{ label: 'text-teal-800 font-semibold' }}
         size='sm'
@@ -32,8 +27,6 @@ export const Register = () => {
 
       <Input
         id='input'
-        onChange={handleChange}
-        value={formData.lastname}
         isRequired
         classNames={{ label: 'text-teal-800 font-semibold' }}
         size='sm'
@@ -45,8 +38,6 @@ export const Register = () => {
 
       <Input
         id='input'
-        onChange={handleChange}
-        value={formData.email}
         isRequired
         classNames={{ label: 'text-teal-800 font-semibold' }}
         size='sm'
@@ -60,8 +51,6 @@ export const Register = () => {
 
       <Input
         id='input'
-        onChange={handleChange}
-        value={formData.birthdate}
         isRequired
         classNames={{ label: 'text-teal-800 font-semibold' }}
         size='sm'
@@ -73,8 +62,6 @@ export const Register = () => {
 
       <Input
         autoComplete='false'
-        onChange={handleChange}
-        value={formData.password}
         isRequired
         classNames={{ label: 'text-teal-800 font-semibold' }}
         size='sm'
@@ -98,7 +85,6 @@ export const Register = () => {
       />
 
       <Button
-        isDisabled={!isFormValid}
         type='submit'
         className='bg-yellow-400 font-bold text-black-950 hover:bg-teal-800 hover:text-yellow-400'
       >
@@ -106,7 +92,7 @@ export const Register = () => {
       </Button>
 
       <Link
-        to='/login'
+        to={UtilRoutes.LOGIN}
         color='foreground'
         className='flex flex-row justify-center mt-7 mb-1 gap-2'
         style={{ userSelect: 'none' }}
@@ -117,3 +103,5 @@ export const Register = () => {
     </form>
   )
 }
+
+export default Register

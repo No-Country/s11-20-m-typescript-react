@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { CREATE_USER } from '../../utils'
+import { CREATE_USER } from '@/services/user/create.service'
 
 const schema = yup.object({
   firstName: yup.string(),

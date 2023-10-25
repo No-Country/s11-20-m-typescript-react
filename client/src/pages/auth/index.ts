@@ -1,2 +1,2 @@
-export * from './Login/page'
-export * from './Register/page'
+export * from './XLOGIN/page'
+export * from './XREGISTER/page'

@@ -1,5 +1,3 @@
-function Help() {
-  return <div>Help</div>
-}
+const Help = () => <div>Help</div>
 
 export default Help
