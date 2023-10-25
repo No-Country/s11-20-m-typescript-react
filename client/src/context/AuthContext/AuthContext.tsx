@@ -21,7 +21,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
-
 export const AuthContextProvider = ({ children }: Props) => {
   const valor = 12
 
@@ -32,6 +31,4 @@ export const AuthContextProvider = ({ children }: Props) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
-export const useAuth = () => {
-  return useContext(AuthContext)
-}
+export const useAuth = () => useContext(AuthContext)

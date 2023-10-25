@@ -1,5 +1,5 @@
-import {  useMutation } from '@apollo/client'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { useMutation } from '@apollo/client'
+import { useForm, type SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { CREATE_USER } from '../../utils'
@@ -7,37 +7,43 @@ import { CREATE_USER } from '../../utils'
 const schema = yup.object({
   firstName: yup.string(),
   lastName: yup.string(),
-  username: yup.string().min(8,'must be at least 8 characters long'),
-  password: yup.string().matches(/^(?=.*[A-Z])(?=.*\d).{8,}$/, 'Password must be at least 8 characters long, contain an uppercase letter, and a number'),
+  username: yup.string().min(8, 'must be at least 8 characters long'),
+  password: yup
+    .string()
+    .matches(
+      /^(?=.*[A-Z])(?=.*\d).{8,}$/,
+      'Password must be at least 8 characters long, contain an uppercase letter, and a number'
+    ),
   email: yup.string().email(),
-  birthday: yup.date(),
+  birthday: yup.date()
 })
 
-type FormData = yup.InferType<typeof schema>;
-
+type FormData = yup.InferType<typeof schema>
 
 export const UseFormRegister = () => {
+  const [CreateUserMutation] = useMutation(CREATE_USER)
 
-  const [CreateUserMutation,] = useMutation(CREATE_USER)
-
-  const { register,handleSubmit, formState: { errors }} = useForm<FormData>({
-    defaultValues:{
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormData>({
+    defaultValues: {
       firstName: '',
       lastName: '',
       username: '',
       password: '',
       birthday: undefined,
-      email: '',
+      email: ''
     },
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema)
   })
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-
     const response = await CreateUserMutation({
-      variables:{
-        createUserInput:{
-          firstName:data.firstName,
+      variables: {
+        createUserInput: {
+          firstName: data.firstName,
           lastName: data.lastName,
           username: data.username,
           password: data.password,
@@ -50,9 +56,9 @@ export const UseFormRegister = () => {
   }
 
   return {
-    register,handleSubmit,onSubmit,errors
-  } 
-
+    register,
+    handleSubmit,
+    onSubmit,
+    errors
+  }
 }
-
-
