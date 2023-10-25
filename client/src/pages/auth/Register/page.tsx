@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { EyeFilledIcon } from '../icons/EyeFilledIcon'
-import { EyeSlashFilledIcon } from '../icons/EyeSlashFilledIcon'
+import { EyeFilledIcon } from '../_icons/EyeFilledIcon'
+import { EyeSlashFilledIcon } from '../_icons/EyeSlashFilledIcon'
 import { Input, Button } from '@nextui-org/react'
 import { UseFormRegister } from '../../../hooks'
 import { Link } from 'react-router-dom'

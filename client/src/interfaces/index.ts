@@ -1,3 +1,3 @@
-export * from './logininterfaces'
-export * from './user'
-export * from './providers'
+export * from './login.interface'
+export * from './user.interface'
+export * from './providers.interface'

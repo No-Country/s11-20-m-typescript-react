@@ -1,4 +1,4 @@
-import { GET_USER } from '../../utils/getuser'
+import { GET_USER } from '../../services/user/get.user'
 import { useMutation } from '@apollo/client'
 
 import { useForm, type SubmitHandler } from 'react-hook-form'
