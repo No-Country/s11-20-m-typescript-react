@@ -7,27 +7,47 @@ import {
   emailPattern,
   firstNamePattern,
   lastNamePattern,
-  passwordPattern
+  passwordPattern,
+  usernamePattern
 } from '@/utils/pattern.utils'
 import { validateAdult } from '@/utils/validateAdult.util'
+import { useMutation } from '@apollo/client'
+import { CREATE_USER } from '@/graphql/users/create.mutation'
+
+interface FormData {
+  firstName: string
+  lastName: string
+  email: string
+  birthday: string
+  password: string
+  username: string
+}
 
 export const Register = () => {
   const navigate = useNavigate()
+  const [CreateUserMutation] = useMutation(CREATE_USER)
   const {
     register,
     formState: { errors, isSubmitting },
     handleSubmit
-  } = useForm<any>({
+  } = useForm<FormData>({
     mode: 'onChange'
   })
 
-  const onSubmit: SubmitHandler<any> = async (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      const formData = {
-        ...data,
-        birthdate: new Date(data.birthdate).toISOString()
-      }
-      console.log('register user', formData)
+      await CreateUserMutation({
+        variables: {
+          createUserInput: {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            username: data.username,
+            password: data.password,
+            birthday: data.birthday,
+            email: data.email
+          }
+        }
+      })
       navigate(UtilRoutes.LOGIN)
     } catch (error) {
       console.error('Error signin catch:', error)
@@ -59,7 +79,7 @@ export const Register = () => {
       />
       <Input
         type='text'
-        name='lastname'
+        name='lastName'
         label='Apellido'
         placeholder='Ingrese su apellido'
         hookForm={{
@@ -72,7 +92,7 @@ export const Register = () => {
             required: { value: true, message: 'This field is required' }
           }
         }}
-        errorMessage={errors?.lastname?.message?.toString()}
+        errorMessage={errors?.lastName?.message?.toString()}
       />
       <Input
         type='email'
@@ -91,10 +111,26 @@ export const Register = () => {
         }}
         errorMessage={errors?.email?.message?.toString()}
       />
-      {/* <Input id='input' onChange={handleChange} value={formData.username} isRequired classNames={{label: 'text-teal-800 font-semibold',}} size='sm' type="text" name="username" label="Usuario" placeholder="Ingrese un nombre de usuario" /> */}
+      <Input
+        type='text'
+        name='username'
+        label='Usuario'
+        placeholder='Ingrese un nombre de usuario'
+        hookForm={{
+          register,
+          validations: {
+            pattern: {
+              value: usernamePattern.value,
+              message: usernamePattern.message
+            },
+            required: { value: true, message: 'This field is required' }
+          }
+        }}
+        errorMessage={errors?.username?.message?.toString()}
+      />
       <Input
         type='date'
-        name='birthdate'
+        name='birthday'
         label='Fecha de nacimiento'
         placeholder='Ingrese su fecha de nacimiento'
         hookForm={{
