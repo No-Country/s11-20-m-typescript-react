@@ -11,11 +11,13 @@ import { User } from './entities/user.entity'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { encryptPassword, comparePasswords } from 'src/utils/bcrypt.utils'
+import { Event } from 'src/events/entities/event.entity'
 
 @Injectable()
 export class UsersService {
   constructor (
-    @InjectModel(User.name) private readonly userModel: Model<User>
+    @InjectModel(User.name) private readonly userModel: Model<User>,
+    @InjectModel(Event.name) private readonly eventModel: Model<Event>
   ) {}
 
   private async findUserById (id: string) {
@@ -24,7 +26,7 @@ export class UsersService {
       throw new BadRequestException("Can't find user")
     })
     if (!user) {
-      throw new NotFoundException("Can't find user")
+      throw new NotFoundException("User doesn't exist")
     }
     return user
   }
@@ -46,8 +48,7 @@ export class UsersService {
 
   async findUserByEmail (email: string): Promise<User | null> {
     try {
-      const user = await this.userModel.findOne({ email }).exec()
-      return user
+      return await this.userModel.findOne({ email }).exec()
     } catch (error) {
       throw new Error('Error while searching for user by email')
     }
@@ -127,22 +128,38 @@ export class UsersService {
       delete updateUserInput.newPassword
     }
 
-    const updatedUser = await this.userModel
+    return await this.userModel
       .findByIdAndUpdate(id, updateUserInput, { new: true })
       .catch((error) => {
         console.log(error)
         throw new BadRequestException("Can't update user")
       })
-
-    return updatedUser
   }
 
   async remove (id: string) {
     const user = await this.userModel.findByIdAndDelete(id).catch((error) => {
-      console.log(error)
+      console.error(error)
       throw new BadRequestException("Can't delete user")
     })
     if (!user) throw new NotFoundException("Can't find user")
     return user
+  }
+
+  async findCreatedEvents (id: string) {
+    const user = await this.findUserById(id)
+    return await this.eventModel.find({ owner: user._id }).catch((error) => {
+      console.error(error)
+      throw new BadRequestException("Can't find events")
+    })
+  }
+
+  async findSubscribedEvents (id: string) {
+    const user = await this.findUserById(id)
+    return await this.eventModel
+      .find({ 'members.user': user._id })
+      .catch((error) => {
+        console.error(error)
+        throw new BadRequestException("Can't find events")
+      })
   }
 }
