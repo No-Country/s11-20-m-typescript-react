@@ -18,12 +18,14 @@ import { NextUIProvider } from '@nextui-org/system'
 import { ApolloProvider } from '@apollo/client'
 import { client } from '@/services/api.service'
 import { UtilRoutes } from '@/utils/routes.utils'
+import { Toaster } from 'sonner'
 
 const App = () => (
   <ApolloProvider client={client}>
     <NextUIProvider>
       <BrowserRouter>
         <main style={{ display: 'flex', flexDirection: 'column' }}>
+          <Toaster richColors />
           <Routes>
             <Route path={UtilRoutes.HOME} element={<LandingPage />} />
             <Route path={UtilRoutes.DONATE} element={<DonatePage />} />

@@ -1,64 +1,23 @@
 import { NavLink } from 'react-router-dom'
 import ayuda from '@/assets/botones/ayuda.png'
 import { UtilRoutes } from '@/utils/routes.utils'
+import { Button } from '..'
 
-const TopBar = (props: any) => (
-  <header
-    style={{
-      height: '64px',
-      display: 'flex',
-      flexDirection: 'row',
-      width: '100%',
-      justifyContent: 'space-between',
-      backgroundColor: '#E5E5E5'
-    }}
-  >
-    <div
-      style={{
-        marginLeft: '60px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      <NavLink to={props.ruta} className='font-inter fill-black'>
-        Panel
-      </NavLink>
-    </div>
+interface TopBarProps {
+  ruta?: string
+  title: string
+}
 
-    <div
-      style={{
-        marginRight: '60px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '20px'
-      }}
-    >
+const TopBar = (props: TopBarProps) => (
+  <header className='flex w-full justify-between items-center bg-[#e5e5e5] py-6 px-9 '>
+    <NavLink to={props?.ruta ?? ''} className='font-inter fill-black font-semibold text-base'>
+      {props.title}
+    </NavLink>
+    <div className='flex w-full justify-end gap-5 items-center'>
       <NavLink to={UtilRoutes.HELP}>
         <img title='Ayuda' src={ayuda} alt='Sidebark link (Ayuda)' />
       </NavLink>
-
-      <NavLink to={UtilRoutes.DONATE}>
-        {({ isActive }) => (
-          <button
-            className={
-              isActive
-                ? 'font-inter bg-teal-800 rounded-md hover:bg-teal-700'
-                : 'font-inter bg-teal-800 hover:bg-teal-700'
-            }
-            style={{
-              width: '78px',
-              height: '40px',
-              color: 'white',
-              fontSize: '16px',
-              borderRadius: '20px'
-            }}
-          >
-            Donar
-          </button>
-        )}
-      </NavLink>
+      <Button href={UtilRoutes.DONATE} size='md' title='Donar' />
     </div>
   </header>
 )

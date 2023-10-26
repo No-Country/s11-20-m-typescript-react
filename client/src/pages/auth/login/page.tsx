@@ -1,13 +1,13 @@
-import { Button } from '@nextui-org/react'
 import { FcGoogle } from 'react-icons/fc'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Login.css'
 import { UtilRoutes } from '@/utils/routes.utils'
 import { type SubmitHandler, useForm } from 'react-hook-form'
-import { Input } from '@/components'
+import { Button, Input } from '@/components'
 import { emailPattern, passwordPattern } from '@/utils/pattern.utils'
 
 export const Login = () => {
+  const navigate = useNavigate()
   const {
     register,
     formState: { errors, isSubmitting },
@@ -19,6 +19,7 @@ export const Login = () => {
   const onSubmit: SubmitHandler<any> = async (data) => {
     try {
       console.log('login user', data)
+      navigate(UtilRoutes.PANEL)
     } catch (error) {
       console.error('Error signin catch:', error)
     }
@@ -26,8 +27,7 @@ export const Login = () => {
 
   return (
     <form
-      className='flex flex-col w-[351px] flex-wrap md:flex-nowrap gap-4 font-inter'
-      autoComplete='off'
+      className='flex flex-col gap-4 font-inter w-full h-full'
       onSubmit={handleSubmit(onSubmit)}
     >
       <Input
@@ -64,47 +64,41 @@ export const Login = () => {
         }}
         errorMessage={errors?.password?.message?.toString()}
       />
-
-      <Link
-        to={UtilRoutes.HOME}
-        color='foreground'
-        className='flex flex-row-reverse text-teal-800 hover:underline'
-        style={{ userSelect: 'none' }}
-      >
-        ¿Olvidaste tu contraseña?
-      </Link>
-
-      <Button
-        type='submit'
-        className='bg-yellow-400 font-bold text-black-950 hover:bg-teal-800 hover:text-yellow-400'
-      >
-        Login
-      </Button>
-
-      <h1 id='h2' className='flex flex-row justify-center'>
-        <span>O inicia sesión con Google</span>
-      </h1>
-
-      <div className='flex flex-col justify-center items-center mt-3'>
+      <div className='flex flex-col gap-4'>
+        <Link
+          to={UtilRoutes.HOME}
+          color='foreground'
+          className='flex flex-row-reverse text-teal-800 hover:underline'
+          style={{ userSelect: 'none' }}
+        >
+          ¿Olvidaste tu contraseña?
+        </Link>
         <Button
           type='submit'
-          isLoading={isSubmitting}
-          style={{ width: '64px', height: '64px', border: 'solid #B8B8B8 1px' }}
-          className='flex flex-row justify-center bg-white hover:bg-blue-200'
+          className='bg-yellow-400 font-bold text-black-950 hover:bg-teal-800 hover:text-yellow-400'
+          title='Iniciar sesión'
+        />
+        <h1 id='h2' className='flex flex-row justify-center'>
+          <span>O inicia sesión con Google</span>
+        </h1>
+        <div className='flex flex-col justify-center items-center mt-3'>
+          <Button
+            type='submit'
+            isLoading={isSubmitting}
+            className='flex flex-row justify-center bg-white hover:bg-blue-200'
+          >
+            <FcGoogle style={{ fontSize: '4rem' }} />
+          </Button>
+        </div>
+        <Link
+          to={UtilRoutes.REGISTER}
+          color='foreground'
+          className='flex flex-row justify-center pt-7 mb-1 gap-2'
         >
-          <FcGoogle style={{ fontSize: '4rem' }} />
-        </Button>
+          No tienes cuenta?{'\u00A0'}
+          <span className='text-teal-800 font-bold'>Registrate</span>
+        </Link>
       </div>
-
-      <Link
-        to={UtilRoutes.REGISTER}
-        color='foreground'
-        className='flex flex-row justify-center mt-7 mb-1 gap-2'
-        style={{ userSelect: 'none' }}
-      >
-        No tienes cuenta?{'\u00A0'}
-        <span className='text-teal-800 font-bold'>Registrate</span>
-      </Link>
     </form>
   )
 }

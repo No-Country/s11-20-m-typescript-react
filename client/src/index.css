@@ -2,3 +2,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body, html {
+  font-family: 'Inter', sans-serif;
+}
+
+
+@layer base {
+  .section-padding-x-1 {
+    @apply px-6 sm:px-10 md:px-14 lg:px-12 xl:px-24;
+  }
+
+  .section-reduced {
+    @apply 2xl:container w-full section-padding-x-1;
+  }
+}
