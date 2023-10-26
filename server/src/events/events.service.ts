@@ -6,7 +6,7 @@ import {
 import { CreateEventInput } from './dto/create-event.input'
 import { UpdateEventInput } from './dto/update-event.input'
 import { InjectModel } from '@nestjs/mongoose'
-import { Model } from 'mongoose'
+import { FilterQuery, Model } from 'mongoose'
 import { User } from 'src/users/entities/user.entity'
 import { Event } from './entities/event.entity'
 import {
@@ -14,6 +14,7 @@ import {
   ModifyStatusInput,
   RemoveMemberInput
 } from './dto/members.input'
+import { FilterEventInput } from './dto/filter-events.input'
 
 @Injectable()
 export class EventsService {
@@ -65,11 +66,48 @@ export class EventsService {
     return event
   }
 
-  async findAll () {
-    return await this.eventModel.find().catch((error) => {
-      console.log(error)
-      throw new BadRequestException("Can't find events")
-    })
+  async findAll (params?: FilterEventInput) {
+    let filters: FilterQuery<Event> = {}
+
+    if (params) {
+      const { limit, offset } = params
+      for (const item in params) {
+        console.log(params[item])
+        if (params[item]) {
+          if (item === 'title') {
+            filters = {
+              [item]: { $regex: params[item], $options: 'i' },
+              ...filters
+            }
+          } else {
+            if (!(item === 'limit' || item === 'offset')) {
+              filters = {
+                [item]: params[item],
+                ...filters
+              }
+            }
+          }
+        }
+      }
+
+      const filteredResults = await this.eventModel
+        .find(filters)
+        .sort({ startDate: -1 })
+        .limit(limit)
+        .skip(offset)
+        .exec()
+        .catch((error) => {
+          console.log(error)
+          throw new BadRequestException("Can't find events")
+        })
+
+      return filteredResults
+    } else {
+      return await this.eventModel.find().catch((error) => {
+        console.log(error)
+        throw new BadRequestException("Can't find events")
+      })
+    }
   }
 
   async findUser (id: string) {

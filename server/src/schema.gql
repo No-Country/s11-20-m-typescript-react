@@ -189,11 +189,22 @@ type Query {
   users: [User!]!
   user(id: String!): User!
   couponsIssued(id: String!): CouponsIssued!
-  events: [Event!]!
+  events(filterEventInput: FilterEventInput!): [Event!]!
   event(id: String!): Event!
   coupons: [Coupon!]!
   coupon(id: String!): Coupon!
   verifyToken(token: String!): VerificationResult!
+}
+
+input FilterEventInput {
+  """offset field"""
+  offset: Float!
+
+  """limit field"""
+  limit: Float!
+
+  """title field"""
+  title: String!
 }
 
 type Mutation {
@@ -204,7 +215,7 @@ type Mutation {
   updateCouponsIssued(id: String!): CouponsIssued!
   deleteCouponsIssued(id: String!): CouponsIssued!
   createEvent(createEventInput: CreateEventInput!): Event!
-  addEventMember(addMemberInput: AddMemberInput!): Event!
+  addEventMember: Event!
   removeEventMember(removeMemberInput: RemoveMemberInput!): Event!
   changeEventMemberStatus(modifyStatusInput: ModifyStatusInput!): Event!
   updateEvent(updateEventInput: UpdateEventInput!): Event!
@@ -323,14 +334,6 @@ input LocationInput {
 
   """zip code field"""
   zipCode: String!
-}
-
-input AddMemberInput {
-  """idEvent field"""
-  idEvent: String!
-
-  """idUser field"""
-  idUser: String!
 }
 
 input RemoveMemberInput {
