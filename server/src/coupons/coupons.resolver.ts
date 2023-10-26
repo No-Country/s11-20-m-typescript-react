@@ -4,6 +4,7 @@ import { Coupon } from './entities/coupon.entity'
 import { CreateCouponInput } from './dto/create-coupon.input'
 import { UpdateCouponInput } from './dto/update-coupon.input'
 import { InternalServerErrorException } from '@nestjs/common'
+import { FilterCouponInput } from './dto/filter-coupon.input'
 
 @Resolver(() => Coupon)
 export class CouponsResolver {
@@ -22,9 +23,9 @@ export class CouponsResolver {
   }
 
   @Query(() => [Coupon], { name: 'coupons' })
-  async findAll () {
+  async findAll (@Args('params', { type: () => FilterCouponInput }) params?: FilterCouponInput) {
     try {
-      return await this.couponsService.findAll()
+      return await this.couponsService.findAll(params)
     } catch (err) {
       console.log(err)
       throw new InternalServerErrorException()

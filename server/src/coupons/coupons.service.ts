@@ -3,7 +3,8 @@ import { CreateCouponInput } from './dto/create-coupon.input'
 import { UpdateCouponInput } from './dto/update-coupon.input'
 import { Coupon } from './entities/coupon.entity'
 import { InjectModel } from '@nestjs/mongoose'
-import { Model } from 'mongoose'
+import { FilterQuery, Model } from 'mongoose'
+import { FilterCouponInput } from './dto/filter-coupon.input'
 
 @Injectable()
 export class CouponsService {
@@ -26,11 +27,34 @@ export class CouponsService {
     })
   }
 
-  async findAll () {
-    return await this.couponModel.find().catch((error) => {
-      console.log(error)
-      throw new Error(error)
-    })
+  async findAll (params?: FilterCouponInput) {
+    let filters: FilterQuery<Coupon> = {}
+    const { limit, offset, title, requeriedRank } = params
+
+    if (params) {
+      if (title) {
+        filters = {
+          $regex: title,
+          $options: 'i',
+          ...filters
+        }
+      }
+      if (requeriedRank) {
+        filters = {
+          $regex: requeriedRank,
+          $options: 'i',
+          ...filters
+        }
+      }
+      const filteredResults = await this.couponModel
+        .find(filters)
+        .limit(limit)
+        .skip(offset * limit)
+        .exec()
+      return filteredResults
+    } else {
+      return await this.couponModel.find()
+    }
   }
 
   async findOne (id: string) {

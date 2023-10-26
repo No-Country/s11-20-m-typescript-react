@@ -4,6 +4,7 @@ import { CouponsIssued } from './entities/coupons-issued.entity'
 import { CreateCouponsIssuedInput } from './dto/create-coupons-issued.input'
 import { UpdateCouponsIssuedInput } from './dto/update-coupons-issued.input'
 import { InternalServerErrorException } from '@nestjs/common'
+import { FilterCouponsIssuedInput } from './dto/filter-coupons-issued.input'
 
 @Resolver(() => CouponsIssued)
 export class CouponsIssuedResolver {
@@ -14,10 +15,12 @@ export class CouponsIssuedResolver {
   @Args('createCouponsIssued')
     createCouponsIssuedInput: CreateCouponsIssuedInput
   ) {
-    return await this.couponsIssuedService.createOne(createCouponsIssuedInput).catch((error) => {
-      console.log(error)
-      throw new InternalServerErrorException()
-    })
+    return await this.couponsIssuedService
+      .createOne(createCouponsIssuedInput)
+      .catch((error) => {
+        console.log(error)
+        throw new InternalServerErrorException()
+      })
   }
 
   @Query(() => [CouponsIssued], { name: 'couponsIssued' })
@@ -45,10 +48,12 @@ export class CouponsIssuedResolver {
   @Args('id', { type: () => String }) id: string,
     updateCouponsIssuedInput: UpdateCouponsIssuedInput
   ) {
-    return await this.couponsIssuedService.updateOne(id, updateCouponsIssuedInput).catch((error) => {
-      console.log(error)
-      throw new InternalServerErrorException()
-    })
+    return await this.couponsIssuedService
+      .updateOne(id, updateCouponsIssuedInput)
+      .catch((error) => {
+        console.log(error)
+        throw new InternalServerErrorException()
+      })
   }
 
   @Mutation(() => CouponsIssued)

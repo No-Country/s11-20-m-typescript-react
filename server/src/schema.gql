@@ -191,9 +191,23 @@ type Query {
   couponsIssued(id: String!): CouponsIssued!
   events: [Event!]!
   event(id: String!): Event!
-  coupons: [Coupon!]!
+  coupons(params: FilterCouponInput!): [Coupon!]!
   coupon(id: String!): Coupon!
   verifyToken(token: String!): VerificationResult!
+}
+
+input FilterCouponInput {
+  """title field"""
+  title: String!
+
+  """description field"""
+  requeriedRank: String!
+
+  """description field"""
+  limit: Float!
+
+  """description field"""
+  offset: Float!
 }
 
 type Mutation {
