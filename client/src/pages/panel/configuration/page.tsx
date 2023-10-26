@@ -8,26 +8,56 @@ import {
   passwordPattern
 } from '@/utils/pattern.utils'
 import { validateAdult } from '@/utils/validateAdult.util'
+import { UPDATE_USER } from '@/graphql/users/update.mutation'
+import { useMutation } from '@apollo/client'
+import { useNavigate } from 'react-router'
+import { UtilRoutes } from '@/utils/routes.utils'
+import { useAuth } from '@/context/providers/auth.provider'
+
+interface FormData {
+  firstName: string
+  lastName: string
+  email: string
+  birthday: string
+  password: string
+  username: string
+}
 
 const Configuration = () => {
+  const { user } = useAuth()
+  const navigate = useNavigate()
+  const [updateUserMutation] = useMutation(UPDATE_USER)
   const {
     register,
     formState: { errors, isSubmitting },
     handleSubmit
-  } = useForm<any>({
+  } = useForm<FormData>({
     mode: 'onChange'
   })
 
-  const onSubmit: SubmitHandler<any> = async (data) => {
-    const formData = {
-      ...data,
-      birthdate: new Date(data.birthdate).toISOString()
-    }
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    // const formData = {
+    //   ...data,
+    //   birthdate: new Date(data.birthdate).toISOString()
+    // }
 
     try {
-      console.log('register user', formData)
+      await updateUserMutation({
+        variables: {
+          updateUserInput: {
+            _id: user?.id,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            username: data.username,
+            password: data.password,
+            birthday: new Date(data.birthday).toISOString(),
+            email: data.email
+          }
+        }
+      })
+      navigate(UtilRoutes.PANEL)
     } catch (error) {
-      console.error('Error signin catch:', error)
+      console.error('Error during account update:', error)
     }
   }
 
@@ -71,7 +101,7 @@ const Configuration = () => {
                 required: { value: true, message: 'This field is required' }
               }
             }}
-            errorMessage={errors?.lastname?.message?.toString()}
+            errorMessage={errors?.lastName?.message?.toString()}
           />
           <Input
             type='email'
