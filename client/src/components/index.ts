@@ -1,3 +1,8 @@
 export { default as Menu } from './Panel/Menu/Menu'
 export { default as TopBar } from './Panel/TopBar'
 export { default as Input } from './Input'
+export { default as Textarea } from './Textarea'
+export { default as TextElement } from './TextElement/TextElement'
+export { default as Button } from './Button'
+export { default as EventItem } from './EventItem'
+export { default as CouponItem } from './CouponItem'

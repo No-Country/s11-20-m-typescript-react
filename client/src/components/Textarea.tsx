@@ -1,8 +1,7 @@
-import { Input as InputUI } from '@nextui-org/react'
+import { Textarea as TextareaUI } from '@nextui-org/react'
 import type { RegisterOptions, UseFormRegister } from 'react-hook-form'
 
 interface InputProps {
-  type: string
   name: string
   label?: string
   wrapperIntupClassName?: string
@@ -14,12 +13,11 @@ interface InputProps {
     register: UseFormRegister<any>
     validations: RegisterOptions
   }
-  defaultValue?: string | number
-  size?: 'sm' | 'md' | 'lg'
+  defaultValue?: string
+  rows?: number
 }
 
-const Input = ({
-  type,
+const Textarea = ({
   name,
   label,
   handleChange = () => {},
@@ -28,23 +26,21 @@ const Input = ({
   className = '',
   hookForm,
   defaultValue = '',
-  size = 'md'
+  rows = 1
 }: InputProps) => {
   const HookForm = hookForm?.register(name, hookForm?.validations)
   return (
-    <InputUI
+    <TextareaUI
       {...HookForm}
-      type={type}
       label={label}
       labelPlacement='outside'
       name={name}
-      size={size}
-      defaultValue={defaultValue.toString()}
-      autoComplete='off'
+      defaultValue={defaultValue}
+      minRows={rows}
       classNames={{
         label: 'text-teal-800 font-semibold'
       }}
-      className={'text-teal-800 font-semibold min-w-0' + className}
+      className={className}
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onChange={async (e: React.ChangeEvent<HTMLInputElement>) =>
         await HookForm?.onChange(e)}
@@ -58,4 +54,4 @@ const Input = ({
   )
 }
 
-export default Input
+export default Textarea

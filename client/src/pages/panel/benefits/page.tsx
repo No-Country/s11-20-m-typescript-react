@@ -1,9 +1,10 @@
 import { PanelLayout } from '@/pages'
+import Benefits from './_components/Benefits'
 
-const Benefits = () => (
-  <PanelLayout>
-    <div>soy el Benefits page</div>
+const BenefitsPage = () => (
+  <PanelLayout title='Beneficios'>
+    <Benefits />
   </PanelLayout>
 )
 
-export default Benefits
+export default BenefitsPage

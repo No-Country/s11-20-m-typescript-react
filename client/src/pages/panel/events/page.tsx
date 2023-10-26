@@ -1,9 +1,10 @@
 import { PanelLayout } from '@/pages'
+import Events from './_components/Events'
 
-const Events = () => (
-  <PanelLayout>
-    <div>soy el events page</div>
+const EventsPage = () => (
+  <PanelLayout title='Eventos'>
+    <Events />
   </PanelLayout>
 )
 
-export default Events
+export default EventsPage
