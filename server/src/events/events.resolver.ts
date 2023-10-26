@@ -10,13 +10,14 @@ import { EventsService } from './events.service'
 import { Event, Member } from './entities/event.entity'
 import { CreateEventInput } from './dto/create-event.input'
 import { UpdateEventInput } from './dto/update-event.input'
-import { InternalServerErrorException } from '@nestjs/common'
+import { InternalServerErrorException, Param } from '@nestjs/common'
 import {
   AddMemberInput,
   ModifyStatusInput,
   RemoveMemberInput
 } from './dto/members.input'
 import { User } from 'src/users/entities/user.entity'
+import { FilterEventInput } from './dto/filter-events.input'
 
 @Resolver(() => Event)
 export class EventsResolver {
@@ -35,7 +36,7 @@ export class EventsResolver {
   }
 
   @Mutation(() => Event)
-  async addEventMember (@Args('addMemberInput') addMemberInput: AddMemberInput) {
+  async addEventMember (@Param('addMemberInput') addMemberInput: AddMemberInput) {
     try {
       return await this.eventsService.addMember(addMemberInput)
     } catch (error) {
@@ -69,9 +70,9 @@ export class EventsResolver {
   }
 
   @Query(() => [Event], { name: 'events' })
-  async findAll () {
+  async findAll (@Args('filterEventInput') params?: FilterEventInput) {
     try {
-      return await this.eventsService.findAll()
+      return await this.eventsService.findAll(params)
     } catch (error) {
       console.error(error)
       throw new InternalServerErrorException()
