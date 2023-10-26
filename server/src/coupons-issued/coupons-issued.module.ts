@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common'
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
 import { CouponsIssuedService } from './coupons-issued.service'
 import { CouponsIssuedResolver } from './coupons-issued.resolver'
 import { MongooseModule } from '@nestjs/mongoose'
@@ -8,6 +8,7 @@ import {
 } from './entities/coupons-issued.entity'
 import { User, UserSchema } from 'src/users/entities/user.entity'
 import { Coupon, CouponSchema } from 'src/coupons/entities/coupon.entity'
+import { AuthMiddleware } from 'src/auth/auth.middleware'
 
 @Module({
   imports: [
@@ -19,4 +20,9 @@ import { Coupon, CouponSchema } from 'src/coupons/entities/coupon.entity'
   ],
   providers: [CouponsIssuedResolver, CouponsIssuedService]
 })
-export class CouponsIssuedModule {}
+// Implementación del Middleware para verificar una sesión
+export class CouponsIssuedModule implements NestModule {
+  configure (consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware)
+  }
+}

@@ -24,7 +24,7 @@ export class EventsService {
 
   private async findEventById (id: string) {
     const event = await this.eventModel.findById(id).catch((error) => {
-      console.log(error)
+      console.error(error)
       throw new BadRequestException("Can't find event")
     })
 
@@ -37,7 +37,7 @@ export class EventsService {
 
   private async findUserById (id: string) {
     const user = await this.userModel.findById(id).catch((error) => {
-      console.log(error)
+      console.error(error)
       throw new BadRequestException("Can't find user")
     })
 
@@ -54,7 +54,7 @@ export class EventsService {
     const event = await this.eventModel
       .create(createEventInput)
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         throw new BadRequestException('Unable to create event')
       })
 
@@ -67,7 +67,7 @@ export class EventsService {
 
   async findAll () {
     return await this.eventModel.find().catch((error) => {
-      console.log(error)
+      console.error(error)
       throw new BadRequestException("Can't find events")
     })
   }
@@ -125,14 +125,10 @@ export class EventsService {
       }
       return item
     })
-    console.log('event')
-    console.log(event)
-
     user.markModified('events')
     event.markModified('members')
     await event.save()
     await user.save()
-
     return event
   }
 
@@ -163,7 +159,7 @@ export class EventsService {
     const updatedEvent = await this.eventModel
       .findByIdAndUpdate(id, updateEventInput)
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         throw new BadRequestException("Can't update event")
       })
 
@@ -172,14 +168,14 @@ export class EventsService {
 
   async remove (id: string) {
     const event = await this.eventModel.findByIdAndDelete(id).catch((error) => {
-      console.log(error)
+      console.error(error)
       throw new BadRequestException("Can't delete event")
     })
     if (!event) throw new NotFoundException("Can't find event")
     const users = await this.userModel
       .find({ 'events.subscribed': event._id })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         throw new BadRequestException("Can't delete event")
       })
     // Use a for...of loop to iterate over the users array
@@ -206,9 +202,6 @@ export class EventsService {
     })
     owner.markModified('events')
     await owner.save()
-    console.log('users')
-    console.log(users)
-
     return event
   }
 }

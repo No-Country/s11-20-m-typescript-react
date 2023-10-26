@@ -1,0 +1,17 @@
+.bg-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index:-1;
+    background-image: url('../../assets/image15.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(8px); /* Ajusta el valor del desenfoque según sea necesario */
+  }
+  
+  
+  
+  

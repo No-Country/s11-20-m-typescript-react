@@ -9,10 +9,11 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { join } from 'path'
 import { CouponsModule } from './coupons/coupons.module'
 import { AuthModule } from './auth/auth.module'
-import { GoogleStrategy } from './google auth/google.strategy'
+import { GoogleStrategy } from './googleAuth/google.strategy'
 import { User, UserSchema } from './users/entities/user.entity'
 import { CloudinaryModule } from './cloudinary/cloudinary.module'
 import { EventsModule } from './events/events.module'
+import { PaymentsModule } from './payments/payments.module'
 import { CouponsIssuedModule } from './coupons-issued/coupons-issued.module'
 
 @Module({
@@ -33,7 +34,8 @@ import { CouponsIssuedModule } from './coupons-issued/coupons-issued.module'
     EventsModule,
     CouponsModule,
     AuthModule,
-    CloudinaryModule
+    CloudinaryModule,
+    PaymentsModule
   ],
   controllers: [AppController],
   providers: [AppService, GoogleStrategy]
