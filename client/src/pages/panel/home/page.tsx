@@ -1,7 +1,7 @@
 import { PanelLayout } from '@/pages'
 
 const Home = () => (
-  <PanelLayout>
+  <PanelLayout title='Home'>
     <div>soy el Home page de panel</div>
   </PanelLayout>
 )
