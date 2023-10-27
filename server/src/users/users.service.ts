@@ -120,6 +120,7 @@ export class UsersService {
         updateUserInput.oldPassword,
         user.password
       )
+
       if (!isPasswordCorrect) throw new ConflictException('Incorrect password')
       updateUserInput.password = await encryptPassword(
         updateUserInput.newPassword
