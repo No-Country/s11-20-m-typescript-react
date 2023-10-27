@@ -12,7 +12,9 @@ import {
   AchievementsPage,
   BenefitsPage,
   HomePanelPage,
-  ConfigurationPage
+  ConfigurationPage,
+  PrivacyPage,
+  TermsPage
 } from '@/pages'
 import { NextUIProvider } from '@nextui-org/system'
 import { ApolloProvider } from '@apollo/client'
@@ -43,6 +45,10 @@ const App = () => (
               />
               <Route path={UtilRoutes.EVENTS} element={<EventsPage />} />
               <Route path={UtilRoutes.BENEFITS} element={<BenefitsPage />} />
+              <Route path={UtilRoutes.EVENTS} element={<EventsPage />} />
+              <Route path={UtilRoutes.BENEFITS} element={<BenefitsPage />} />
+              <Route path={UtilRoutes.PRIVACY} element={<PrivacyPage />} />
+              <Route path={UtilRoutes.TERMS} element={<TermsPage />} />
               <Route path='*' element={<NotFoundPage />} />
               <Route
                 path={UtilRoutes.LOGIN}

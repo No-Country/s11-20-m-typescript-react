@@ -10,7 +10,10 @@ interface TopBarProps {
 
 const TopBar = (props: TopBarProps) => (
   <header className='flex w-full justify-between items-center bg-[#e5e5e5] py-6 px-9 '>
-    <NavLink to={props?.ruta ?? ''} className='font-inter fill-black font-semibold text-base'>
+    <NavLink
+      to={props?.ruta ?? ''}
+      className='font-inter fill-black font-semibold text-base'
+    >
       {props.title}
     </NavLink>
     <div className='flex w-full justify-end gap-5 items-center'>
