@@ -6,5 +6,5 @@ export { default as TextElement } from './TextElement/TextElement';
 export { default as Button } from './Button';
 export { default as EventItem } from './EventItem';
 export { default as CouponItem } from './CouponItem';
-export { default as Header } from './Header/Header';
-export { default as Footer } from './Footer/Footer';
+export { default as Header } from './Header';
+export { default as Footer } from './Footer';

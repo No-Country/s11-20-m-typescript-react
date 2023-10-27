@@ -1,8 +1,8 @@
 import { Header, Footer  } from '@/components';
-import Hero from './Hero';
-import Info from './Info';
-import Habits from './Habits';
-import Solutions from './Solutions';
+import Hero from '@/pages/landing/_components/Hero';
+import Info from '@/pages/landing/_components/Info';
+import Habits from '@/pages/landing/_components/Habits';
+import Solutions from '@/pages/landing/_components/Solutions';
 
 function Landing () {
 

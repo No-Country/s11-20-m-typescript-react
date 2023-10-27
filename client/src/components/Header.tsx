@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components';
-import logo from '../../assets/logo.png';
+import logo from '@/assets/logo.png';
 
 function Header () {
 
@@ -10,7 +10,7 @@ function Header () {
         
         <Link draggable="false" className='hover:opacity-70' to="/" title='Refrescar esta pagina'>
 
-          <img draggable="false" src={logo} alt="Earthpoints Logo" />
+          <img draggable="false" src={logo} alt="Earthpoints Logo"/>
 
         </Link>
         

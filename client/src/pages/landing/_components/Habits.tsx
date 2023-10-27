@@ -1,6 +1,6 @@
 import { TextElement, Button  } from '@/components';
-import C1 from '../../assets/cards/C1.png';
-import C2 from '../../assets/cards/C2.png';
+import C1 from '@/assets/cards/C1.png';
+import C2 from '@/assets/cards/C2.png';
 
 function Habits () {
 
@@ -13,18 +13,18 @@ function Habits () {
             <div className='flex flex-col justify-center mb-4 items-start'>
 
                 <div className='flex flex-row gap-3 items-end'>
-                    <TextElement as='h3' type='habits_TUS'>Tus</TextElement>
-                    <TextElement as='h3' type='habits_WORD'>hábitos,</TextElement>
+                    <TextElement as='h3' type='t1' className='text-2xl leading-8 font-semibold text-gray-900'>Tus</TextElement>
+                    <TextElement as='h3' type='t1' className='text-3xl leading-9 font-bold text-gray-900'>hábitos,</TextElement>
                 </div>
 
                 <div className='flex flex-row gap-3 items-end'>
-                    <TextElement as='h3' type='habits_TUS'>Tus</TextElement>
-                    <TextElement as='h3' type='habits_WORD'>beneficios,</TextElement>
+                    <TextElement as='h3' type='t1' className='text-2xl leading-8 font-semibold text-gray-900'>Tus</TextElement>
+                    <TextElement as='h3' type='t1' className='text-3xl leading-9 font-bold text-gray-900'>beneficios,</TextElement>
                 </div>
 
                 <div className='flex flex-row gap-3 items-end'>
-                    <TextElement as='h3' type='habits_TUS'>Tu</TextElement>
-                    <TextElement as='h3' type='habits_WORD'>impacto</TextElement>
+                    <TextElement as='h3' type='t1' className='text-2xl leading-8 font-semibold text-gray-900'>Tu</TextElement>
+                    <TextElement as='h3' type='t1' className='text-3xl leading-9 font-bold text-gray-900'>impacto.</TextElement>
                 </div>
 
             <Button title='Empieza el cambio' color='secondary' className='text-base leadin-6 font-medium text-gray-900 hover:bg-yellow-500 my-6 h-[40px] w-[161px] rounded-lg' href='/auth' />
