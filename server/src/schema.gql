@@ -1,0 +1,416 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Coupon {
+  """id field"""
+  _id: String!
+
+  """title field"""
+  title: String!
+
+  """thumbnail of coupon"""
+  thumbnail: String!
+
+  """active/inactive field"""
+  status: Boolean!
+
+  """rank of coupon"""
+  requeriedRank: String!
+
+  """uses per month of coupon"""
+  usesPerMonth: String!
+}
+
+type CouponsIssued {
+  """coupon id field"""
+  _id: String!
+
+  """coupon field"""
+  coupon: Coupon!
+
+  """user field"""
+  user: User!
+
+  """expires date field"""
+  expires: DateTime!
+
+  """used field"""
+  used: Boolean!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Member {
+  """user field"""
+  user: User!
+
+  """status field"""
+  status: String!
+}
+
+type Location {
+  """Country field"""
+  country: String!
+
+  """State field"""
+  state: String!
+
+  """City field"""
+  city: String!
+
+  """adress field"""
+  adress: String!
+
+  """zip code field"""
+  zipCode: String!
+}
+
+type Event {
+  """Event Id"""
+  _id: String!
+
+  """title field"""
+  title: String!
+
+  """description field"""
+  description: String!
+
+  """location field"""
+  location: Location!
+
+  """spots field"""
+  spots: Float!
+  members: [Member!]!
+
+  """birthday field"""
+  deadline: DateTime!
+
+  """startDate field"""
+  startDate: DateTime!
+
+  """endDate field"""
+  endDate: DateTime!
+
+  """time field"""
+  time: String!
+
+  """type (public | private) field"""
+  type: String!
+  owner: User!
+
+  """thumbnail field"""
+  thumbnail: String!
+
+  """createdAt field"""
+  createdAt: DateTime!
+
+  """updatedAt field"""
+  updatedAt: DateTime!
+}
+
+type EventsEnum {
+  """created field"""
+  created: [Event!]!
+
+  """subscribed field"""
+  subscribed: [Event!]!
+}
+
+type HabitsEnum {
+  """exampleHabit field"""
+  exampleHabit: String!
+
+  """exampleHabit2 field"""
+  exampleHabit2: String!
+}
+
+type User {
+  """Example field (placeholder)"""
+  _id: String!
+
+  """firstName field"""
+  firstName: String!
+
+  """lastName field"""
+  lastName: String!
+
+  """email field"""
+  email: String!
+
+  """username field"""
+  username: String!
+
+  """password field"""
+  password: String!
+
+  """birthday field"""
+  birthday: DateTime!
+
+  """rank field"""
+  rank: Float!
+  events: EventsEnum!
+
+  """coupon field"""
+  coupons: [CouponsIssued!]!
+
+  """profileImage field"""
+  profileImage: String!
+
+  """habits field"""
+  habits: HabitsEnum!
+
+  """createdAt field"""
+  createdAt: DateTime!
+
+  """updatedAt field"""
+  updatedAt: DateTime!
+}
+
+type VerificationResult {
+  sub: String!
+  username: String!
+}
+
+type LoginResult {
+  """field"""
+  token: String!
+
+  """field"""
+  userId: String!
+}
+
+type Query {
+  users: [User!]!
+  user(id: String!): User!
+  couponsIssued(id: String!): CouponsIssued!
+  events(filterEventInput: FilterEventInput!): [Event!]!
+  event(id: String!): Event!
+  coupons: [Coupon!]!
+  coupon(id: String!): Coupon!
+  verifyToken(token: String!): VerificationResult!
+}
+
+input FilterEventInput {
+  """offset field"""
+  offset: Float!
+
+  """limit field"""
+  limit: Float!
+
+  """title field"""
+  title: String!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: String!): User!
+  createCouponsIssued(createCouponsIssued: CreateCouponsIssuedInput!): CouponsIssued!
+  updateCouponsIssued(id: String!): CouponsIssued!
+  deleteCouponsIssued(id: String!): CouponsIssued!
+  createEvent(createEventInput: CreateEventInput!): Event!
+  addEventMember: Event!
+  removeEventMember(removeMemberInput: RemoveMemberInput!): Event!
+  changeEventMemberStatus(modifyStatusInput: ModifyStatusInput!): Event!
+  updateEvent(updateEventInput: UpdateEventInput!): Event!
+  removeEvent(id: String!): Event!
+  createCoupon(createCouponInput: CreateCouponInput!): Coupon!
+  updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
+  removeCoupon(id: String!): Coupon!
+  login(email: String!, password: String!): LoginResult!
+  uploadTestImage(image: Upload!): String!
+}
+
+input CreateUserInput {
+  """firstName field"""
+  firstName: String!
+
+  """lastName field"""
+  lastName: String!
+
+  """email field"""
+  email: String!
+
+  """username field"""
+  username: String!
+
+  """password field"""
+  password: String!
+
+  """birthday field"""
+  birthday: DateTime!
+}
+
+input UpdateUserInput {
+  """firstName field"""
+  firstName: String
+
+  """lastName field"""
+  lastName: String
+
+  """email field"""
+  email: String
+
+  """username field"""
+  username: String
+
+  """birthday field"""
+  birthday: DateTime
+  _id: String!
+  oldPassword: String
+  newPassword: String
+}
+
+input CreateCouponsIssuedInput {
+  """Example field (placeholder)"""
+  coupon: String!
+
+  """Example field (placeholder)"""
+  user: String!
+
+  """Example field (placeholder)"""
+  expires: DateTime!
+
+  """Example field (placeholder)"""
+  used: Boolean!
+}
+
+input CreateEventInput {
+  """title field"""
+  title: String!
+
+  """description field"""
+  description: String!
+
+  """location field"""
+  location: LocationInput!
+
+  """spots field"""
+  spots: Float!
+
+  """birthday field"""
+  deadline: DateTime!
+
+  """startDate field"""
+  startDate: DateTime!
+
+  """endDate field"""
+  endDate: DateTime!
+
+  """time field"""
+  time: String!
+
+  """thumbnail field"""
+  thumbnail: String!
+
+  """type (public | private) field"""
+  type: String!
+
+  """owner field"""
+  owner: String!
+}
+
+input LocationInput {
+  """country field"""
+  country: String!
+
+  """state field"""
+  state: String!
+
+  """city field"""
+  city: String!
+
+  """adress field"""
+  adress: String!
+
+  """zip code field"""
+  zipCode: String!
+}
+
+input RemoveMemberInput {
+  """idEvent field"""
+  idEvent: String!
+
+  """idUser field"""
+  idUser: String!
+}
+
+input ModifyStatusInput {
+  """idEvent field"""
+  idEvent: String!
+
+  """idUser field"""
+  idUser: String!
+
+  """status field"""
+  status: String!
+}
+
+input UpdateEventInput {
+  """title field"""
+  title: String
+
+  """description field"""
+  description: String
+
+  """location field"""
+  location: LocationInput
+
+  """spots field"""
+  spots: Float
+
+  """birthday field"""
+  deadline: DateTime
+
+  """startDate field"""
+  startDate: DateTime
+
+  """endDate field"""
+  endDate: DateTime
+
+  """time field"""
+  time: String
+
+  """thumbnail field"""
+  thumbnail: String
+
+  """type (public | private) field"""
+  type: String
+  _id: String!
+}
+
+input CreateCouponInput {
+  """title field"""
+  title: String!
+
+  """description field"""
+  thumbnail: String
+
+  """description field"""
+  requeriedRank: String!
+
+  """description field"""
+  usesPerMonth: String!
+}
+
+input UpdateCouponInput {
+  """title field"""
+  title: String
+
+  """description field"""
+  thumbnail: String
+
+  """description field"""
+  requeriedRank: String
+
+  """description field"""
+  usesPerMonth: String
+  _id: String!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload

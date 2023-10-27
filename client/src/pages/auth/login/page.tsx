@@ -5,20 +5,30 @@ import { UtilRoutes } from '@/utils/routes.utils'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { Button, Input } from '@/components'
 import { emailPattern, passwordPattern } from '@/utils/pattern.utils'
+import { useMutation } from '@apollo/client'
+import { LOGIN_USER } from '@/graphql/users/login.mutation'
+import { useAuth } from '@/context/providers/auth.provider'
+
+interface FormData {
+  email: string
+  password: string
+}
 
 export const Login = () => {
   const navigate = useNavigate()
+  const [loginMutation] = useMutation(LOGIN_USER)
+  const { login } = useAuth()
   const {
     register,
-    formState: { errors, isSubmitting },
-    handleSubmit
-  } = useForm<any>({
-    mode: 'onChange'
-  })
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = useForm<FormData>()
 
-  const onSubmit: SubmitHandler<any> = async (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      console.log('login user', data)
+      const { email, password } = data
+      const response = await loginMutation({ variables: { email, password } })
+      login(response.data.login.token, response.data.login.userId)
       navigate(UtilRoutes.PANEL)
     } catch (error) {
       console.error('Error signin catch:', error)
