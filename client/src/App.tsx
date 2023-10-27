@@ -14,7 +14,7 @@ import {
   HomePanelPage,
   ConfigurationPage,
   PrivacyPage,
-  TermsPage,
+  TermsPage
 } from '@/pages'
 import { NextUIProvider } from '@nextui-org/system'
 import { ApolloProvider } from '@apollo/client'

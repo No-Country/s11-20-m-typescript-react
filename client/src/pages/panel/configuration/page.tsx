@@ -128,11 +128,7 @@ const Configuration = () => {
             errorMessage={errors?.password?.message?.toString()}
           />
         </div>
-        <Button
-          type='submit'
-          isLoading={isSubmitting}
-          title='Guardar'
-        />
+        <Button type='submit' isLoading={isSubmitting} title='Guardar' />
       </form>
     </PanelLayout>
   )

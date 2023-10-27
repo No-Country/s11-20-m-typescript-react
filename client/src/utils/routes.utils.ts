@@ -12,5 +12,5 @@ export const UtilRoutes = {
   BENEFITS: '/benefits',
   LOGOUT: '/logout',
   PRIVACY: '/privacy',
-  TERMS: '/terms',
+  TERMS: '/terms'
 }

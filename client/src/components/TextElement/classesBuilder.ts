@@ -7,10 +7,8 @@ export const classesBuilder = (type: string, custom: string) => {
     t3: 'text-xl  leading-[140%]' + ' ' + custom,
     subtitle: 'text-lg leading-[140%]' + ' ' + custom,
     base: 'text-base font-light leading-[155%]' + ' ' + custom,
-    small: 'text-sm font-light leading-[155%]' + ' ' + custom,
-
+    small: 'text-sm font-light leading-[155%]' + ' ' + custom
   }
 
   return classes[type]
-
 }

@@ -8,10 +8,23 @@ interface Props {
 }
 
 // This is not an abstraction
-const TextElement = ({ as = 'h1', children = '', className = '', type }: Props) => {
+const TextElement = ({
+  as = 'h1',
+  children = '',
+  className = '',
+  type
+}: Props) => {
   const TagName = as
   const classNames = classesBuilder(type, className)
-  return <TagName draggable="false" style={{userSelect: "none"}} className={classNames}>{children}</TagName>
+  return (
+    <TagName
+      draggable='false'
+      style={{ userSelect: 'none' }}
+      className={classNames}
+    >
+      {children}
+    </TagName>
+  )
 }
 
 export default TextElement
