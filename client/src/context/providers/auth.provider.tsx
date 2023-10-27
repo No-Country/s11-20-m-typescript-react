@@ -7,7 +7,7 @@ import {
 } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useJwt } from 'react-jwt'
-
+import { UtilRoutes } from '@/utils/routes.utils'
 interface AuthProviderProps {
   children: ReactNode
 }
@@ -44,9 +44,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (token && userId) {
       setUser({ id: userId, token })
       if (!isExpired) {
-        navigate('/dashboard')
+        navigate(UtilRoutes.PANEL)
       }
-      navigate('/login')
+      navigate(UtilRoutes.LOGIN)
     }
   }, [])
 
