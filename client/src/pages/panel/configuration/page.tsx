@@ -9,58 +9,73 @@ import {
 } from '@/utils/pattern.utils'
 import { validateAdult } from '@/utils/validateAdult.util'
 import { UPDATE_USER } from '@/graphql/users/update.mutation'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { useNavigate } from 'react-router'
 import { UtilRoutes } from '@/utils/routes.utils'
 import { useAuth } from '@/context/providers/auth.provider'
+import { FIND_USER } from '@/graphql/users/getUserById.query'
 
 interface FormData {
   firstName: string
   lastName: string
   email: string
   birthday: string
-  password: string
+  oldPassword: string
   username: string
+  newPassword: string
 }
 
 const Configuration = () => {
   const { user } = useAuth()
   const navigate = useNavigate()
-  const [updateUserMutation] = useMutation(UPDATE_USER)
+  const { data: dataUsers1 } = useQuery(FIND_USER, {
+    variables: {
+      id: user?.id
+    }
+  })
+  const [updateUserMutation, { error, data: datagp }] = useMutation(UPDATE_USER)
+  const initialValues = {
+    firstName: dataUsers1?.user?.firstName || '',
+    lastName: dataUsers1?.user?.lastName || '',
+    email: dataUsers1?.user?.email || '',
+    birthday: dataUsers1?.user?.birthday || '',
+    oldPassword: dataUsers1?.user?.oldPassword || '',
+    newPassword: dataUsers1?.user?.newPassword || ''
+  }
+
   const {
     register,
     formState: { errors, isSubmitting },
-    handleSubmit
+    handleSubmit,
+    getValues
   } = useForm<FormData>({
-    mode: 'onChange'
+    mode: 'onChange',
+    defaultValues: initialValues
   })
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    // const formData = {
-    //   ...data,
-    //   birthdate: new Date(data.birthdate).toISOString()
-    // }
-
     try {
-      await updateUserMutation({
+      const res = await updateUserMutation({
         variables: {
           updateUserInput: {
             _id: user?.id,
             firstName: data.firstName,
             lastName: data.lastName,
             username: data.username,
-            password: data.password,
-            birthday: new Date(data.birthday).toISOString(),
+            oldPassword: data.oldPassword,
+            newPassword: data.newPassword,
+            birthday: data.birthday,
             email: data.email
           }
         }
       })
+      console.log(res, error, datagp)
+      window.alert('Succesfully')
       navigate(UtilRoutes.PANEL)
     } catch (error) {
       console.error('Error during account update:', error)
     }
   }
-
   return (
     <PanelLayout title='Configuración'>
       <form
@@ -84,11 +99,12 @@ const Configuration = () => {
                 required: { value: true, message: 'This field is required' }
               }
             }}
+            defaultValue={initialValues.firstName}
             errorMessage={errors?.firstName?.message?.toString()}
           />
           <Input
             type='text'
-            name='lastname'
+            name='lastName'
             label='Apellido'
             placeholder='Ingrese su apellido'
             hookForm={{
@@ -101,6 +117,7 @@ const Configuration = () => {
                 required: { value: true, message: 'This field is required' }
               }
             }}
+            defaultValue={initialValues.lastName}
             errorMessage={errors?.lastName?.message?.toString()}
           />
           <Input
@@ -118,12 +135,13 @@ const Configuration = () => {
                 required: { value: true, message: 'This field is required' }
               }
             }}
+            defaultValue={initialValues.email}
             errorMessage={errors?.email?.message?.toString()}
           />
           {/* <Input id='input' onChange={handleChange} value={formData.username} isRequired classNames={{label: 'text-teal-800 font-semibold',}} size='sm' type="text" name="username" label="Usuario" placeholder="Ingrese un nombre de usuario" /> */}
           <Input
             type='date'
-            name='birthdate'
+            name='birthday'
             label='Fecha de nacimiento'
             placeholder='Ingrese su fecha de nacimiento'
             hookForm={{
@@ -137,32 +155,55 @@ const Configuration = () => {
                 required: { value: true, message: 'This field is required' }
               }
             }}
+            defaultValue={
+              initialValues.birthday ? initialValues.birthday.split('T')[0] : ''
+            }
             errorMessage={errors?.birthday?.message?.toString()}
           />
-
-          <Input
-            label='Contraseña'
-            name='password'
-            placeholder='Contraseña'
-            type='password'
-            hookForm={{
-              register,
-              validations: {
-                pattern: {
-                  value: passwordPattern.value,
-                  message: passwordPattern.message
-                },
-                required: { value: true, message: 'This field is required' }
-              }
-            }}
-            errorMessage={errors?.password?.message?.toString()}
-          />
+          <div className='flex grid-cols-2 flex-col gap-4 w-full lg:grid'>
+            <Input
+              type='text'
+              name='oldPassword'
+              label='Contraseña actual'
+              placeholder='Contraseña actual'
+              hookForm={{
+                register,
+                validations: {
+                  pattern: {
+                    value: passwordPattern.value,
+                    message: passwordPattern.message
+                  },
+                  required: {
+                    value: getValues()?.oldPassword?.length > 0,
+                    message: 'This field is required'
+                  }
+                }
+              }}
+              errorMessage={errors?.oldPassword?.message?.toString()}
+            />
+            <Input
+              type='text'
+              name='newPassword'
+              label='Contraseña nueva'
+              placeholder='Contraseña nueva'
+              hookForm={{
+                register,
+                validations: {
+                  pattern: {
+                    value: passwordPattern.value,
+                    message: passwordPattern.message
+                  },
+                  required: {
+                    value: getValues()?.oldPassword?.length > 0,
+                    message: 'This field is required'
+                  }
+                }
+              }}
+              errorMessage={errors?.oldPassword?.message?.toString()}
+            />
+          </div>
         </div>
-        <Button
-          type='submit'
-          isLoading={isSubmitting}
-          title='Guardar'
-        />
+        <Button type='submit' isLoading={isSubmitting} title='Guardar' />
       </form>
     </PanelLayout>
   )
