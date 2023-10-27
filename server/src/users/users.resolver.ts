@@ -1,35 +1,89 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { UsersService } from './users.service';
-import { User } from './entities/user.entity';
-import { CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent
+} from '@nestjs/graphql'
+import { UsersService } from './users.service'
+import { User, EventsEnum } from './entities/user.entity'
+import { CreateUserInput } from './dto/create-user.input'
+import { UpdateUserInput } from './dto/update-user.input'
+import { InternalServerErrorException } from '@nestjs/common'
 
 @Resolver(() => User)
 export class UsersResolver {
-  constructor(private readonly usersService: UsersService) {}
+  constructor (private readonly usersService: UsersService) {}
 
   @Mutation(() => User)
-  createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
-    return this.usersService.create(createUserInput);
+  async createUser (@Args('createUserInput') createUserInput: CreateUserInput) {
+    try {
+      return await this.usersService.create(createUserInput)
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
   }
 
   @Query(() => [User], { name: 'users' })
-  findAll() {
-    return this.usersService.findAll();
+  async findAll () {
+    try {
+      return await this.usersService.findAll()
+    } catch (error) {
+      console.error(error)
+      throw new InternalServerErrorException()
+    }
   }
 
   @Query(() => User, { name: 'user' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.usersService.findOne(id);
+  async findOne (@Args('id', { type: () => String }) id: string) {
+    try {
+      return await this.usersService.findOne(id)
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
   }
 
   @Mutation(() => User)
-  updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-    return this.usersService.update(updateUserInput.id, updateUserInput);
+  async updateUser (@Args('updateUserInput') updateUserInput: UpdateUserInput) {
+    try {
+      return await this.usersService.update(
+        updateUserInput._id,
+        updateUserInput
+      )
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
   }
 
   @Mutation(() => User)
-  removeUser(@Args('id', { type: () => Int }) id: number) {
-    return this.usersService.remove(id);
+  async removeUser (@Args('id', { type: () => String }) id: string) {
+    try {
+      return await this.usersService.remove(id)
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
+  }
+
+  @ResolveField(() => EventsEnum, { name: 'events' })
+  async getEvents (@Parent() user: User) {
+    try {
+      const { _id } = user
+      const created = await this.usersService.findCreatedEvents(_id.toString())
+      const subscribed = await this.usersService.findSubscribedEvents(
+        _id.toString()
+      )
+      return {
+        created,
+        subscribed
+      }
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
   }
 }
