@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE } from '@/context/constants'
+import { LOCAL_STORAGE } from '@/utils/constants'
 import { UtilRoutes } from '@/utils/routes.utils'
 import { type ReactNode, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
