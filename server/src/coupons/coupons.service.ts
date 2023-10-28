@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException
+} from '@nestjs/common'
 import { CreateCouponInput } from './dto/create-coupon.input'
 import { UpdateCouponInput } from './dto/update-coupon.input'
 import { Coupon } from './entities/coupon.entity'
@@ -29,31 +33,46 @@ export class CouponsService {
 
   async findAll (params?: FilterCouponInput) {
     let filters: FilterQuery<Coupon> = {}
-    const { limit, offset, title, requeriedRank } = params
 
+    const { limit, offset } = params
     if (params) {
-      if (title) {
-        filters = {
-          $regex: title,
-          $options: 'i',
-          ...filters
-        }
-      }
-      if (requeriedRank) {
-        filters = {
-          $regex: requeriedRank,
-          $options: 'i',
-          ...filters
+      for (const item in params) {
+        console.log(params[item])
+        if (params[item]) {
+          if (item === 'title') {
+            filters = {
+              [item]: {
+                $regex: params[item],
+                $options: 'i',
+                ...filters
+              }
+            }
+          } else {
+            if (!(item === 'limit' || item === 'offset')) {
+              filters = {
+                [item]: params[item],
+                ...filters
+              }
+            }
+          }
         }
       }
       const filteredResults = await this.couponModel
         .find(filters)
         .limit(limit)
-        .skip(offset * limit)
+        .skip(offset)
         .exec()
+        .catch((error) => {
+          console.log(error)
+          throw new BadRequestException("Can't find coupons")
+        })
+
       return filteredResults
     } else {
-      return await this.couponModel.find()
+      return await this.couponModel.find().catch((error) => {
+        console.log(error)
+        throw new BadRequestException("Can't find coupons")
+      })
     }
   }
 

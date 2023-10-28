@@ -152,8 +152,6 @@ type User {
 
   """rank field"""
   rank: Float!
-
-  """events field"""
   events: EventsEnum!
 
   """coupon field"""
@@ -191,7 +189,7 @@ type Query {
   couponsIssued(id: String!): CouponsIssued!
   events: [Event!]!
   event(id: String!): Event!
-  coupons(params: FilterCouponInput!): [Coupon!]!
+  coupons(filterCouponInput: FilterCouponInput!): [Coupon!]!
   coupon(id: String!): Coupon!
   verifyToken(token: String!): VerificationResult!
 }
@@ -312,6 +310,9 @@ input CreateEventInput {
   """time field"""
   time: String!
 
+  """thumbnail field"""
+  thumbnail: String!
+
   """type (public | private) field"""
   type: String!
 
@@ -387,6 +388,9 @@ input UpdateEventInput {
 
   """time field"""
   time: String
+
+  """thumbnail field"""
+  thumbnail: String
 
   """type (public | private) field"""
   type: String

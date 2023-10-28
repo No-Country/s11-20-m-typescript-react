@@ -23,7 +23,7 @@ export class CouponsResolver {
   }
 
   @Query(() => [Coupon], { name: 'coupons' })
-  async findAll (@Args('params', { type: () => FilterCouponInput }) params?: FilterCouponInput) {
+  async findAll (@Args('filterCouponInput') params?: FilterCouponInput) {
     try {
       return await this.couponsService.findAll(params)
     } catch (err) {
