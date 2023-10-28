@@ -3,11 +3,12 @@ import {
   useContext,
   useState,
   useEffect,
-  type ReactNode
+  type ReactNode,
 } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useJwt } from 'react-jwt'
 import { UtilRoutes } from '@/utils/routes.utils'
+import { LOCAL_STORAGE } from '@/utils/localStorage.utils'
 
 interface AuthProviderProps {
   children: ReactNode
@@ -39,8 +40,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    const userId = localStorage.getItem('userId')
+    const token = localStorage.getItem(LOCAL_STORAGE.TOKEN)
+    const userId = localStorage.getItem(LOCAL_STORAGE.USER_ID)
 
     if (token && userId) {
       setUser({ id: userId, token })
@@ -53,14 +54,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const login = (token: string, userId: string) => {
     setUser({ id: userId, token })
-    localStorage.setItem('token', token)
-    localStorage.setItem('userId', userId)
+    localStorage.setItem(LOCAL_STORAGE.TOKEN, token)
+    localStorage.setItem(LOCAL_STORAGE.USER_ID, userId)
   }
 
   const logout = () => {
     setUser(null)
-    localStorage.removeItem('token')
-    localStorage.removeItem('userId')
+    localStorage.removeItem(LOCAL_STORAGE.TOKEN)
+    localStorage.removeItem(LOCAL_STORAGE.USER_ID)
   }
 
   return (
