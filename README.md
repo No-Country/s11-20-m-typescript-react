@@ -287,7 +287,7 @@ Texto texto
     <td>
       <div align="center">
         <a href="https://github.com/SIA83" target="_blank" rel="author">
-          <img width="110" src="https://static.licdn.com/aero-v1/sc/h/244xhbkr7g40x6bsu4gi6q4ry"/>
+          <img width="110" src="https://avatars.githubusercontent.com/u/140283228?v=4"/>
         </a>
         <a href="https://www.linkedin.com/in/irina-sov/" target="_blank" rel="author">
           <h4 style="margin-top: 1rem;">Irina Sovenko</h4>
@@ -307,7 +307,7 @@ Texto texto
 <!-- ABOUT THE PROJECT -->
 
 <h1 align="center"> 
-<img src="https://media4.giphy.com/media/U3DTrGnuwfDpkNsr3d/giphy.gif" width="30px">Documentación
+<img src="https://media4.giphy.com/media/U3DTrGnuwfDpkNsr3d/giphy.gif" width="30px">Documentación Q/A
 </h1>
 
 <a href="url" target="_blank">

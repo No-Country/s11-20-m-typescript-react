@@ -14,7 +14,9 @@ module.exports = {
     'node_modules/',
     'vite-env.d.ts',
     'vite-config.ts',
-    'vite.config.ts'
+    'vite.config.ts',
+    'tailwind.config.js',
+    "postcss.config.js"
   ],
   rules: {
     'arrow-body-style': 'error',

@@ -1,5 +1,4 @@
-import { InputType, Field, ObjectType } from '@nestjs/graphql'
-import { Type } from 'class-transformer'
+import { InputType, Field } from '@nestjs/graphql'
 import { IsNotEmpty, IsDate, Matches } from 'class-validator'
 
 @InputType()
@@ -61,9 +60,12 @@ export class CreateEventInput {
   @Field(() => String, { description: 'time field' })
     time: string
 
-  @Matches(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/, {message:"thumbnail must be a url"})
+  @Matches(
+    /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)/,
+    { message: 'thumbnail must be a url' }
+  )
   @Field(() => String, { description: 'thumbnail field' })
-      thumbnail: string
+    thumbnail: string
 
   @Matches(/\b(public|private)\b/)
   @Field(() => String, { description: 'type (public | private) field' })

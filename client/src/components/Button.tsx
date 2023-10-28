@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/indent */
-'use client'
 import { Button as ButtonUI, Spinner } from '@nextui-org/react'
 import { Link } from 'react-router-dom'
 
