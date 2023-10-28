@@ -5,9 +5,10 @@ import {
 } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { CouponsIssued } from './entities/coupons-issued.entity'
-import { Model } from 'mongoose'
+import mongoose, { Model, FilterQuery } from 'mongoose'
 import { CreateCouponsIssuedInput } from './dto/create-coupons-issued.input'
 import { UpdateCouponsIssuedInput } from './dto/update-coupons-issued.input'
+import { FilterCouponsIssuedInput } from './dto/filter-coupons-issued.input'
 import { User } from 'src/users/entities/user.entity'
 import { Coupon } from 'src/coupons/entities/coupon.entity'
 
@@ -58,11 +59,45 @@ export class CouponsIssuedService {
     return newCoupon
   }
 
-  async findAll () {
-    return await this.CouponsIssuedModel.find().catch((error) => {
-      console.log(error)
-      throw new BadRequestException('Cannot find coupons issued')
-    })
+  async findAll (params?: FilterCouponsIssuedInput) {
+    let filters: FilterQuery<CouponsIssued> = {}
+    const { limit, offset, coupon, user, used, expires } = params
+    if (params) {
+      if (coupon) {
+        filters = {
+          $regex: coupon,
+          $options: 'i',
+          ...filters
+        }
+      }
+      if (user) {
+        filters = {
+          $regex: user,
+          $options: 'i'
+        }
+      }
+      if (used) {
+        filters = {
+          $regex: used,
+          $options: 'i',
+          ...filters
+        }
+      }
+      if (expires) {
+        filters = {
+          $regex: expires,
+          $options: 'i',
+          ...filters
+        }
+      }
+      const filteredResults = await this.CouponsIssuedModel.find(filters)
+        .limit(limit)
+        .skip(offset * limit)
+        .exec()
+      return filteredResults
+    } else {
+      return await this.CouponsIssuedModel.find()
+    }
   }
 
   async findOne (id: string) {
