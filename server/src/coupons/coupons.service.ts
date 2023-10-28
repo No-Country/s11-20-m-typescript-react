@@ -37,7 +37,6 @@ export class CouponsService {
     const { limit, offset } = params
     if (params) {
       for (const item in params) {
-        console.log(params[item])
         if (params[item]) {
           if (item === 'title') {
             filters = {

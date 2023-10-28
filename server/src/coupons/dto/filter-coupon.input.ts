@@ -7,9 +7,6 @@ export class FilterCouponInput {
   @MinLength(3, { message: 'title must be at least 3 characters long' })
     title?: string
 
-  @Field(() => String, { description: 'description field' })
-    requeriedRank?: 1 | 2 | 3 | 4 | 5
-
   @IsNumber()
   @Field(() => Number, { description: 'description field' })
     limit?: number

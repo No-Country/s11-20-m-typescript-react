@@ -187,19 +187,27 @@ type Query {
   users: [User!]!
   user(id: String!): User!
   couponsIssued(id: String!): CouponsIssued!
-  events: [Event!]!
+  events(filterEventInput: FilterEventInput!): [Event!]!
   event(id: String!): Event!
   coupons(filterCouponInput: FilterCouponInput!): [Coupon!]!
   coupon(id: String!): Coupon!
   verifyToken(token: String!): VerificationResult!
 }
 
+input FilterEventInput {
+  """offset field"""
+  offset: Float!
+
+  """limit field"""
+  limit: Float!
+
+  """title field"""
+  title: String!
+}
+
 input FilterCouponInput {
   """title field"""
   title: String!
-
-  """description field"""
-  requeriedRank: String!
 
   """description field"""
   limit: Float!
@@ -216,7 +224,7 @@ type Mutation {
   updateCouponsIssued(id: String!): CouponsIssued!
   deleteCouponsIssued(id: String!): CouponsIssued!
   createEvent(createEventInput: CreateEventInput!): Event!
-  addEventMember(addMemberInput: AddMemberInput!): Event!
+  addEventMember: Event!
   removeEventMember(removeMemberInput: RemoveMemberInput!): Event!
   changeEventMemberStatus(modifyStatusInput: ModifyStatusInput!): Event!
   updateEvent(updateEventInput: UpdateEventInput!): Event!
@@ -260,9 +268,6 @@ input UpdateUserInput {
 
   """username field"""
   username: String
-
-  """password field"""
-  password: String
 
   """birthday field"""
   birthday: DateTime
@@ -335,14 +340,6 @@ input LocationInput {
 
   """zip code field"""
   zipCode: String!
-}
-
-input AddMemberInput {
-  """idEvent field"""
-  idEvent: String!
-
-  """idUser field"""
-  idUser: String!
 }
 
 input RemoveMemberInput {

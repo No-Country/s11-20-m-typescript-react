@@ -26,8 +26,8 @@ export class CouponsResolver {
   async findAll (@Args('filterCouponInput') params?: FilterCouponInput) {
     try {
       return await this.couponsService.findAll(params)
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
       throw new InternalServerErrorException()
     }
   }
