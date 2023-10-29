@@ -3,12 +3,12 @@ import {
   useContext,
   useState,
   useEffect,
-  type ReactNode
+  type ReactNode,
 } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useJwt } from 'react-jwt'
 import { UtilRoutes } from '@/utils/routes.utils'
-import { LOCAL_STORAGE } from '@/utils/constants'
+import { LOCAL_STORAGE } from '@/utils/localStorage.utils'
 
 interface AuthProviderProps {
   children: ReactNode
