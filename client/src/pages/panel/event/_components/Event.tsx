@@ -1,3 +1,4 @@
+import { Button } from '@nextui-org/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -27,6 +28,8 @@ const EventCard: React.FC<EventCardProps> = ({
       End Date: {new Date(endDate).toLocaleDateString()}
     </p>
     <Link to='/events' />
+    <Button color='primary' size='sm'>Anotarme</Button>
+
   </div>
 )
 
