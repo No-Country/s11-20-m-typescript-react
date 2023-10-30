@@ -23,7 +23,7 @@ const Info = () => (
         </TextElement>
       </div>
 
-      <div className='flex flex-row gap-10 pt-3 justify-center'>
+      <div className='flex flex-col md:flex-row gap-1 md:gap-10 pt-3 justify-center'>
         <div className='flex flex-col'>
           <div className='flex flex-row gap-4 items-center justify-start'>
             <TextElement

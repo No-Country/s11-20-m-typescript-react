@@ -5,8 +5,8 @@ import C4 from '@/assets/cards/C4.png'
 import C5 from '@/assets/cards/C5.png'
 
 const Solutions = () => (
-  <section className='flex flex-row justify-center items-center h-[317px] bg-white mt-[70px]'>
-    <div className='flex flex-row gap-[20px]'>
+  <section className='flex flex-col justify-center items-center bg-white mt-[70px]'>
+    <div className='flex flex-col md:flex-row gap-[20px]'>
       <div className='flex flex-col justify-center items-end w-[346px] h-[317px] gap-[20px]'>
         <img
           draggable='false'
@@ -19,7 +19,7 @@ const Solutions = () => (
           type='t1'
           className='text-base leading-6 font-semibold text-gray-500'
         >
-          Hábitos sustentables: cuál es la iniciativa que reconoce las acciones
+          Hábitos sustentables: Cuál es la iniciativa que reconoce las acciones
           ecológicas de los porteños con importantes premios.
         </TextElement>
         <Link

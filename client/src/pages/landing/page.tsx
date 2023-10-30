@@ -6,7 +6,7 @@ import Solutions from '@/pages/landing/_components/Solutions'
 
 const Landing = () => (
   <main className='flex flex-col'>
-    <section className="h-[675px] bg-cover bg-no-repeat bg-center bg-[url('/src/assets/background.png')] overflow-hidden">
+    <section className="h-[800px] bg-cover bg-no-repeat bg-center bg-[url('/src/assets/background.png')] overflow-hidden">
       <Header />
       <Hero />
     </section>
