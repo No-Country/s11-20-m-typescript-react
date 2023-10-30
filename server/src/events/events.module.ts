@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { Event, EventSchema } from './entities/event.entity'
 import { User, UserSchema } from 'src/users/entities/user.entity'
 import { AuthMiddleware } from 'src/auth/auth.middleware'
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service'
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { AuthMiddleware } from 'src/auth/auth.middleware'
       { name: User.name, schema: UserSchema }
     ])
   ],
-  providers: [EventsResolver, EventsService]
+  providers: [EventsResolver, EventsService, CloudinaryService]
 })
 // Implementación del Middleware para verificar una sesión
 export class EventsModule implements NestModule {

@@ -6,15 +6,20 @@ import {
   ResolveField,
   Parent
 } from '@nestjs/graphql'
+import { GraphQLUpload, type FileUpload } from 'graphql-upload-ts'
 import { UsersService } from './users.service'
 import { User, EventsEnum } from './entities/user.entity'
 import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
 import { InternalServerErrorException } from '@nestjs/common'
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service'
 
 @Resolver(() => User)
 export class UsersResolver {
-  constructor (private readonly usersService: UsersService) {}
+  constructor (
+    private readonly usersService: UsersService,
+    private readonly cloudinaryService: CloudinaryService
+  ) {}
 
   @Mutation(() => User)
   async createUser (@Args('createUserInput') createUserInput: CreateUserInput) {
@@ -47,7 +52,22 @@ export class UsersResolver {
   }
 
   @Mutation(() => User)
-  async updateUser (@Args('updateUserInput') updateUserInput: UpdateUserInput) {
+  async updateUser (
+  @Args('updateUserInput') updateUserInput: UpdateUserInput,
+    @Args({ name: 'image', type: () => GraphQLUpload, nullable: true })
+    image: FileUpload
+  ) {
+    if (image) {
+      try {
+        const uploadedImage = await this.cloudinaryService.uploadImage(image)
+
+        updateUserInput.profileImgUrl = uploadedImage.secure_url as string
+      } catch (error) {
+        console.error(error)
+        throw error
+      }
+    }
+
     try {
       return await this.usersService.update(
         updateUserInput._id,
