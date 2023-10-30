@@ -202,7 +202,7 @@ const Configuration = () => {
                   }
                 }
               }}
-              errorMessage={errors?.oldPassword?.message?.toString()}
+              errorMessage={errors?.newPassword?.message?.toString()}
             />
             <Input
               type='text'
@@ -223,7 +223,7 @@ const Configuration = () => {
                   validate: (value) => {
                     const newPassword = getValues('newPassword')
                     return (
-                      newPassword === value || 'Las contraseñas no coinciden'
+                      newPassword === value || 'The passwords do not match'
                     )
                   }
                 }
