@@ -5,7 +5,7 @@ import C2 from '@/assets/cards/C2.png'
 const Habits = () => (
   <section className='flex flex-col justify-center h-[336px] bg-white'>
     <div className='h-[304px] bg-gray-200 flex flex-row justify-around items-center relative'>
-      <div className='flex flex-col justify-center mb-4 items-start'>
+      <div className='flex flex-col justify-center mb-4 items-start ps-[500px] md:ps-0'>
         <div className='flex flex-row gap-3 items-end'>
           <TextElement
             as='h3'
@@ -70,14 +70,14 @@ const Habits = () => (
           draggable='false'
           src={C2}
           alt='Forest'
-          className='select-none absolute top-16 ms-[480px]'
+          className='select-none absolute top-16 ms-[480px] invisible md:visible'
         />
 
         <img
           draggable='false'
           src={C1}
           alt='Leave your footprints'
-          className='select-none absolute bottom-16'
+          className='select-none absolute bottom-16 invisible md:visible'
         />
       </div>
     </div>

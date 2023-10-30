@@ -3,14 +3,14 @@ import { TextElement } from '@/components'
 import { Link } from 'react-router-dom'
 
 const Footer = () => (
-  <footer className='h-[261px] select-none mt-14'>
-    <div className='flex flex-row justify-around items-center bg-teal-800 h-[205px]'>
-      <div className='flex flex-row items-center justify-center gap-[50px]'>
+  <footer className='h-[261px] select-none mt-6'>
+    <div className='flex flex-col justify-around items-center bg-teal-800 h-[205px] md:flex-row'>
+      <div className='flex flex-col items-center justify-center gap-[20px] md:flex-row'>
         <img
           draggable='false'
           src={logo_dark}
           alt='Earthpoints Logo en formato oscuro'
-          className='hover:opacity-70'
+          className='hover:opacity-70 mt-3 md:mt-0'
         />
 
         <div className='h-[64px] w-[281px]'>
@@ -26,19 +26,21 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className='h-[64px] w-[281px] flex flex-col gap-[10px]'>
+      <div className='h-[64px] w-[281px] flex flex-row gap-[20px] md:flex-col mt-6 md:mt-0'>
         <Link
           draggable='false'
+          title='Politica de privacidad'
           to='/privacy'
-          className='text-xs leading-4 font-medium text-white'
+          className='text-xs leading-4 font-medium text-white hover:text-green-300'
         >
           Politica de privacidad
         </Link>
 
         <Link
           draggable='false'
+          title='Terminos y condiciones'
           to='/terms'
-          className='text-xs leading-4 font-medium text-white'
+          className='text-xs leading-4 font-medium text-white hover:text-green-300'
         >
           Terminos y condiciones
         </Link>
