@@ -3,7 +3,7 @@ import {
   useContext,
   useState,
   useEffect,
-  type ReactNode,
+  type ReactNode
 } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useJwt } from 'react-jwt'

@@ -13,6 +13,7 @@ import {
   BenefitsPage,
   HomePanelPage,
   ConfigurationPage,
+  EventPage,
   PrivacyPage,
   TermsPage
 } from '@/pages'
@@ -44,6 +45,7 @@ const App = () => (
                 element={<AchievementsPage />}
               />
               <Route path={UtilRoutes.EVENTS} element={<EventsPage />} />
+              <Route path={`${UtilRoutes.EVENTS}/:id`} element={<EventPage />} />
               <Route path={UtilRoutes.BENEFITS} element={<BenefitsPage />} />
               <Route path={UtilRoutes.EVENTS} element={<EventsPage />} />
               <Route path={UtilRoutes.BENEFITS} element={<BenefitsPage />} />
