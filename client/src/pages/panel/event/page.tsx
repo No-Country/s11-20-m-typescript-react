@@ -13,7 +13,7 @@ const EventPage = () => {
   const { loading, error, data } = useQuery(GET_EVENT, {
     variables: { eventId: id }
   })
-  console.log(data.event)
+
   if (loading) return <h1>is loading</h1>
   if (error) console.log(error)
   return (
