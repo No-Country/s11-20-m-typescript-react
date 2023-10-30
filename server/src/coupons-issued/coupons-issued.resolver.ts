@@ -4,6 +4,7 @@ import { CouponsIssued } from './entities/coupons-issued.entity'
 import { CreateCouponsIssuedInput } from './dto/create-coupons-issued.input'
 import { UpdateCouponsIssuedInput } from './dto/update-coupons-issued.input'
 import { InternalServerErrorException } from '@nestjs/common'
+import { FilterCouponsIssuedInput } from './dto/filter-coupons-issued.input'
 
 @Resolver(() => CouponsIssued)
 export class CouponsIssuedResolver {
