@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router'
 import { UtilRoutes } from '@/utils/routes.utils'
 import { useAuth } from '@/context/providers/auth.provider'
 import { FIND_USER } from '@/graphql/users/getUserById.query'
+import { toast } from 'sonner'
 
 interface FormData {
   firstName: string
@@ -23,6 +24,7 @@ interface FormData {
   oldPassword: string
   username: string
   newPassword: string
+  repeatPassword: string
 }
 
 const Configuration = () => {
@@ -34,11 +36,12 @@ const Configuration = () => {
     }
   })
   const [updateUserMutation, { error, data: datagp }] = useMutation(UPDATE_USER)
+
   const initialValues = {
     firstName: dataUsers1?.user?.firstName || '',
     lastName: dataUsers1?.user?.lastName || '',
     email: dataUsers1?.user?.email || '',
-    birthday: dataUsers1?.user?.birthday || '',
+    birthday: dataUsers1?.user?.birthday.split('T')[0] || '',
     oldPassword: dataUsers1?.user?.oldPassword || '',
     newPassword: dataUsers1?.user?.newPassword || ''
   }
@@ -70,7 +73,7 @@ const Configuration = () => {
         }
       })
       console.log(res, error, datagp)
-      window.alert('Succesfully')
+      toast.success('Succesfully')
       navigate(UtilRoutes.PANEL)
     } catch (error) {
       console.error('Error during account update:', error)
@@ -194,12 +197,38 @@ const Configuration = () => {
                     message: passwordPattern.message
                   },
                   required: {
-                    value: getValues()?.oldPassword?.length > 0,
+                    value: getValues()?.newPassword?.length > 0,
                     message: 'This field is required'
                   }
                 }
               }}
               errorMessage={errors?.oldPassword?.message?.toString()}
+            />
+            <Input
+              type='text'
+              name='repeatPassword'
+              label='Repetir Contraseña'
+              placeholder='Repetir Contraseña'
+              hookForm={{
+                register,
+                validations: {
+                  pattern: {
+                    value: passwordPattern.value,
+                    message: passwordPattern.message
+                  },
+                  required: {
+                    value: getValues()?.repeatPassword?.length > 0,
+                    message: 'This field is required'
+                  },
+                  validate: (value) => {
+                    const newPassword = getValues('newPassword')
+                    return (
+                      newPassword === value || 'Las contraseñas no coinciden'
+                    )
+                  }
+                }
+              }}
+              errorMessage={errors?.repeatPassword?.message?.toString()}
             />
           </div>
         </div>
