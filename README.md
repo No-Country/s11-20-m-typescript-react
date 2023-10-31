@@ -327,16 +327,23 @@ Puedes comenzar registrandote en nuestra plataforma, y luego de iniciar sesion p
 <img src="https://media4.giphy.com/media/U3DTrGnuwfDpkNsr3d/giphy.gif" width="30px">Documentación Q/A
 </h1>
 
-![www.link1.com](https://img.shields.io/badge/Plan_de_Pruebas-_Q/A_Irina-blue)
+<a href="https://www.link1.com" target="_blank" rel="author">
 
-![www.link2.com](https://img.shields.io/badge/Casos_de_Pruebas-_Q/A_Irina-white)
+![www.link1.com](https://img.shields.io/badge/Plan_de_Pruebas-_Q/A_-blue)
 
-![www.link3.com](https://img.shields.io/badge/Reporte_de_Pruebas-_Q/A_Irina-red)
+</a>
 
+<a href="https://www.link2.com" target="_blank" rel="author">
 
-Plan de pruebas.
-Casos de pruebas.
-Reporte de pruebas.
+![www.link2.com](https://img.shields.io/badge/Casos_de_Pruebas-_Q/A_-white)
+
+</a>
+
+<a href="https://www.link3.com" target="_blank" rel="author">
+
+![www.link3.com](https://img.shields.io/badge/Reporte_de_Pruebas-_Q/A_-red)
+
+</a>
 
 <a href="url" target="_blank">
   <img src="https://img.icons8.com/officel/80/making-notes.png" alt="Logo" width="96" height="96">
