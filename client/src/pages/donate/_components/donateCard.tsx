@@ -1,7 +1,7 @@
 import donationIcon from '@/assets/donation_icon.jpg'
 import { Button } from '@/components'
 import useDonate from '../useDonate'
-import { createSession } from '@/services/donations/create-session'
+import { createSession } from '@/services/donations/createSession.service'
 
 interface Props {
   price: number

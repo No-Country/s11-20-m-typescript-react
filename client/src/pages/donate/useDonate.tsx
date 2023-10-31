@@ -1,4 +1,4 @@
-import { CURRENCY, LOCALE_CURRENCY, STYLE } from '@/utils/intlFormatter'
+import { CURRENCY, LOCALE_CURRENCY, STYLE } from '@/utils/intlFormatter.utils'
 
 const useDonate = () => {
   const currencyFormatter = (value: number) => {
