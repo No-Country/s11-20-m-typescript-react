@@ -1,9 +1,9 @@
-import { EventItem } from '@/components'
+// import { EventItem } from '@/components'
 import GET_EVENTS from '@/graphql/events/getAll.query'
 import { useQuery } from '@apollo/client'
 import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
-
+import EventCard from '@/components/EventCard'
 const Events = () => {
   const [currentPage, setCurrentPage] = useState(0)
   const eventsPerPage = 9
@@ -22,7 +22,7 @@ const Events = () => {
       <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-5'>
         {Array.isArray(data?.events) &&
           eventsToShow?.map((event: any) => (
-            <EventItem event={event} key={event?.id} />
+            <EventCard event={event} key={event?.id} />
           ))}
       </div>
       <ReactPaginate

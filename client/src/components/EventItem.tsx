@@ -29,13 +29,13 @@ const EventItem = ({ event }: EventItemProps) => (
       <Button
         as={Link}
         to={`/events/${event?._id}`}
-        title='Ver evento'
+        // title='Ver evento'
         color='secondary'
         size='sm'
-        className='text-black font-light'
+        className='text-black font-light w-[230px] h-[38px]'
         fullWidth
       >
-        Ver evento
+        Unirse
       </Button>
     </div>
   </div>

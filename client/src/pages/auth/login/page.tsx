@@ -8,6 +8,7 @@ import { emailPattern, passwordPattern } from '@/utils/pattern.utils'
 import { useMutation } from '@apollo/client'
 import { LOGIN_USER } from '@/graphql/users/login.mutation'
 import { useAuth } from '@/context/providers/auth.provider'
+import { useState } from 'react'
 
 interface FormData {
   email: string
@@ -15,6 +16,7 @@ interface FormData {
 }
 
 export const Login = () => {
+  const [loginError, setLoginError] = useState<string>('')
   const navigate = useNavigate()
   const [loginMutation] = useMutation(LOGIN_USER)
   const { login } = useAuth()
@@ -30,8 +32,9 @@ export const Login = () => {
       const response = await loginMutation({ variables: { email, password } })
       login(response.data.login.token, response.data.login.userId)
       navigate(UtilRoutes.PANEL)
-    } catch (error) {
-      console.error('Error signin catch:', error)
+    } catch (error: any) {
+      setLoginError('Error de Logeo, corrobore sus datos')
+      console.error('Error signin catch:', error.message)
     }
   }
 
@@ -55,7 +58,7 @@ export const Login = () => {
             required: { value: true, message: 'This field is required' }
           }
         }}
-        errorMessage={errors?.email?.message?.toString()}
+        errorMessage={errors?.email?.message?.toString() ?? loginError}
       />
       <Input
         label='Contraseña'
@@ -72,7 +75,7 @@ export const Login = () => {
             required: { value: true, message: 'This field is required' }
           }
         }}
-        errorMessage={errors?.password?.message?.toString()}
+        errorMessage={errors?.password?.message?.toString() ?? loginError}
       />
       <div className='flex flex-col gap-4'>
         <Link
