@@ -11,16 +11,16 @@
 <div align="center">
 
   <a href="No-Country/s11-20-m-typescript-react" target="_blank">
-    <img src="https://previews.123rf.com/images/hollygraphic/hollygraphic1112/hollygraphic111200128/11703658-ecolog%C3%ADa-banner-con-lugar-para-el-texto.jpg" alt="Banner">
+    <img src="https://i.imgur.com/SMkakQ0.png" alt="Banner">
   </a>
 
 <h3 align="center">Bienvenid@s a Earth Points</h3>
 
   <p align=center">
-    Texto Descripcion Texto.
+    En un mundo cada vez más consciente de la importancia de la sostenibilidad ambiental, nuestro proyecto tiene como objetivo principal impulsar la adopción de hábitos sustentables en la vida cotidiana de las personas. Creemos firmemente que pequeñas acciones diarias pueden tener un gran impacto en la preservación de nuestro planeta, y para fomentar estos comportamientos, hemos diseñado esta iniciativa innovadora que combina la recompensa con la responsabilidad social.
     <br />
     <br />
-    <a href="https://url.vercel.app/" target="_blank">Ver Demo</a>
+    <a href="https://earthpoints.vercel.app/" target="_blank">Ver Demo</a>
     ·
     <a href="https://github.com/No-Country/s11-20-m-typescript-react/issues" target="_blank">Reportar Bug</a>
   </p>
@@ -38,7 +38,11 @@
   </a>
 <br />
 
-texto texto.
+Nuestra propuesta se basa en la entrega de beneficios y cupones a las personas que toman medidas concretas para reducir su huella ecológica y promover la sostenibilidad. A través de una plataforma en línea de fácil acceso, los participantes podrán registrarse y participar en una amplia variedad de desafíos y actividades amigables con el medio ambiente. A medida que los participantes completen estos desafíos y logren sus objetivos de sostenibilidad, acumularán puntos que se pueden canjear por beneficios y cupones en una red de socios y empresas comprometidas con la causa ambiental. Estos beneficios pueden incluir descuentos en productos ecológicos, acceso a eventos sostenibles, membresías a organizaciones ambientales, entre otros incentivos que refuercen el compromiso con un estilo de vida sustentable.
+
+Nuestra plataforma también proporcionará recursos educativos y seguimiento personalizado para ayudar a los participantes a comprender y mejorar su impacto ambiental a lo largo del tiempo.
+
+Este proyecto no solo busca fomentar hábitos sustentables, sino que también promueve una mayor conciencia ambiental en la sociedad. A través de la recompensa y la comunidad, esperamos inspirar a más personas a abrazar la sostenibilidad como parte integral de sus vidas, creando un mundo más verde y saludable para las generaciones futuras. Únete a nosotros en este emocionante viaje hacia un futuro más sustentable.
 
 <h1 align="center"> 
 <img src="https://media0.giphy.com/media/uhQuegHFqkVYuFMXMQ/giphy.gif" width="30px">Tecnologias Usadas
@@ -87,7 +91,7 @@ Clonar este repositorio y ejecuta "npm install" y luego "npm run dev" desde tu v
    ```
 
 O simplemente clickea en el link de 
-<a href="https://link.vercel.app/" target="_blank">Ver Demo.</a>
+<a href="https://earthpoints.vercel.app/" target="_blank">Ver Demo.</a>
 
 <!-- USAGE EXAMPLES -->
 <h1 align="center"> 
@@ -310,6 +314,10 @@ Texto texto
 <img src="https://media4.giphy.com/media/U3DTrGnuwfDpkNsr3d/giphy.gif" width="30px">Documentación Q/A
 </h1>
 
+Plan de pruebas.
+Casos de pruebas.
+Reporte de pruebas.
+
 <a href="url" target="_blank">
   <img src="https://img.icons8.com/officel/80/making-notes.png" alt="Logo" width="96" height="96">
 </a>
@@ -331,14 +339,15 @@ Texto texto
 
 <p align="center"><a href="https://www.youtube.com/watch?v=v88888888888" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Video-S11_20_M_TYPESCRIPT_REACT-red?style=for-the-badge&logo=youtube"/></a></p>
 
-<img src="https://i.imgur.com/BBBBBBB.png"/>
+<img src="https://i.imgur.com/V0yWt9m.png"/>
 
 <!-- Screenshots -->
 <h1 align="center"> 
 <img src="https://media1.giphy.com/media/xcFJX6T9z2iqiB9Ud9/giphy.gif" width="30px">Capturas de Pantalla
 </h1>
 
-<img src="https://i.imgur.com/000000.png"/>
+<img src="https://i.imgur.com/dip2Upt.png"/>
+<img src="https://i.imgur.com/5Vdlp7p.png"/>
 
 
 <!-- ACKNOWLEDGMENTS -->
