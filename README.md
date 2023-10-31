@@ -48,10 +48,9 @@ Este proyecto no solo busca fomentar hábitos sustentables, sino que también pr
 <img src="https://media0.giphy.com/media/uhQuegHFqkVYuFMXMQ/giphy.gif" width="30px">Tecnologias Usadas
 </h1>
 
+![.ENV](https://img.shields.io/static/v1?style=for-the-badge&message=.ENV&color=222222&logo=.ENV&logoColor=ECD53F&label=)
 ![Node.js](https://img.shields.io/static/v1?style=for-the-badge&message=Node.js&color=339933&logo=Node.js&logoColor=FFFFFF&label=)
-
 ![React](https://img.shields.io/static/v1?style=for-the-badge&message=React&color=222222&logo=React&logoColor=61DAFB&label=)
-
 ![Vercel](https://img.shields.io/static/v1?style=for-the-badge&message=Vercel&color=000000&logo=Vercel&logoColor=FFFFFF&label=)
 
 
@@ -98,7 +97,7 @@ O simplemente clickea en el link de
 <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2lvcWx2Ynpia3BjYnk3Yzlvdmw1cnBjdHI3cm5uY3QzenM1enNibiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/igPDtkfSJZMFwE0LP8/giphy.gif" width="30px">Uso
 </h1>
 
-Texto texto
+Puedes comenzar registrandote en nuestra plataforma, y luego de iniciar sesion puedes llenar el formulario de habitos para saber tu nivel de sustentatibilidad. Tambien puedes unirte o planificar algun evento. Y al final tendras cupones de descuento y demas beneficios disponibles por usar nuestra webapp.
 
 <!-- TEAMS -->
 
