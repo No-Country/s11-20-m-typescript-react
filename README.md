@@ -38,7 +38,7 @@
   </a>
 <br />
 
-Nuestra propuesta se basa en la entrega de beneficios y cupones a las personas que toman medidas concretas para reducir su huella ecológica y promover la sostenibilidad. A través de una plataforma en línea de fácil acceso, los participantes podrán registrarse y participar en una amplia variedad de desafíos y actividades amigables con el medio ambiente. A medida que los participantes completen estos desafíos y logren sus objetivos de sostenibilidad, acumularán puntos que se pueden canjear por beneficios y cupones en una red de socios y empresas comprometidas con la causa ambiental. Estos beneficios pueden incluir descuentos en productos ecológicos, acceso a eventos sostenibles, membresías a organizaciones ambientales, entre otros incentivos que refuercen el compromiso con un estilo de vida sustentable.
+EarthPoints se basa en la entrega de beneficios y cupones a las personas que toman medidas concretas para reducir su huella ecológica y promover la sostenibilidad. A través de una plataforma en línea de fácil acceso, los participantes podrán registrarse y participar en una amplia variedad de desafíos y actividades amigables con el medio ambiente. A medida que los participantes completen estos desafíos y logren sus objetivos de sostenibilidad, acumularán puntos que se pueden canjear por beneficios y cupones en una red de socios y empresas comprometidas con la causa ambiental. Estos beneficios pueden incluir descuentos en productos ecológicos, acceso a eventos sostenibles, membresías a organizaciones ambientales, entre otros incentivos que refuercen el compromiso con un estilo de vida sustentable.
 
 Nuestra plataforma también proporcionará recursos educativos y seguimiento personalizado para ayudar a los participantes a comprender y mejorar su impacto ambiental a lo largo del tiempo.
 
@@ -326,6 +326,13 @@ Puedes comenzar registrandote en nuestra plataforma, y luego de iniciar sesion p
 <h1 align="center"> 
 <img src="https://media4.giphy.com/media/U3DTrGnuwfDpkNsr3d/giphy.gif" width="30px">Documentación Q/A
 </h1>
+
+![www.link1.com](https://img.shields.io/badge/Plan_de_Pruebas-_Q/A_Irina-blue)
+
+![www.link2.com](https://img.shields.io/badge/Casos_de_Pruebas-_Q/A_Irina-white)
+
+![www.link3.com](https://img.shields.io/badge/Reporte_de_Pruebas-_Q/A_Irina-red)
+
 
 Plan de pruebas.
 Casos de pruebas.
