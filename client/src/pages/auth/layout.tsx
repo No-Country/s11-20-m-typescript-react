@@ -40,7 +40,7 @@ export const AuthLayout = ({ children }: LoginProps) => (
             className='object-cover'
             width='30%'
           />
-          <div className='flex h-auto w-full overflow-y-auto'>{children}</div>
+          <div className='flex h-auto w-full overflow-y-auto  px-1'>{children}</div>
         </div>
       </div>
     </div>
