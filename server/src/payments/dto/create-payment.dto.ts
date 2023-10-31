@@ -1,4 +1,4 @@
 export class PaymentInput {
-  priceId: string
+  price: number
   // email: string
 }

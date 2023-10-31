@@ -1,10 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common'
 import Stripe from 'stripe'
-import {
-  CHECKOUT_SESSSION_COMPLETED,
-  CURRENCY,
-  STRIPE
-} from './constant/local.constant'
+import { CHECKOUT_SESSSION_COMPLETED, STRIPE } from './constant/local.constant'
 import { SessionConfig } from './dto/session-config'
 import { EmailCreation } from './helpers/email-creation'
 
@@ -16,21 +12,26 @@ export class PaymentsService {
     private readonly emailCreation: EmailCreation
   ) {}
 
-  async createSessionPayment (priceId: string) {
+  async createSessionPayment (price: number) {
     const session = await this.stripe.checkout.sessions.create({
       line_items: [
         {
-          price: priceId,
-          quantity: 1
+          quantity: 1,
+          price_data: {
+            product_data: {
+              name: 'Donation'
+            },
+            currency: 'usd',
+            unit_amount: price
+          }
         }
       ],
-      currency: CURRENCY,
       mode: this.config.mode,
       success_url: this.config.susses,
       cancel_url: this.config.cancel
     })
 
-    return session.url
+    return { url: session.url }
   }
 
   async getPrices () {

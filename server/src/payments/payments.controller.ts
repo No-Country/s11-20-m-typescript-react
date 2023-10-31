@@ -27,7 +27,7 @@ export class PaymentsController {
   @Post('/create-session')
   async createSessionPayment (@Body() payment: PaymentInput) {
     try {
-      return await this.paymentsService.createSessionPayment(payment.priceId)
+      return await this.paymentsService.createSessionPayment(payment.price)
     } catch (error) {
       console.error(error)
       throw new BadRequestException("sorry we can't create the session")
