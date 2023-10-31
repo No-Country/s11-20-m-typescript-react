@@ -1,42 +1,42 @@
-export interface QuestionsAnswer {
+export interface questionsanswers {
   question: string
   answer: string
 }
 
-export const questionsAnswer: QuestionsAnswer[] = [
+export const questionsAnswer: questionsanswers[] = [
   {
-    question: 'What is the purpose of this website?',
+    question: '¿Cuál es el propósito de esta página?',
     answer:
-      "The purpose of this website is to provide a platform for users to share their thoughts and opinions on a variety of topics. Users can also view other users' posts and comment on them."
+      'El propósito de esta página es proporcionar una plataforma para que los usuarios compartan información sobre eventos solidarios. Los usuarios pueden ver detalles de los eventos, obtener información sobre cómo participar y colaborar en causas benéficas.'
   },
   {
-    question: 'How do I create an account?',
+    question: '¿Cómo puedo crear una cuenta?',
     answer:
-      "To create an account, click on the 'Sign Up' button on the top right corner of the page. You will be prompted to enter your email address, username, and password. After you have entered your information, click on the 'Create Account' button. You will then be redirected to the login page where you can login with your new account."
+      'Para crear una cuenta, haz clic en el botón "Registrarse" en la esquina superior derecha de la página. Se te pedirá que ingreses tu dirección de correo electrónico, nombre de usuario y contraseña. Después de ingresar tus datos, haz clic en el botón "Crear Cuenta". Luego podrás acceder a la página con tu nueva cuenta.'
   },
   {
-    question: 'How do I login?',
+    question: '¿Cómo inicio sesión?',
     answer:
-      "To login, click on the 'Login' button on the top right corner of the page. You will be prompted to enter your email address and password. After you have entered your information, click on the 'Login' button."
+      'Para iniciar sesión, haz clic en el botón "Iniciar Sesión" en la esquina superior derecha de la página. Se te pedirá que ingreses tu dirección de correo electrónico y contraseña. Después de ingresar tus datos, haz clic en el botón "Iniciar Sesión".'
   },
   {
-    question: 'How do I create a post?',
+    question: '¿Cómo puedo crear un evento solidario?',
     answer:
-      "To create a post, click on the 'Create Post' button on the top right corner of the page. You will be prompted to enter a title and a description for your post. After you have entered your information, click on the 'Create Post' button."
+      'Para crear un evento solidario, haz clic en el botón "Crear Evento" en la esquina superior derecha de la página. Deberás proporcionar detalles sobre el evento, como el nombre, la descripción, la fecha y la ubicación. Después de ingresar la información, haz clic en el botón "Crear Evento".'
   },
   {
-    question: 'How do I view my posts?',
+    question: '¿Cómo puedo ver los eventos que he creado?',
     answer:
-      "To view your posts, click on the 'My Posts' button on the top right corner of the page. You will then be redirected to a page where you can view all of your posts."
+      'Para ver los eventos que has creado, haz clic en el botón "Mis Eventos" en la esquina superior derecha de la página. Serás redirigido a una página donde podrás ver todos los eventos que has creado.'
   },
   {
-    question: "How do I view other users' posts?",
+    question: '¿Cómo puedo ver los eventos de otros usuarios?',
     answer:
-      "To view other users' posts, click on the 'Explore' button on the top right corner of the page. You will then be redirected to a page where you can view all of the posts from other users."
+      'Para ver los eventos de otros usuarios, haz clic en el botón "Explorar" en la esquina superior derecha de la página. Serás redirigido a una página donde podrás explorar y conocer eventos solidarios creados por otros usuarios.'
   },
   {
-    question: 'How do I comment on a post?',
+    question: '¿Cómo puedo dejar un comentario en un evento?',
     answer:
-      "To comment on a post, click on the 'Comment' button on the bottom of the post. You will then be prompted to enter your comment. After you have entered your comment, click on the 'Comment' button."
+      'Para dejar un comentario en un evento, haz clic en el botón "Comentar" en la parte inferior del evento. Se te pedirá que ingreses tu comentario. Después de escribir tu comentario, haz clic en el botón "Comentar". Tu comentario se publicará en el evento para que otros lo vean.'
   }
 ]

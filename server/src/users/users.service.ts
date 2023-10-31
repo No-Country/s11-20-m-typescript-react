@@ -78,6 +78,7 @@ export class UsersService {
   }
 
   async create (createUserInput: CreateUserInput) {
+    createUserInput.email = createUserInput.email.toLowerCase()
     await this.checkExistingEmail(createUserInput.email)
     await this.checkExistingUsername(createUserInput.username)
     this.calculateAge(createUserInput.birthday)
@@ -103,6 +104,7 @@ export class UsersService {
     const user = await this.findUserById(id)
 
     if (updateUserInput.email && updateUserInput.email !== user.email) {
+      updateUserInput.email = updateUserInput.email.toLowerCase()
       await this.checkExistingEmail(updateUserInput.email)
     }
 

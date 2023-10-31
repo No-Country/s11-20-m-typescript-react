@@ -8,4 +8,7 @@ export class UpdateEventInput extends PartialType(
 ) {
   @Field(() => String)
     _id: string
+
+  @Field(() => String, { nullable: true })
+    thumbnail?: string
 }
