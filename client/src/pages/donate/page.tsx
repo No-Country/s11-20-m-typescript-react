@@ -1,5 +1,5 @@
 import { Header } from '@/components'
-import { DonateCard } from './donateCard'
+import { DonateCard } from './_components/donateCard'
 
 const Donate = () => (
   <section className='flex w-full  items-center min-h-screen flex-col bg-[#e5e5e5] '>

@@ -1,6 +1,6 @@
 import donationIcon from '@/assets/donation_icon.jpg'
 import { Button } from '@/components'
-import useDonate from './useDonate'
+import useDonate from '../useDonate'
 import { createSession } from '@/services/donations/create-session'
 
 interface Props {
@@ -13,6 +13,7 @@ export const DonateCard = ({ price }: Props) => {
   const handleClick = async () => {
     const priceParsed = parsePrice(price)
     const session = await createSession(priceParsed)
+    if (!session.url) return
     window.location.href = session.url
   }
 
