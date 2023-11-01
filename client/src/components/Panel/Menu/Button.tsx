@@ -18,7 +18,7 @@ const MenuButton = (props: TopProps) => {
           <button
             title={props.texto}
             className={`
-          w-[70px] md:w-full h-auto text-[10px] md:text-base items-center flex flex-col md:flex-row rounded-lg md:rounded-3xl gap-2 py-1 md:py-2 ps-0 md:ps-3 font-inter md:font-normal font-bold
+          w-[70px] md:w-full h-auto text-[10px] items-center flex flex-col md:flex-row rounded-lg md:rounded-3xl gap-2 py-1 md:py-2 ps-0 md:ps-3 font-inter font-bold
           ${
             isActive
               ? 'bg-teal-800  hover:bg-teal-700   text-white'

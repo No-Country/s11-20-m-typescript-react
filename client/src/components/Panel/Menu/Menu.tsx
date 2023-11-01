@@ -14,7 +14,7 @@ const Home = () => {
   const [open, setOpen] = useState(true)
   return (
     <section className='flex'>
-      <div className={`bg-white min-h-screen ${open ? 'w-[200px]' : 'w-[120px]'} duration-500 text-teal-800 px-4`}>
+      <div className={`bg-white min-h-screen ${open ? 'w-[200px]' : 'w-[140px]'} duration-500 text-teal-800 px-4`}>
         <div className='py-3 flex justify-end'>
           <HiMenuAlt3
             size={26}

@@ -93,8 +93,8 @@ const CreateEvent = () => {
         autoComplete='off'
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className='flex flex-col md:grid grid-cols-2 gap-5 w-full'>
-          <div className='flex flex-col flex-wrap max-h-fit py-6'>
+        <div className='flex flex-col md:grid grid-cols-2 gap-[20px] w-full'>
+          <div className='flex flex-col flex-wrap max-h-fit py-6 gap-[14px] '>
             <Input
               type='text'
               name='title'
@@ -192,7 +192,7 @@ const CreateEvent = () => {
             />
           </div>
 
-          <div className='flex flex-col flex-wrap py-6'>
+          <div className='flex flex-col flex-wrap py-6 gap-[14px]'>
             <Input
               type='date'
               name='startDate'
@@ -281,7 +281,7 @@ const CreateEvent = () => {
             />
           </div>
 
-          <div className='flex flex-col w-full items-center py-6'>
+          <div className='flex flex-col w-full items-center py-6 gap-[14px]'>
             <Input
               type='text'
               name='country'
