@@ -335,7 +335,7 @@ Puedes comenzar registrandote en nuestra plataforma, y luego de iniciar sesion p
 
 <a href="https://www.link2.com" target="_blank" rel="author">
 
-![www.link2.com](https://img.shields.io/badge/Casos_de_Pruebas-_Q/A_-white)
+![www.link2.com](https://img.shields.io/badge/Casos_de_Pruebas-_Q/A_-yellow)
 
 </a>
 
@@ -345,18 +345,16 @@ Puedes comenzar registrandote en nuestra plataforma, y luego de iniciar sesion p
 
 </a>
 
-<a href="url" target="_blank">
-  <img src="https://img.icons8.com/officel/80/making-notes.png" alt="Logo" width="96" height="96">
-</a>
-
 <!-- CONTACT -->
 <h1 align="center"> 
 <img src="https://media3.giphy.com/media/dA9zmG7BCtbauczAQY/giphy.gif" width="30px">Contacto
 </h1>
 
 [Via Github](https://github.com/No-Country/C13-41-FT-NODE-REACT)
+
 <br />
-[Via Discord](https://discord.gg/ayjqPNPw)
+
+[Via Email](mailto:s11.nocountry@gmail.com)
 
 <!-- Video -->
 <h1 align="center"> 
