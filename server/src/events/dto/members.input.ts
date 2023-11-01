@@ -1,7 +1,5 @@
-import { InputType, Field, ObjectType } from '@nestjs/graphql'
-import { IsNotEmpty, IsEmail, IsDate, Matches } from 'class-validator'
-import mongoose from 'mongoose'
-import { User } from 'src/users/entities/user.entity'
+import { InputType, Field } from '@nestjs/graphql'
+import { IsNotEmpty } from 'class-validator'
 
 @InputType()
 export class AddMemberInput {
