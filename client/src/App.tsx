@@ -23,6 +23,7 @@ import { client } from '@/services/api.service'
 import { UtilRoutes } from '@/utils/routes.utils'
 import { Toaster } from 'sonner'
 import { AuthProvider } from '@/context/providers/auth.provider'
+import CreateEvent from './pages/panel/events/create/page'
 import { RouterGuard } from './context/providers/router-guard.provider'
 
 const App = () => (
@@ -69,6 +70,14 @@ const App = () => (
                 }
               />
               <Route
+                path={UtilRoutes.CREATE_EVENT}
+                element={
+                  <RouterGuard>
+                    <CreateEvent />
+                  </RouterGuard>
+                }
+              />
+              <Route
                 path={`${UtilRoutes.EVENTS}/:id`}
                 element={
                   <RouterGuard>
@@ -85,6 +94,8 @@ const App = () => (
                   </RouterGuard>
                 }
               />
+              <Route path={UtilRoutes.EVENTS} element={<EventsPage />} />
+              <Route path={UtilRoutes.CREATE_EVENT} element={<CreateEvent />} />
               <Route path={UtilRoutes.BENEFITS} element={<BenefitsPage />} />
               <Route path={UtilRoutes.PRIVACY} element={<PrivacyPage />} />
               <Route path={UtilRoutes.TERMS} element={<TermsPage />} />

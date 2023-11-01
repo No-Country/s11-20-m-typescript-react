@@ -34,6 +34,9 @@ export class EventsResolver {
     @Args({ name: 'image', type: () => GraphQLUpload, nullable: true })
     image: FileUpload
   ) {
+    console.log('====================================')
+    console.log(image)
+    console.log('====================================')
     if (image) {
       try {
         const uploadedImage = await this.cloudinaryService.uploadImage(image)
