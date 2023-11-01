@@ -218,16 +218,16 @@ input FilterCouponInput {
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!, image: Upload): User!
   removeUser(id: String!): User!
   createCouponsIssued(createCouponsIssued: CreateCouponsIssuedInput!): CouponsIssued!
   updateCouponsIssued(id: String!): CouponsIssued!
   deleteCouponsIssued(id: String!): CouponsIssued!
-  createEvent(createEventInput: CreateEventInput!): Event!
+  createEvent(createEventInput: CreateEventInput!, image: Upload): Event!
   addEventMember: Event!
   removeEventMember(removeMemberInput: RemoveMemberInput!): Event!
   changeEventMemberStatus(modifyStatusInput: ModifyStatusInput!): Event!
-  updateEvent(updateEventInput: UpdateEventInput!): Event!
+  updateEvent(updateEventInput: UpdateEventInput!, image: Upload): Event!
   removeEvent(id: String!): Event!
   createCoupon(createCouponInput: CreateCouponInput!): Coupon!
   updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
@@ -274,7 +274,11 @@ input UpdateUserInput {
   _id: String!
   oldPassword: String
   newPassword: String
+  profileImgUrl: String
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 input CreateCouponsIssuedInput {
   """Example field (placeholder)"""
@@ -385,8 +389,6 @@ input UpdateEventInput {
 
   """time field"""
   time: String
-
-  """thumbnail field"""
   thumbnail: String
 
   """type (public | private) field"""
@@ -422,6 +424,3 @@ input UpdateCouponInput {
   usesPerMonth: String
   _id: String!
 }
-
-"""The `Upload` scalar type represents a file upload."""
-scalar Upload
