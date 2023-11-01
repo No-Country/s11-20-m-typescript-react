@@ -7,7 +7,7 @@ const MenuButton = (props: TopProps) => {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <NavLink to={props.ruta} className='w-full'>
+    <NavLink to={props.ruta} className='w-full flex justify-center items-center'>
       {({ isActive }) => {
         const iconSrc = isActive
           ? props.iconlight
@@ -16,8 +16,9 @@ const MenuButton = (props: TopProps) => {
           : props.icondark
         return (
           <button
+            title={props.texto}
             className={`
-          w-full h-auto text-base items-center flex rounded-3xl gap-2 py-3 px-6 font-inter font-medium
+          w-[70px] md:w-full h-auto text-[10px] md:text-base items-center flex flex-col md:flex-row rounded-lg md:rounded-3xl gap-2 py-1 md:py-2 ps-0 md:ps-3 font-inter md:font-normal font-bold
           ${
             isActive
               ? 'bg-teal-800  hover:bg-teal-700   text-white'
@@ -33,7 +34,7 @@ const MenuButton = (props: TopProps) => {
             <img
               src={iconSrc}
               alt='Sidebark link (Panel)'
-              className='aspect-square h-[20px] w-[20px] '
+              className='aspect-square h-[20px] w-[20px]'
             />
             {props.texto}
           </button>

@@ -14,7 +14,7 @@ const Home = () => {
   const [open, setOpen] = useState(true)
   return (
     <section className='flex'>
-      <div className={`bg-white min-h-screen ${open ? 'w-72' : 'w-16'} duration-500 text-teal-800 px-4`}>
+      <div className={`bg-white min-h-screen ${open ? 'w-[200px]' : 'w-[120px]'} duration-500 text-teal-800 px-4`}>
         <div className='py-3 flex justify-end'>
           <HiMenuAlt3
             size={26}
@@ -22,12 +22,12 @@ const Home = () => {
             onClick={() => { setOpen(!open) }}
           />
         </div>
-        <div className='pb-10 flex justify-center md:justify-center'>
+        <div className='pb-6 flex justify-center md:justify-center'>
           <Link to={UtilRoutes.HOME} style={{ userSelect: 'none' }}>
             <img src={logo} alt='Logo' title='Logo' />
           </Link>
         </div>
-        <div className='mt-8 md:mt-[100px] flex flex-col gap-4 relative'>
+        <div className='mt-8 md:mt-[100px] flex flex-col gap-4'>
 
           {topItems?.map((item, index) => (
 
@@ -41,7 +41,7 @@ const Home = () => {
 
           ))}
         </div>
-        <div className='flex flex-col items-center justify-between gap-2 mt-[140px] md:mt-[140px] w-full'>
+        <div className='flex flex-col items-center justify-center gap-2 mt-[140px] md:mt-[140px] w-full'>
           <MenuButton
             ruta={UtilRoutes.CONFIGURATION}
             texto='Configuración'
