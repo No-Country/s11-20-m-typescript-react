@@ -20,6 +20,7 @@ import { client } from '@/services/api.service'
 import { UtilRoutes } from '@/utils/routes.utils'
 import { Toaster } from 'sonner'
 import { AuthProvider } from '@/context/providers/auth.provider'
+import CreateEvent from './pages/panel/events/create/page'
 
 const App = () => (
   <BrowserRouter>
@@ -42,6 +43,7 @@ const App = () => (
                 element={<AchievementsPage />}
               />
               <Route path={UtilRoutes.EVENTS} element={<EventsPage />} />
+              <Route path={UtilRoutes.CREATE_EVENT} element={<CreateEvent />} />
               <Route path={UtilRoutes.BENEFITS} element={<BenefitsPage />} />
               <Route path='*' element={<NotFoundPage />} />
               <Route

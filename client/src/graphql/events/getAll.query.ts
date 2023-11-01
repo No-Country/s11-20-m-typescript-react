@@ -2,7 +2,13 @@ import { gql } from '@apollo/client'
 
 const GET_EVENTS = gql`
   query {
-    events {
+    events(
+    filterEventInput: {
+      title:""
+      offset: 0
+      limit: 0
+    }
+  ) {
       title
       description
       startDate
