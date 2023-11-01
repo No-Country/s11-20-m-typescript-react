@@ -5,7 +5,7 @@ import Habits from '@/pages/landing/_components/Habits'
 import Solutions from '@/pages/landing/_components/Solutions'
 
 const Landing = () => (
-  <main className='flex flex-col'>
+  <main className='flex flex-col overflow-hidden'>
     <section className="h-[800px] bg-cover bg-no-repeat bg-center bg-[url('/src/assets/background.png')] overflow-hidden">
       <Header />
       <Hero />

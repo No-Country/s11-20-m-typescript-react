@@ -1,12 +1,20 @@
 import {
+  adressRegex,
+  cityRegex,
+  countryRegex,
   descriptionRegex,
   emailRegex,
   firstNameRegex,
   lastNameRegex,
   maxApplicantsRegex,
   passwordRegex,
+  stateRegex,
+  timeEventRegex,
   titleRegex,
-  usernameRegex
+  typeEventRegex,
+  urlRegex,
+  usernameRegex,
+  zipCodeRegex
 } from './regex.utils'
 
 interface Pattern {
@@ -57,4 +65,44 @@ export const descriptionPattern: Pattern = {
 export const maxApplicantsPattern: Pattern = {
   value: maxApplicantsRegex,
   message: 'Max applicants must be a number and max 10 digits long'
+}
+
+export const timeEventPattern: Pattern = {
+  value: timeEventRegex,
+  message: 'Time must be an in 12hr format: 10:30 AM'
+}
+
+export const typeEventPattern: Pattern = {
+  value: typeEventRegex,
+  message: 'Type must be either public or private'
+}
+
+export const countryPattern: Pattern = {
+  value: countryRegex,
+  message:
+    'Country must be only letters and numbers, and at least 2 characters long'
+}
+
+export const statePattern: Pattern = {
+  value: stateRegex,
+  message:
+    'State must be only letters and numbers, and at least 2 characters long'
+}
+export const cityPattern: Pattern = {
+  value: cityRegex,
+  message:
+    'City must be only letters and numbers, and at least 2 characters long'
+}
+export const adressPattern: Pattern = {
+  value: adressRegex,
+  message:
+    'Adress must be only letters and numbers, and at least 2 characters long'
+}
+export const zipCodePattern: Pattern = {
+  value: zipCodeRegex,
+  message: 'zipCode must be a valid zip Code'
+}
+export const urlPattern: Pattern = {
+  value: urlRegex,
+  message: 'url must be a valid url'
 }
