@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { CouponsIssued } from './entities/coupons-issued.entity'
-import mongoose, { Model, FilterQuery } from 'mongoose'
+import { Model, FilterQuery } from 'mongoose'
 import { CreateCouponsIssuedInput } from './dto/create-coupons-issued.input'
 import { UpdateCouponsIssuedInput } from './dto/update-coupons-issued.input'
 import { FilterCouponsIssuedInput } from './dto/filter-coupons-issued.input'
