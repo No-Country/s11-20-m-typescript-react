@@ -12,7 +12,10 @@ import {
   AchievementsPage,
   BenefitsPage,
   HomePanelPage,
-  ConfigurationPage
+  ConfigurationPage,
+  EventPage,
+  PrivacyPage,
+  TermsPage
 } from '@/pages'
 import { NextUIProvider } from '@nextui-org/system'
 import { ApolloProvider } from '@apollo/client'
@@ -21,6 +24,7 @@ import { UtilRoutes } from '@/utils/routes.utils'
 import { Toaster } from 'sonner'
 import { AuthProvider } from '@/context/providers/auth.provider'
 import CreateEvent from './pages/panel/events/create/page'
+import { RouterGuard } from './context/providers/router-guard.provider'
 
 const App = () => (
   <BrowserRouter>
@@ -32,19 +36,69 @@ const App = () => (
             <Routes>
               <Route path={UtilRoutes.HOME} element={<LandingPage />} />
               <Route path={UtilRoutes.DONATE} element={<DonatePage />} />
-              <Route path={UtilRoutes.PANEL} element={<HomePanelPage />} />
+              <Route
+                path={UtilRoutes.PANEL}
+                element={
+                  <RouterGuard>
+                    <HomePanelPage />
+                  </RouterGuard>
+                }
+              />
               <Route
                 path={UtilRoutes.CONFIGURATION}
-                element={<ConfigurationPage />}
+                element={
+                  <RouterGuard>
+                    <ConfigurationPage />
+                  </RouterGuard>
+                }
               />
               <Route path={UtilRoutes.HELP} element={<HelpPage />} />
               <Route
                 path={UtilRoutes.ACHIEVEMENTS}
-                element={<AchievementsPage />}
+                element={
+                  <RouterGuard>
+                    <AchievementsPage />
+                  </RouterGuard>
+                }
+              />
+              <Route
+                path={UtilRoutes.EVENTS}
+                element={
+                  <RouterGuard>
+                    <EventsPage />
+                  </RouterGuard>
+                }
+              />
+              <Route
+                path={UtilRoutes.CREATE_EVENT}
+                element={
+                  <RouterGuard>
+                    <CreateEvent />
+                  </RouterGuard>
+                }
+              />
+              <Route
+                path={`${UtilRoutes.EVENTS}/:id`}
+                element={
+                  <RouterGuard>
+                    <EventPage />
+                  </RouterGuard>
+                }
+              />
+              <Route path={UtilRoutes.BENEFITS} element={<BenefitsPage />} />
+              <Route
+                path={UtilRoutes.EVENTS}
+                element={
+                  <RouterGuard>
+                    <EventsPage />
+                  </RouterGuard>
+                }
               />
               <Route path={UtilRoutes.EVENTS} element={<EventsPage />} />
               <Route path={UtilRoutes.CREATE_EVENT} element={<CreateEvent />} />
               <Route path={UtilRoutes.BENEFITS} element={<BenefitsPage />} />
+              <Route path={UtilRoutes.PRIVACY} element={<PrivacyPage />} />
+              <Route path={UtilRoutes.TERMS} element={<TermsPage />} />
               <Route path='*' element={<NotFoundPage />} />
               <Route
                 path={UtilRoutes.LOGIN}

@@ -5,7 +5,7 @@ import login from '@/assets/botones/login.png'
 import register from '@/assets/botones/register.png'
 
 const ButtonsGroup = () => (
-  <div className='flex flex-col'>
+  <div className='md:flex hidden flex-col'>
     <Button
       className='w-[70px] h-[138px] bg-white rounded-tl-xl hover:bg-blue-200'
       radius='none'

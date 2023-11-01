@@ -1,4 +1,6 @@
-import { Button, TextElement } from '@/components'
+import { TextElement } from '@/components'
+import { Button } from '@nextui-org/react'
+import { Link } from 'react-router-dom'
 
 interface EventItemProps {
   event: any
@@ -23,13 +25,18 @@ const EventItem = ({ event }: EventItemProps) => (
           {event?.location?.state}
         </TextElement>
       </div>
+
       <Button
-        title='Ver evento'
+        as={Link}
+        to={`/events/${event?._id}`}
+        // title='Ver evento'
         color='secondary'
         size='sm'
-        className='text-black font-light'
+        className='text-black font-light w-[230px] h-[38px]'
         fullWidth
-      />
+      >
+        Unirse
+      </Button>
     </div>
   </div>
 )

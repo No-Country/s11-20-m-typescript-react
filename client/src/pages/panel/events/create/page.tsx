@@ -10,6 +10,8 @@ import {
   statePattern,
   timeEventPattern,
   titlePattern,
+  typeEventPattern,
+  urlPattern,
   zipCodePattern
 } from '@/utils/pattern.utils'
 import {
@@ -19,8 +21,15 @@ import {
 } from '@/utils/validateDatesEvent.util'
 import { useMutation } from '@apollo/client'
 import { CREATE_EVENT } from '@/graphql/events/create.mutation'
+import { useAuth } from '@/context/providers/auth.provider'
+import SelectComponent from '@/components/Select'
 
 const CreateEvent = () => {
+  const { user } = useAuth()
+
+  console.log('====================================')
+  console.log(user)
+  console.log('====================================')
   const [CreateEventMutation] = useMutation(CREATE_EVENT)
   const {
     register,
@@ -32,16 +41,13 @@ const CreateEvent = () => {
   })
 
   const onSubmit: SubmitHandler<any> = async (data) => {
-    console.log('====================================')
-    console.log(data)
-    console.log('====================================')
     const formData = {
       ...data,
       startDate: new Date(data.startDate).toISOString(),
       endDate: new Date(data.endDate).toISOString(),
       deadline: new Date(data.deadline).toISOString(),
       spots: parseFloat(data.spots),
-      type: 'public'
+      type: data.type ? data.type : 'public'
     }
 
     try {
@@ -57,9 +63,10 @@ const CreateEvent = () => {
             time: formData.time,
             spots: formData.spots,
             type: formData.type,
-            owner: '651e0f027f42a42e875b70d4',
-            thumbnail:
-              'https://images.unsplash.com/photo-1543964198-d54e4f0e44e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80',
+            owner: user?.id,
+            thumbnail: formData.thumbnail
+              ? formData.thumbnail
+              : 'https://images.unsplash.com/photo-1543964198-d54e4f0e44e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80',
             location: {
               adress: formData.adress,
               city: formData.city,
@@ -67,7 +74,8 @@ const CreateEvent = () => {
               zipCode: formData.zipCode,
               country: formData.country
             }
-          }
+          },
+          image: formData.thumbnail
         }
       })
       console.log('====================================')
@@ -86,12 +94,13 @@ const CreateEvent = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className='flex flex-col md:grid grid-cols-2 gap-5 w-full'>
-          <div className='flex flex-col flex-wrap max-h-fit'>
+          <div className='flex flex-col flex-wrap max-h-fit py-6'>
             <Input
               type='text'
               name='title'
               label='Titulo'
               placeholder='Ingrese un titulo para el evento'
+              className='my-3'
               hookForm={{
                 register,
                 validations: {
@@ -102,13 +111,14 @@ const CreateEvent = () => {
                   required: { value: true, message: 'This field is required' }
                 }
               }}
-              errorMessage={errors?.image?.message?.toString()}
+              errorMessage={errors?.title?.message?.toString()}
             />
 
             <Input
               type='text'
               name='description'
               label='Descripcion'
+              className='my-3'
               placeholder='Ingrese una descripcion'
               hookForm={{
                 register,
@@ -125,6 +135,7 @@ const CreateEvent = () => {
             <Input
               label='Lugares'
               name='spots'
+              className='my-3'
               placeholder='Cantidad maxima de asistentes'
               type='number'
               hookForm={{
@@ -140,26 +151,48 @@ const CreateEvent = () => {
               errorMessage={errors?.spots?.message?.toString()}
             />
             <Input
-              type='file'
+              type='text'
               name='thumbnail'
               label='Portada'
               placeholder='Ingrese una portada para el evento'
-              className=' w-full flex items-center justify-center bg-transparent '
+              className='  bg-[#e5e5e5] '
               hookForm={{
                 register,
                 validations: {
                   pattern: {
-                    value: titlePattern.value,
-                    message: titlePattern.message
+                    value: urlPattern.value,
+                    message: urlPattern.message
                   },
-                  required: { value: true, message: 'This field is required' }
+                  required: { value: false, message: 'This field is required' }
                 }
               }}
-              errorMessage={errors?.title?.message?.toString()}
+              errorMessage={errors?.thumbnail?.message?.toString()}
+            />
+            <SelectComponent
+              name='type'
+              label='Tipo de evento'
+              placeholder='Privado tendra que aceptar a las personas que quiera admitir al evento'
+              className='  bg-[#e5e5e5] '
+              hookForm={{
+                register,
+                validations: {
+                  pattern: {
+                    value: typeEventPattern.value,
+                    message: typeEventPattern.message
+                  },
+                  required: { value: false, message: 'This field is required' }
+                }
+              }}
+              errorMessage={errors?.type?.message?.toString()}
+              options={[
+                { label: 'Publico', value: 'public' },
+                { label: 'Privado', value: 'private' }
+              ]}
+              defaultValue='public'
             />
           </div>
 
-          <div className='flex flex-col flex-wrap'>
+          <div className='flex flex-col flex-wrap py-6'>
             <Input
               type='date'
               name='startDate'
@@ -248,7 +281,7 @@ const CreateEvent = () => {
             />
           </div>
 
-          <div className='flex flex-col w-full items-center'>
+          <div className='flex flex-col w-full items-center py-6'>
             <Input
               type='text'
               name='country'
@@ -336,7 +369,12 @@ const CreateEvent = () => {
             />
           </div>
         </div>
-        <Button type='submit' isLoading={isSubmitting} title='Guardar' />
+        <Button
+          isDisabled={!user}
+          type='submit'
+          isLoading={isSubmitting}
+          title='Guardar'
+        />
       </form>
     </PanelLayout>
   )

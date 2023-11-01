@@ -56,7 +56,7 @@ export const Register = () => {
 
   return (
     <form
-      className='flex flex-col w-[351px] flex-wrap md:flex-nowrap gap-4 font-inter'
+      className='flex flex-col w-full flex-wrap md:flex-nowrap gap-4 font-inter'
       autoComplete='off'
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -169,7 +169,7 @@ export const Register = () => {
           className='bg-yellow-400 font-bold text-black-950 hover:bg-teal-800 hover:text-yellow-400'
           isLoading={isSubmitting}
         >
-          Register
+          Registrarse
         </Button>
         <Link
           to={UtilRoutes.LOGIN}

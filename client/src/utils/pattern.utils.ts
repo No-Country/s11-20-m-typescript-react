@@ -12,6 +12,7 @@ import {
   timeEventRegex,
   titleRegex,
   typeEventRegex,
+  urlRegex,
   usernameRegex,
   zipCodeRegex
 } from './regex.utils'
@@ -99,6 +100,9 @@ export const adressPattern: Pattern = {
 }
 export const zipCodePattern: Pattern = {
   value: zipCodeRegex,
-  message:
-    'zipCode must be a valid zip Code'
+  message: 'zipCode must be a valid zip Code'
+}
+export const urlPattern: Pattern = {
+  value: urlRegex,
+  message: 'url must be a valid url'
 }

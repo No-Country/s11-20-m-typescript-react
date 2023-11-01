@@ -11,5 +11,7 @@ export const UtilRoutes = {
   CONFIGURATION: '/configuration',
   ACHIEVEMENTS: '/achievements',
   BENEFITS: '/benefits',
-  LOGOUT: '/logout'
+  LOGOUT: '/logout',
+  PRIVACY: '/privacy',
+  TERMS: '/terms'
 }

@@ -12,7 +12,7 @@ export class AuthService {
   ) {}
 
   async login (email: string, password: string): Promise<LoginResult> {
-    const user = await this.usersService.findUserByEmail(email)
+    const user = await this.usersService.findUserByEmail(email.toLowerCase())
 
     if (!user) {
       throw new UnauthorizedException('Incorrect email address')

@@ -18,15 +18,37 @@ import {
 } from './dto/members.input'
 import { User } from 'src/users/entities/user.entity'
 import { FilterEventInput } from './dto/filter-events.input'
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service'
+import { type FileUpload, GraphQLUpload } from 'graphql-upload-ts'
 
 @Resolver(() => Event)
 export class EventsResolver {
-  constructor (private readonly eventsService: EventsService) {}
+  constructor (
+    private readonly eventsService: EventsService,
+    private readonly cloudinaryService: CloudinaryService
+  ) {}
 
   @Mutation(() => Event)
   async createEvent (
-  @Args('createEventInput') createEventInput: CreateEventInput
+  @Args('createEventInput') createEventInput: CreateEventInput,
+    @Args({ name: 'image', type: () => GraphQLUpload, nullable: true })
+    image: FileUpload
   ) {
+    console.log('====================================')
+    console.log(image)
+    console.log('====================================')
+    if (image) {
+      try {
+        const uploadedImage = await this.cloudinaryService.uploadImage(image)
+
+        createEventInput.thumbnail = uploadedImage.secure_url
+      } catch (error) {
+        console.error(error)
+        throw new InternalServerErrorException(
+          'The thumbnail was not uploaded correctly'
+        )
+      }
+    }
     try {
       return await this.eventsService.create(createEventInput)
     } catch (error) {
@@ -36,7 +58,9 @@ export class EventsResolver {
   }
 
   @Mutation(() => Event)
-  async addEventMember (@Param('addMemberInput') addMemberInput: AddMemberInput) {
+  async addEventMember (
+  @Param('addMemberInput') addMemberInput: AddMemberInput
+  ) {
     try {
       return await this.eventsService.addMember(addMemberInput)
     } catch (error) {
@@ -117,8 +141,22 @@ export class EventsResolver {
 
   @Mutation(() => Event)
   async updateEvent (
-  @Args('updateEventInput') updateEventInput: UpdateEventInput
+  @Args('updateEventInput') updateEventInput: UpdateEventInput,
+    @Args({ name: 'image', type: () => GraphQLUpload, nullable: true })
+    image: FileUpload
   ) {
+    if (image) {
+      try {
+        const uploadedImage = await this.cloudinaryService.uploadImage(image)
+
+        updateEventInput.thumbnail = uploadedImage.secure_url
+      } catch (error) {
+        console.error(error)
+        throw new InternalServerErrorException(
+          'The thumbnail was not uploaded correctly'
+        )
+      }
+    }
     try {
       return await this.eventsService.update(
         updateEventInput._id,

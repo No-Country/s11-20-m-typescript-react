@@ -1,9 +1,14 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException
+} from '@nestjs/common'
 import { CreateCouponInput } from './dto/create-coupon.input'
 import { UpdateCouponInput } from './dto/update-coupon.input'
 import { Coupon } from './entities/coupon.entity'
 import { InjectModel } from '@nestjs/mongoose'
-import { Model } from 'mongoose'
+import { FilterQuery, Model } from 'mongoose'
+import { FilterCouponInput } from './dto/filter-coupon.input'
 
 @Injectable()
 export class CouponsService {
@@ -26,11 +31,48 @@ export class CouponsService {
     })
   }
 
-  async findAll () {
-    return await this.couponModel.find().catch((error) => {
-      console.error(error)
-      throw new Error(error)
-    })
+  async findAll (params?: FilterCouponInput) {
+    let filters: FilterQuery<Coupon> = {}
+
+    const { limit, offset } = params
+    if (params) {
+      for (const item in params) {
+        if (params[item]) {
+          if (item === 'title') {
+            filters = {
+              [item]: {
+                $regex: params[item],
+                $options: 'i',
+                ...filters
+              }
+            }
+          } else {
+            if (!(item === 'limit' || item === 'offset')) {
+              filters = {
+                [item]: params[item],
+                ...filters
+              }
+            }
+          }
+        }
+      }
+      const filteredResults = await this.couponModel
+        .find(filters)
+        .limit(limit)
+        .skip(offset)
+        .exec()
+        .catch((error) => {
+          console.log(error)
+          throw new BadRequestException("Can't find coupons")
+        })
+
+      return filteredResults
+    } else {
+      return await this.couponModel.find().catch((error) => {
+        console.log(error)
+        throw new BadRequestException("Can't find coupons")
+      })
+    }
   }
 
   async findOne (id: string) {
