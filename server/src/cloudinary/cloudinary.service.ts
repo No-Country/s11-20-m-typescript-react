@@ -1,3 +1,4 @@
+/* eslint-disable promise/param-names */
 import type { ReadStream } from 'node:fs'
 import { Injectable, InternalServerErrorException } from '@nestjs/common'
 import { v2 } from 'cloudinary'
