@@ -46,9 +46,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (token && userId) {
       setUser({ id: userId, token })
       if (!isExpired) {
-        navigate(UtilRoutes.PANEL)
+        navigate(UtilRoutes.LOGIN)
       }
-      navigate(UtilRoutes.LOGIN)
+      navigate(UtilRoutes.PANEL)
     }
   }, [])
 

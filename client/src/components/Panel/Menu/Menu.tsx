@@ -1,48 +1,63 @@
+import { useState } from 'react'
+import { HiMenuAlt3 } from 'react-icons/hi'
+import { Link } from 'react-router-dom'
+import { UtilRoutes } from '@/utils/routes.utils'
 import logo from '@/assets/logo.png'
+import { topItems } from './topItems.lib'
+import MenuButton from './Button'
 import configuracion_light from '@/assets/botones/configuracion_light.png'
 import configuracion_dark from '@/assets/botones/configuracion_dark.png'
 import cerrarsesion_light from '@/assets/botones/cerrarsesion_light.png'
 import cerrarsesion_dark from '@/assets/botones/cerrarsesion_dark.png'
-import { Link } from 'react-router-dom'
-import MenuButton from './Button'
-import { UtilRoutes } from '@/utils/routes.utils'
-import { topItems } from './topItems.lib'
 
-const Menu = () => (
-  <aside className='bg-white sticky top-0 flex flex-col items-center justify-between h-screen min-w-[250px] px-7'>
-    <div className='flex flex-col gap-[40px] w-full'>
-      <div className='flex flex-col items-center justify-between mt-8 w-full'>
-        <Link to={UtilRoutes.HOME} style={{ userSelect: 'none' }}>
-          <img src={logo} alt='Logo' title='Logo' height='41px' width='95px' />
-        </Link>
-      </div>
-      <div className='flex flex-col  items-center gap-2 justify-between w-full'>
-        {topItems.map((item, index) => (
-          <MenuButton
-            key={index}
-            ruta={item.ruta}
-            texto={item.texto}
-            iconlight={item.iconlight}
-            icondark={item.icondark}
+const Home = () => {
+  const [open, setOpen] = useState(true)
+  return (
+    <section className='flex'>
+      <div className={`bg-white min-h-screen ${open ? 'w-[200px]' : 'w-[140px]'} duration-500 text-teal-800 px-4`}>
+        <div className='py-3 flex justify-end'>
+          <HiMenuAlt3
+            size={26}
+            className='cursor-pointer'
+            onClick={() => { setOpen(!open) }}
           />
-        ))}
-      </div>
-    </div>
-    <div className='flex flex-col items-center justify-between gap-2 mb-8 w-full'>
-      <MenuButton
-        ruta={UtilRoutes.CONFIGURATION}
-        texto='Configuración'
-        iconlight={configuracion_light}
-        icondark={configuracion_dark}
-      />
-      <MenuButton
-        ruta={UtilRoutes.LOGOUT}
-        texto='Cerrar sesión'
-        iconlight={cerrarsesion_light}
-        icondark={cerrarsesion_dark}
-      />
-    </div>
-  </aside>
-)
+        </div>
+        <div className='pb-6 flex justify-center md:justify-center'>
+          <Link to={UtilRoutes.HOME} style={{ userSelect: 'none' }}>
+            <img src={logo} alt='Logo' title='Logo' />
+          </Link>
+        </div>
+        <div className='mt-8 md:mt-[100px] flex flex-col gap-4'>
 
-export default Menu
+          {topItems?.map((item, index) => (
+
+            <MenuButton
+              key={index}
+              ruta={item.ruta}
+              texto={item.texto}
+              iconlight={item.iconlight}
+              icondark={item.icondark}
+            />
+
+          ))}
+        </div>
+        <div className='flex flex-col items-center justify-center gap-2 mt-[140px] md:mt-[140px] w-full'>
+          <MenuButton
+            ruta={UtilRoutes.CONFIGURATION}
+            texto='Configuración'
+            iconlight={configuracion_light}
+            icondark={configuracion_dark}
+          />
+          <MenuButton
+            ruta={UtilRoutes.LOGOUT}
+            texto='Cerrar sesión'
+            iconlight={cerrarsesion_light}
+            icondark={cerrarsesion_dark}
+          />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default Home

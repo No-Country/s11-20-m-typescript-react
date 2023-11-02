@@ -5,6 +5,7 @@ export const UtilRoutes = {
   DONATE: '/donate',
   HOME: '/',
   EVENTS: '/events',
+  CREATE_EVENT: '/events/create',
   HELP: '/help',
   ABOUT: '/about',
   CONFIGURATION: '/configuration',
