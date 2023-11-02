@@ -190,6 +190,7 @@ type Query {
   events(filterEventInput: FilterEventInput!): [Event!]!
   event(id: String!): Event!
   coupons(filterCouponInput: FilterCouponInput!): [Coupon!]!
+  getCoupons: [Coupon!]!
   coupon(id: String!): Coupon!
   verifyToken(token: String!): VerificationResult!
 }

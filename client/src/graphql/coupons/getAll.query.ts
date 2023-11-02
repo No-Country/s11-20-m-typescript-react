@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 
 const GET_COUPONS = gql`
   query {
-    coupons {
+    getCoupons {
       _id
       title
       thumbnail

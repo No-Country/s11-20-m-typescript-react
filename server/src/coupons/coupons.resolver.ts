@@ -32,6 +32,16 @@ export class CouponsResolver {
     }
   }
 
+  @Query(() => [Coupon], { name: 'getCoupons' })
+  async findAllCoupons () {
+    try {
+      return await this.couponsService.getCoupons()
+    } catch (error) {
+      console.log(error)
+      throw new InternalServerErrorException()
+    }
+  }
+
   @Query(() => Coupon, { name: 'coupon' })
   async findOne (@Args('id', { type: () => String }) id: string) {
     try {

@@ -75,6 +75,10 @@ export class CouponsService {
     }
   }
 
+  async getCoupons () {
+    return await this.couponModel.find()
+  }
+
   async findOne (id: string) {
     return await this.findCoupon(id)
   }

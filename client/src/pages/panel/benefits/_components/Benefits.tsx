@@ -7,8 +7,7 @@ import ReactPaginate from 'react-paginate'
 const Benefits = () => {
   const [currentPage, setCurrentPage] = useState(0)
   const eventsPerPage = 9
-  const { data, error } = useQuery(GET_COUPONS)
-  console.log(data, error)
+  const { data } = useQuery(GET_COUPONS)
 
   const handlePageChange = ({ selected }: any) => {
     setCurrentPage(selected)
@@ -16,17 +15,17 @@ const Benefits = () => {
 
   const startIndex = currentPage * eventsPerPage
   const endIndex = startIndex + eventsPerPage
-  const couponsToShow = data?.coupons?.slice(startIndex, endIndex)
+  const couponsToShow = data?.getCoupons?.slice(startIndex, endIndex)
   return (
     <div className='flex flex-col gap-6'>
       <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-5'>
-        {Array.isArray(data?.coupons) &&
+        {Array.isArray(data?.getCoupons) &&
           couponsToShow?.map((coupon: any) => (
             <CouponItem coupon={coupon} key={coupon?.id} />
           ))}
       </div>
       <ReactPaginate
-        pageCount={Math.ceil(data?.coupons?.length / eventsPerPage)}
+        pageCount={Math.ceil(data?.getCoupons?.length / eventsPerPage)}
         pageRangeDisplayed={5}
         marginPagesDisplayed={2}
         onPageChange={handlePageChange}
