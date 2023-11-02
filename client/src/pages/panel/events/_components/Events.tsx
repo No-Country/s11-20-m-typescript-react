@@ -18,8 +18,8 @@ const Events = () => {
   const endIndex = startIndex + eventsPerPage
   const eventsToShow = data?.events?.slice(startIndex, endIndex)
   return (
-    <div className='flex flex-col gap-6'>
-      <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-5'>
+    <div className='flex flex-col gap-2'>
+      <div className='grid md:grid-cols-3 xl:grid-cols-4 gap-5'>
         {Array.isArray(data?.events) &&
           eventsToShow?.map((event: any) => (
             <EventCard event={event} key={event?.id} />
