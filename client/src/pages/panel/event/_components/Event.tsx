@@ -1,5 +1,5 @@
-import { Button } from '@nextui-org/react'
 import React from 'react'
+import { Button, Card } from '@nextui-org/react'
 import { Link } from 'react-router-dom'
 
 interface EventCardProps {
@@ -17,20 +17,35 @@ const EventCard: React.FC<EventCardProps> = ({
   endDate,
   thumbnail
 }) => (
-  <div className='bg-white shadow-md p-4 rounded-lg'>
-    <img src={thumbnail} alt={title} className='w-full h-48 object-cover' />
-    <h2 className='text-2xl font-bold mt-2'>{title}</h2>
-    <p className='text-gray-500 text-sm mt-1'>{description}</p>
-    <p className='text-gray-700 text-sm mt-1'>
-      Start Date: {new Date(startDate).toLocaleDateString()}
-    </p>
-    <p className='text-gray-700 text-sm mt-1'>
-      End Date: {new Date(endDate).toLocaleDateString()}
-    </p>
-    <Link to='/events' />
-    <Button color='primary' size='sm'>Anotarme</Button>
+  <Card>
 
-  </div>
+    <div className='bg-white shadow-md p-4 rounded-lg flex'>
+      <div className='w-1/3 mr-4 flex items-end'>
+        <img
+          src={thumbnail}
+          alt={title}
+          className='object-cover object-center w-full h-48 rounded-lg'
+        />
+      </div>
+      <div className='w-2/3'>
+        <h2 className='text-2xl font-bold'>{title}</h2>
+        <p className='text-gray-600 text-sm mt-1'>{description}</p>
+        <p className='text-gray-700 text-sm mt-1'>
+          <strong>Start Date:</strong> {new Date(startDate).toLocaleDateString()}
+        </p>
+        <p className='text-gray-700 text-sm mt-1'>
+          <strong>End Date:</strong> {new Date(endDate).toLocaleDateString()}
+        </p>
+        <div className='absolute right-5 bottom-2'>
+          <Link to='/events' className='block'>
+            <Button color='secondary' size='sm' className='text-black font-light w-20'>
+              Anotarme
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  </Card>
 )
 
 export default EventCard

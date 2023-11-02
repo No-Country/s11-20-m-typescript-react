@@ -9,11 +9,14 @@ const EventCard = ({ event }: EventItemProps) => (
 
   <Card className='w-[254px] h-[276px] justify-center '>
     <CardBody className='overflow-hidden'>
-      <Image
-        alt={event?.title}
-        src={event?.thumbnail}
-        className='object-cover rounded-xl w-[238px] h-[100px] '
-      />
+      <div>
+
+        <Image
+          alt={event?.title}
+          src={event?.thumbnail}
+          className='object-cover rounded-xl w-[238px] h-[112px] '
+        />
+      </div>
     </CardBody>
     <CardHeader className=' flex-col items-start'>
       <h4 className=' uppercase font-bold'>{event?.title}</h4>
@@ -23,7 +26,7 @@ const EventCard = ({ event }: EventItemProps) => (
           <p>lugar de evento</p>
         </div>
         <div className='flex flex-row'>
-          <img src={schedule} alt='schedule' />
+          <img src={schedule} alt='time' />
           <p>{event?.time}</p>
 
         </div>
@@ -41,7 +44,7 @@ const EventCard = ({ event }: EventItemProps) => (
         size='sm'
         className='text-black font-light w-[230px] h-[33px]'
       >
-        Unirse
+        Mas Informacion
       </Button>
     </CardFooter>
   </Card>
