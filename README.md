@@ -327,21 +327,23 @@ Puedes comenzar registrandote en nuestra plataforma, y luego de iniciar sesion p
 <img src="https://media4.giphy.com/media/U3DTrGnuwfDpkNsr3d/giphy.gif" width="30px">Documentación Q/A
 </h1>
 
-<a href="https://www.link1.com" target="_blank" rel="author">
+https://drive.google.com/drive/folders/1bwdTXOw7HsGJmr6VrdJBB178oQUProQ6
 
-![www.link1.com](https://img.shields.io/badge/Plan_de_Pruebas-_Q/A_-blue)
+<a href="https://drive.google.com/file/d/1bbmUtqQBTk4PTY0_Wx8zFS3qiIaXf7Dn/view?usp=drive_link" target="_blank" rel="author">
 
-</a>
-
-<a href="https://www.link2.com" target="_blank" rel="author">
-
-![www.link2.com](https://img.shields.io/badge/Casos_de_Pruebas-_Q/A_-yellow)
+![https://drive.google.com/file/d/1bbmUtqQBTk4PTY0_Wx8zFS3qiIaXf7Dn/view?usp=drive_link](https://img.shields.io/badge/Plan_de_Pruebas-_Q/A_-blue)
 
 </a>
 
-<a href="https://www.link3.com" target="_blank" rel="author">
+<a href="https://docs.google.com/spreadsheets/d/1iYWENeXhPOXiM5HEiLCYUMSHBBC9Itq3/edit?usp=drive_link" target="_blank" rel="author">
 
-![www.link3.com](https://img.shields.io/badge/Reporte_de_Pruebas-_Q/A_-red)
+![https://docs.google.com/spreadsheets/d/1iYWENeXhPOXiM5HEiLCYUMSHBBC9Itq3/edit?usp=drive_link](https://img.shields.io/badge/Casos_de_Pruebas-_Q/A_-yellow)
+
+</a>
+
+<a href="https://drive.google.com/file/d/1J9BXKDQ97suliy7j2wvVp3bVvZgPNOrS/view?usp=drive_link" target="_blank" rel="author">
+
+![https://drive.google.com/file/d/1J9BXKDQ97suliy7j2wvVp3bVvZgPNOrS/view?usp=drive_link](https://img.shields.io/badge/Reporte_de_Pruebas-_Q/A_-red)
 
 </a>
 
